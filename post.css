@@ -1,0 +1,109 @@
+.blog-post__container {
+    max-width: 900px;
+    margin: 80px auto 0;
+    padding: 3rem 1.5rem;
+    -webkit-font-smoothing: antialiased;;
+}
+
+.blog-post__header {
+    margin-bottom: 3rem;
+}
+
+.blog-post__title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    letter-spacing: -.03em;
+    line-height: 1.02;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.blog-post__meta {
+    font-size: 0.95rem;
+    color: var(--ink-3);
+    font-weight: 400;
+}
+
+.blog-post__content {
+    line-height: 1.8;
+    color: var(--ink);
+}
+
+.blog-post__content h2 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    color: var(--ink);
+}
+
+.blog-post__content h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--ink);
+}
+
+.blog-post__content p {
+    margin-bottom: 1.25rem;
+}
+
+.blog-post__content ul,
+.blog-post__content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.blog-post__content li {
+    margin-bottom: 0.75rem;
+}
+
+.blog-post__content strong {
+    font-weight: 600;
+}
+
+.blog-post__footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+}
+
+.blog-post__link {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+}
+
+.blog-post__back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--forest);
+    font-weight: 500;
+    transition: color 0.3s var(--ease);
+}
+
+.blog-post__back-link:hover {
+    color: var(--forest-mid);
+}
+
+@media (max-width: 768px) {
+    .blog-post__container {
+        padding: 2rem 1rem;
+    }
+
+    .blog-post__content h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .blog-post__content h3 {
+        font-size: 1.2rem;
+    }
+}

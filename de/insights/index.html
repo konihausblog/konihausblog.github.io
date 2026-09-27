@@ -47,153 +47,23 @@
     crossorigin
   >
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/insights.css">
   
-  <style>
-    html {
-      height: 100%;
-    }
-
-    body {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .insights-container {
-      max-width: 1000px;
-      margin: 80px auto 0;
-      padding: 3rem 1.5rem;
-    }
-
-    .insights__header {
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-
-    .insights__title {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    .insights__intro {
-      font-size: 1.1rem;
-      color: var(--ink-3);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    .insights__grid {
-      display: grid !important;
-      grid-template-columns: repeat(3, 1fr) !important;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .insights-card {
-      padding: 2rem;
-      background: white;
-      border: 1px solid var(--rule);
-      border-radius: 4px;
-      transition: all 0.3s var(--ease);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .insights-card:hover {
-      border-color: var(--forest);
-      box-shadow: 0 4px 12px rgba(26, 25, 22, 0.08);
-      transform: translateY(-2px);
-    }
-
-    .insights-card__title {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
-    }
-
-    .insights-card__title a {
-      color: var(--ink);
-      text-decoration: none;
-      transition: color 0.3s var(--ease);
-    }
-
-    .insights-card:hover .insights-card__title a {
-      color: var(--forest);
-    }
-
-    .insights-card__date {
-      font-size: 0.9rem;
-      color: var(--ink-3);
-      margin-bottom: 1rem;
-      font-weight: 400;
-    }
-
-    .insights-card__excerpt {
-      color: var(--ink-2);
-      line-height: 1.7;
-      flex-grow: 1;
-      margin-bottom: 1.5rem;
-    }
-
-    .insights-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--forest);
-      font-weight: 500;
-      transition: color 0.3s var(--ease);
-      align-self: flex-start;
-    }
-
-    .insights-card__link:hover {
-      color: var(--forest-mid);
-    }
-    @media (max-width: 1100px) {
-
-      .insights__grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .insights-container {
-        padding: 2rem 1rem;
-      }
-
-      .insights__grid {
-        grid-template-columns: 1fr !important;
-        gap: 1.5rem;
-      }
-
-      .insights-card {
-        padding: 1.5rem;
-      }
-    }
-  </style>
 </head>
 <body>
 
  <nav class="nav  nav--solid" id="nav">
     <div class="container">
       <div class="nav__inner ">
-        <a href="https://konihaus.ch" class="logo" aria-label="Konihaus">
+        <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
           <div class="logo-image"></div>
-          <div class="wordmark">konihaus</div>
+          <div class="wordmark">konihaus blog</div>
         </a>
         <ul class="nav__links">
-          <li><a href="https://konihaus.ch/#about" data-i18n="nav.about">Über Koni</a></li>
+          <li><a href="https://konihaus.ch/#intro" data-i18n="nav.intro">Was ist Konihaus</a></li>
           <li><a href="https://konihaus.ch/#packages" data-i18n="nav.packages">Pakete</a></li>
           <li><a href="https://konihaus.ch/#contact" data-i18n="nav.contact">Kontakt</a></li>
-          <li><a class="active" href="/de/insights/" data-i18n="nav.blog">Blog</a></li>
+          <li><a href="https://konihaus.ch/#about" data-i18n="nav.about">Über Koni</a></li>
         </ul>
         <div class="language-picker">
           <button
@@ -236,12 +106,12 @@
   <!-- MOBILE DRAWER -->
   <div class="nav__drawer" id="drawer">
     <ul>
-      <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="nav.about">Über Koni</a></li>
+      <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="nav.intro">Was ist Konihaus</a></li>
       <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="nav.packages">Pakete</a></li>
       <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="nav.contact">Kontakt</a></li>
-      <li><a href="/de/insights/" class="active drawer-link" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="https://konihaus.ch/#about" class="drawer-link active" data-i18n="nav.about">Über Koni</a></li>
     </ul>
-    <a href="#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
   </div>
 
   <main class="insights-container">
@@ -280,9 +150,9 @@
     <div class="container">
       <div class="footer__top">
         <div>
-          <a href="#" class="logo" aria-label="Konihaus">
+          <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
             <div class="logo-image"></div>
-            <div class="wordmark">konihaus</div>
+            <div class="wordmark">konihaus blog</div>
           </a>
           <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
             Ferienhausbesitzer in der
