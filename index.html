@@ -20,15 +20,15 @@
       }
       const lang = getLangFromCookie() || getBrowserLang();
       const target = lang === 'de'
-        ? 'https://blog.konihaus.ch/de/insights/'
-        : 'https://blog.konihaus.ch/en/insights/';
+        ? '/de/insights/'
+        : '/en/insights/';
       window.location.replace(target);
     })();
   </script>
   <noscript>
     <p>
-      <a href="https://blog.konihaus.ch/en/insights/">Continue in English</a> ·
-      <a href="https://blog.konihaus.ch/de/insights/">Weiter auf Deutsch</a>
+      <a href="/en/insights/">Continue in English</a> ·
+      <a href="/de/insights/">Weiter auf Deutsch</a>
     </p>
   </noscript>
 </body>
