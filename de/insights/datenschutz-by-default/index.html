@@ -131,7 +131,7 @@
 
     <article>
       <header class="blog-post__header">
-        <h1 class="blog-post__title">Datenschutz by Default</h1>
+        <h1 class="blog-post__title"><span>Datenschutz by Default</span></h1>
         <time class="blog-post__meta" datetime="Sat Aug 15 2026 02:00:00 GMT+0200 (Central European Summer Time)">
           
             15. August 2026
@@ -144,9 +144,15 @@
         <h2>Deine Daten bleiben zu Hause</h2>
 <p>Google Home und Amazon Alexa sind nur die offensichtlichsten Beispiele. In einem typischen Smart Home kommen oft noch Leuchten von Philips Hue oder IKEA, Thermostate von tado°, Beschattungen von Somfy, Tuya-Geräte und Produkte weiterer Hersteller hinzu. Jedes System bringt eine eigene App und ein eigenes Konto mit. Manche Apps sind schlicht, andere bieten aufwendige Oberflächen, Designs, Routinen und unzählige Funktionen.</p>
 <p>Dieser Komfort kann einen weniger sichtbaren Preis haben: mehr Hersteller-Clouds, mehr externe Konten und mehr Informationen über dein Zuhause, die ausserhalb davon verarbeitet werden. Cloudbasierte Sprachassistenten senden Befehle, Routinen und Einstellungen an entfernte Server. Bei anderen Produkten unterscheidet sich der Anteil lokaler Funktionen, doch viele benötigen für Einrichtung, Steuerung, Benachrichtigungen oder Zusatzfunktionen weiterhin einen Dienst des Herstellers. Du entscheidest dich damit nicht nur für Funktionen. Du entscheidest auch, von wem dein Zuhause abhängig ist und wohin seine Daten fliessen können.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/privacy/data-stays-home.webp" alt="Ein lokal verbundenes Smart Home behält seine Gerätedaten im eigenen Zuhause" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
 <p>Konihaus verfolgt deshalb einen Local-First-Ansatz. Automationen, die Koordination der Geräte und die für den Betrieb nötigen Verlaufsdaten werden auf Hardware <em>in deinem Zuhause</em> verarbeitet. Wo immer möglich, wählen und konfigurieren wir Geräte für eine lokale Kommunikation. Funktionen, die einen externen Dienst benötigen, weisen wir klar als solche aus. Dein Smart Home muss nicht jede Aktion an einen entfernten Server melden, nur um ein Licht einzuschalten, eine Beschattung zu senken oder die Heizung anzupassen.</p>
 <h2>Wie das funktioniert</h2>
 <p>Dein Konihaus-System läuft auf einer <strong>Home-Assistant-Instanz</strong> – einem kleinen Linux-Computer, üblicherweise einem Raspberry Pi oder kompakten NUC – bei dir zu Hause. Dort befindet sich die gesamte Logik: Automationen, Gerätekoordination und Szenen.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/privacy/local-smart-home-hub.webp" alt="Ein lokaler Smart-Home-Hub verbindet Licht, Heizung, Beschattung und Sensoren" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
 <p><strong>Datenfluss nach dem Local-First-Prinzip:</strong></p>
 <ul>
 <li>Deine Zigbee-Geräte kommunizieren direkt mit dem lokalen Hub</li>
@@ -158,18 +164,30 @@
 <h2>Was das praktisch bedeutet</h2>
 <p><strong>Keine Verwertung deiner Daten.</strong> Konihaus hat keinen Anreiz, Verhaltensdaten zu sammeln. Wir verdienen weder an deiner Aufmerksamkeit noch verkaufen wir Erkenntnisse über deine Lebensgewohnheiten.</p>
 <p><strong>Weniger Abhängigkeit von externen Diensten.</strong> Die zentralen Automationen laufen weiterhin bei dir zu Hause, auch wenn ein Internetdienst nicht erreichbar ist. Optionale Cloudfunktionen bleiben von ihrem jeweiligen Anbieter abhängig.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/privacy/local-resilience.webp" alt="Licht, Beschattung und Heizung funktionieren dank lokaler Automation weiterhin" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
 <p><strong>Weniger Herstellerbindung.</strong> Du kannst direkt auf deine eigenen Daten zugreifen. Konihaus führt Geräte aus etablierten Standards und Ökosystemen – etwa Zigbee, Z-Wave, Matter und WiFi – in einem System zusammen, soweit die jeweiligen Geräte dies unterstützen.</p>
 <p><strong>Schnellere Reaktionen.</strong> Bei lokaler Verarbeitung muss ein Befehl keinen Umweg über einen entfernten Server nehmen, wenn du ein Licht einschaltest oder die Temperatur änderst.</p>
 <h2>Fernzugriff: sicher und optional</h2>
 <p>Du möchtest auch auf Reisen nach deinem Zuhause sehen? Konihaus unterstützt eine private, Ende-zu-Ende-verschlüsselte VPN-Verbindung mit Protokollen wie WireGuard oder OpenVPN. Du kontrollierst die Zugangsdaten und entscheidest, wann du sie nutzt.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/privacy/secure-remote-access.webp" alt="Eine Reisende verbindet sich über einen privaten Fernzugriff sicher mit ihrem Zuhause" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
 <p>Das unterscheidet sich grundlegend von Systemen, bei denen eine Hersteller-Cloud standardmässig den Zugang zu deinem Zuhause vermittelt. Bei Konihaus entscheidest <em>du</em>, ob du einen Fernzugriff aktivierst. Deine lokalen Automationen sind davon nicht abhängig.</p>
 <h2>Auch Sprachsteuerung kann lokal bleiben</h2>
 <p>Sprachsteuerung bedeutet nicht zwangsläufig, dass Aufnahmen an einen grossen Cloudanbieter gesendet werden. Home Assistant Assist kann die gesamte Sprachverarbeitung auf deiner eigenen Hardware ausführen: Ein Mikrofon nimmt den Befehl auf, eine lokale Spracherkennung wandelt ihn in Text um, Home Assistant führt die gewünschte Aktion aus und eine lokale Sprachausgabe spricht die Antwort. Der gesprochene Befehl kann während des gesamten Vorgangs im eigenen Zuhause bleiben.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/privacy/local-voice-control.webp" alt="Mikrofon, lokaler Computer und Lampe bilden eine private Sprachsteuerung" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
 <p>Dabei gibt es einen klaren Zielkonflikt. Eine spezialisierte Lösung wie Speech-to-Phrase reagiert auch auf schlanker Hardware schnell, versteht jedoch nur einen begrenzteren Satz von Befehlen zur Haussteuerung. Whisper kann freier formulierte Sprache erfassen, benötigt für schnelle Antworten aber mehr Rechenleistung. Piper erzeugt die Sprachausgabe lokal. Auch Sprachunterstützung und Erkennungsqualität unterscheiden sich. Das System sollte deshalb passend zu den Menschen ausgewählt, eingerichtet und getestet werden, die es später nutzen.</p>
 <p>Die Einrichtung wirkt zunächst aufwendiger als die Aktivierung eines bekannten Cloudassistenten. Sie verlangt zusätzliche Hardware und eine sorgfältige Konfiguration. Wer dem Schutz der Privatsphäre einen besonders hohen Stellenwert gibt, erhält dafür einen konkreten Gegenwert: Sprachsteuerung, ohne die gesprochenen Befehle des Haushalts routinemässig an einen externen Dienst zu senden. Konihaus kann die passende Hardware beurteilen, die lokale Sprachverarbeitung einrichten und sie für praktische Alltagsbefehle abstimmen.</p>
 <p><a href="https://www.home-assistant.io/voice_control/voice_remote_local_assistant/">So funktioniert ein vollständig lokaler Sprachassistent mit Home Assistant</a>.</p>
 <h2>Warum wir es so gebaut haben</h2>
 <p>Datenschutz ist keine nachträglich ergänzte Funktion. Er ist das Fundament. Ein wirklich persönliches Smart Home sollte nicht voraussetzen, dass du einem Konzern intime Details deines Alltags anvertraust – wann du aufstehst, wann du das Haus verlässt oder ob jemand zu Hause ist.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/privacy/privacy-foundation.webp" alt="Ein geschütztes, lokal gesteuertes Zuhause in der Schweizer Landschaft bei Dämmerung" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
 <p>Eine Local-First-Architektur reduziert diese Preisgabe von Anfang an. Du kannst dich weiterhin bewusst für vernetzte Dienste entscheiden, wenn sie einen echten Mehrwert bieten. Der grundlegende Betrieb deines Zuhauses bleibt jedoch in deinen Händen.</p>
 
       </div>

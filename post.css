@@ -1,3 +1,9 @@
+.nav--solid,
+.footer {
+  background: var(--marine-deep);
+}
+
+
 .blog-post__container {
     max-width: 900px;
     margin: 80px auto 0;
@@ -9,12 +15,35 @@
 }
 
 .blog-post__title {
+    position: relative;
     font-family: var(--serif);
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(3rem, 5vw, 4rem);
     color: var(--ink);
     margin-bottom: 0.5rem;
     line-height: 1.2;
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -.03em;
+    animation: fadeUp .9s var(--ease) .12s both;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.blog-post__title span {
+    display: inline-block;
+    background-color: var(--parchment);
+    padding-right: 20px;
+}
+
+.blog-post__title::after {
+    content: '';
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    border-bottom: 2px solid var(--marine-mid);
+    z-index: -2;
 }
 
 .blog-post__meta {
@@ -34,8 +63,16 @@
     font-weight: 400;
     margin-top: 2.5rem;
     margin-bottom: 1.25rem;
-    color: var(--ink);
+    color: var(--marine);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.02;
+    letter-spacing: -.03em;
+    animation: fadeUp .9s var(--ease) .12s both;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
 }
+
 
 .blog-post__content h3 {
     font-family: var(--serif);
@@ -80,13 +117,13 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--forest);
+    color: var(--marine);
     font-weight: 500;
     transition: color 0.3s var(--ease);
 }
 
 .blog-post__back-link:hover {
-    color: var(--forest-mid);
+    color: var(--marine-mid);
 }
 
 @media (max-width: 768px) {
@@ -101,5 +138,39 @@
 
     .blog-post__content h3 {
         font-size: 1.2rem;
+    }
+}
+
+/* Editorial images inside blog posts */
+.blog-post__figure {
+    width: min(70%, 820px);
+    margin: 2rem auto 2.5rem;
+}
+
+.blog-post__figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 18px 45px rgba(30, 54, 40, 0.10);
+}
+
+@media (max-width: 768px) {
+
+    .blog-post__title {
+        font-size: clamp(2rem, 5vw, 3rem);        
+    }
+    .blog-post__title::after {
+        display: none;
+    }
+    .blog-post__figure {
+        width: min(100%, 820px);
+        margin: 1.5rem auto 2rem;
+    }
+
+    .blog-post__figure img {
+        border-radius: 12px;
     }
 }
