@@ -142,29 +142,35 @@
 
       <div class="blog-post__content">
         <h2>Your Data Stays at Home</h2>
-<p>When you use Google Home or Amazon Alexa, your voice commands, your routines, your preferences—they all flow to the cloud. You're trading convenience for surveillance, whether you realize it or not.</p>
-<p>With Konihaus, everything runs on hardware <em>in your home</em>. No cloud. No servers somewhere else processing your patterns. Your smart home data never leaves your living room unless you explicitly tell it to.</p>
+<p>Google Home and Amazon Alexa are only the most obvious examples. A typical smart home may also include Philips Hue or IKEA lights, tado° thermostats, Somfy shades, Tuya devices, and products from several other manufacturers. Each ecosystem comes with its own app and account. Some apps are simple; others offer polished dashboards, themes, routines, and a long list of functions.</p>
+<p>That convenience can come with a less visible cost: more vendor clouds, more external accounts, and more information about your home being processed outside it. With cloud-based voice assistants, commands, routines, and preferences are sent to remote servers. Other products differ in how much they can do locally, but many still rely on a manufacturer’s service for setup, control, notifications, or advanced features. You are not only choosing functions. You are also choosing who your home depends on and where its data may go.</p>
+<p>Konihaus takes a local-first approach. Automations, device coordination, and the history needed to run your home are processed on hardware <em>in your home</em>. We select and configure devices for local communication wherever possible and clearly identify any optional feature that requires an external service. Your smart home does not need to report every action to a remote server simply to switch on a light, lower a shade, or adjust the heating.</p>
 <h2>How It Works</h2>
 <p>Your Konihaus system runs on a <strong>Home Assistant instance</strong> (a lightweight Linux computer, typically a Raspberry Pi or small NUC) installed in your home. All the logic—automations, device coordination, scenes—lives there.</p>
-<p><strong>Local-only data flow:</strong></p>
+<p><strong>Local-first data flow:</strong></p>
 <ul>
 <li>Your Zigbee devices talk directly to the local hub</li>
 <li>Z-Wave devices stay local</li>
-<li>WiFi devices communicate locally when possible</li>
-<li>No outbound data collection</li>
+<li>WiFi devices communicate locally when supported</li>
+<li>Konihaus does not collect your behavioral data</li>
 </ul>
-<p>The only exception: if you <em>choose</em> to set up remote access (to check your home while away), we use an encrypted VPN tunnel that <em>you</em> control. You're not giving Konihaus access—you're granting yourself secure remote access.</p>
+<p>If you choose a device or service that requires its manufacturer’s cloud, that connection is treated as an explicit exception rather than the foundation of the system.</p>
 <h2>What This Means Practically</h2>
 <p><strong>No data harvesting.</strong> Konihaus has no incentive to collect behavioral data. We don't monetize your attention or sell insights about your living patterns.</p>
-<p><strong>No forced cloud updates.</strong> Your system doesn't depend on distant servers that might go down or change terms.</p>
-<p><strong>No lock-in.</strong> You can access your own data directly. It's all open standards (Zigbee, Z-Wave, Matter, WiFi). You own it.</p>
-<p><strong>Faster response times.</strong> Local processing is instant. No cloud latency for turning on a light or adjusting the thermostat.</p>
+<p><strong>Less dependence on external services.</strong> Core automations continue to run at home, even if an internet service is unavailable. Cloud-dependent optional features remain subject to their provider.</p>
+<p><strong>Less lock-in.</strong> You can access your own data directly. Konihaus brings devices from established standards and ecosystems—such as Zigbee, Z-Wave, Matter, and WiFi—into one system, subject to each device's actual capabilities.</p>
+<p><strong>Faster response times.</strong> Local processing avoids a trip to a distant server when you turn on a light or adjust the thermostat.</p>
 <h2>Remote Access: Secure and Optional</h2>
-<p>Want to check on your home while traveling? Konihaus supports a private VPN connection—encrypted end-to-end, using protocols like WireGuard or OpenVPN. You set it up, you control the credentials, you decide when to use it.</p>
-<p>This is fundamentally different from cloud-first systems: with Konihaus, <em>you</em> decide if and when to enable remote access. It's not the default mode of operation.</p>
+<p>Want to check on your home while traveling? Konihaus supports a private VPN connection—encrypted end-to-end, using protocols such as WireGuard or OpenVPN. You control the credentials and decide when to use it.</p>
+<p>This is fundamentally different from making a vendor cloud the default route into your home. With Konihaus, <em>you</em> decide whether to enable remote access. Your local automations do not depend on it.</p>
+<h2>Voice Control Can Stay Local Too</h2>
+<p>Voice control does not automatically have to mean sending recordings to a large cloud provider. Home Assistant Assist can run the entire voice pipeline on your own hardware: a microphone captures the command, a local speech-to-text engine turns it into text, Home Assistant carries out the action, and a local text-to-speech engine speaks the response. The spoken command can remain inside your home throughout the process.</p>
+<p>There is a tradeoff. A focused engine such as Speech-to-Phrase is fast, even on modest hardware, but understands a more limited set of home-control commands. Whisper is more flexible and can transcribe open-ended speech, but it needs more processing power for a quick response. Piper provides the spoken reply locally. Language support and recognition quality also vary, so the system needs to be selected, configured, and tested for the people who will use it.</p>
+<p>The setup may look more complex than activating a mainstream cloud assistant, and it does require additional hardware and careful configuration. For someone who is highly conscious of privacy, however, the work has a clear benefit: voice control without routinely sending the household's spoken commands to an external service. Konihaus can help assess the hardware, configure the local pipeline, and tune it for practical everyday commands.</p>
+<p><a href="https://www.home-assistant.io/voice_control/voice_remote_local_assistant/">Learn how Home Assistant runs a fully local voice assistant</a>.</p>
 <h2>Why We Built It This Way</h2>
 <p>Privacy isn't a feature we added. It's the foundation. A truly personal smart home shouldn't require trusting a corporation with intimate details of your daily life—what time you wake, when you leave, whether you're home.</p>
-<p>With local-first architecture, that trust barrier simply doesn't exist.</p>
+<p>Local-first architecture reduces that exposure by design. You can still choose connected services when they provide real value, but the basic operation of your home remains in your hands.</p>
 
       </div>
 
