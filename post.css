@@ -2,7 +2,6 @@
     max-width: 900px;
     margin: 80px auto 0;
     padding: 3rem 1.5rem;
-    -webkit-font-smoothing: antialiased;;
 }
 
 .blog-post__header {
@@ -15,10 +14,7 @@
     font-weight: 400;
     color: var(--ink);
     margin-bottom: 0.5rem;
-    letter-spacing: -.03em;
-    line-height: 1.02;
-    backface-visibility: hidden;
-    -webkit-font-smoothing: antialiased;
+    line-height: 1.2;
 }
 
 .blog-post__meta {
