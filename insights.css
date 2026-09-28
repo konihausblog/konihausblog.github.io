@@ -8,7 +8,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
-
+.nav__drawer,
 .nav--solid,
 .footer {
   background: var(--marine-deep);

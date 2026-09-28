@@ -1,3 +1,4 @@
+.nav__drawer,
 .nav--solid,
 .footer {
   background: var(--marine-deep);
@@ -213,6 +214,8 @@
     color: var(--ink-3);
     background: transparent;
     transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+    overflow: hidden;
+    position: relative;
 }
 
 .share-icon:hover,
@@ -224,6 +227,14 @@
 
 .share-icon svg {
     display: block;
+}
+
+.share-icon--x svg {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 32px;
+    height: 32px;
 }
 
 .share-icon--copy[data-copied="true"] {
