@@ -411,7 +411,7 @@
         whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
         email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
       };
-
+ 
       document.querySelectorAll('[data-share]').forEach((el) => {
         const platform = el.getAttribute('data-share');
         if (links[platform]) el.href = links[platform];
@@ -432,6 +432,13 @@
 
       if (isTouchMobile && navigator.share) {
         document.querySelectorAll('[data-share="native"]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
           el.addEventListener('click', (e) => {
             e.preventDefault();
             navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
