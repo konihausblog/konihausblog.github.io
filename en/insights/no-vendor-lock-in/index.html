@@ -417,9 +417,21 @@
         if (links[platform]) el.href = links[platform];
       });
 
-      if (navigator.share) {
+      /*if (navigator.share) {
         const fbIcons = document.querySelectorAll('[data-share="facebook"]');
         fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }*/
+
+      const isTouchMobile = window.matchMedia('(pointer: coarse)').matches
+        && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isTouchMobile && navigator.share) {
+        document.querySelectorAll('[data-share="native"]').forEach((el) => {
           el.addEventListener('click', (e) => {
             e.preventDefault();
             navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
