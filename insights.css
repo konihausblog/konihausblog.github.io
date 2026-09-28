@@ -68,27 +68,35 @@ body {
 .insights-card__title {
     font-family: var(--serif);
     font-size: 1.5rem;
-    background: var(--marine-mid);
     margin: -5px -10px;
     padding: 5px 10px;
     margin-bottom: 0.5rem;
     line-height: 1.3;
-    border-bottom: 5px solid var(--marine);
+    border-right: 5px solid var(--marine-mid);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 .insights-card__title a {
-    color: var(--parchment);
+    color: var(--marine);
     font-weight: 500;
     text-decoration: none;
-    transition: color 0.3s var(--ease);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    font-style: italic;
 }
+
 
 .insights-card:hover {
     cursor: pointer;
 }
 
+.insights-card:hover .insights-card__title {
+    border-right: 5px solid var(--forest-mid);
+}
+
 .insights-card:hover .insights-card__title a {
-    color: white;
+    color: var(--marine-mid);
 }
 
 .insights-card__date {
