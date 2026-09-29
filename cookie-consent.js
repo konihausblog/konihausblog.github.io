@@ -5,7 +5,7 @@
  *  - Nothing from Google is loaded and no analytics cookie is set until the visitor allows "statistics".
  *  - "Allow all", "Necessary only" and "Save selection" are equally easy to reach; the choice can be changed
  *    or withdrawn at any time via the footer link (data-cc-open) or the URL hash #cookie-declaration.
- *  - The choice is stored in localStorage ("konihaus_consent"), is valid for 12 months and is asked again when
+ *  - The choice is stored in localStorage ("konihaus_blog_consent"), is valid for 12 months and is asked again when
  *    CONSENT_VERSION changes.
  *  - All texts come from the language JSON, section "cookies" (see translations/*.json).
  *
@@ -22,8 +22,8 @@
   'use strict';
 
   // ── Configuration ──────────────────────────────────────────────────────────
-  const GA_ID = 'G-0VZ3EBY1JT';
-  const STORAGE_KEY = 'konihaus_consent';
+  const GA_ID = 'G-BQQ423D614';
+  const STORAGE_KEY = 'konihaus_blog_consent';
   const CONSENT_VERSION = 1;
   const MAX_AGE_MS = 365 * 24 * 60 * 60 * 1000; // 12 months
   const DECLARATION_HASH = '#cookie-declaration';
