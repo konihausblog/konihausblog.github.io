@@ -6,6 +6,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date the page behaves like a 404,
+       unless the URL has ?devmode=super. Runs first so nothing is shown. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super';
+      var d = new Date();
+      var p = function (n) { return String(n).padStart(2, '0'); };
+      var today = d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+      var published = '2026-09-10';
+      window.__scheduledPost = published > today ? published : null;
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <!-- Hide content until JS loads and sets language -->
   <script>
@@ -43,7 +59,7 @@
   <meta property="og:image" content="https://blog.konihaus.ch/images/insights/future-proof/og.jpg">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="de_CH">
-  <meta property="article:published_time" content="Mon Sep 14 2026 02:00:00 GMT+0200 (Central European Summer Time)">
+  <meta property="article:published_time" content="Thu Sep 10 2026 02:00:00 GMT+0200 (Central European Summer Time)">
   
   <meta property="article:author" content="Konrad Hefelle">
 
@@ -61,8 +77,8 @@
     "headline": "Will It Still Work in Ten Years?",
     "description": "A smart home does not have to age like a gadget. The platform keeps developing, and your system grows with new standards.",
     "image": "https://blog.konihaus.ch/images/insights/future-proof/og.jpg",
-    "datePublished": "2026-09-14T00:00:00.000Z",
-    "dateModified": "2026-09-14T00:00:00.000Z",
+    "datePublished": "2026-09-10T00:00:00.000Z",
+    "dateModified": "2026-09-10T00:00:00.000Z",
     "inLanguage": "en",
     "mainEntityOfPage": "https://blog.konihaus.ch/en/insights/future-proof/",
     "author": {
@@ -182,9 +198,9 @@
         
         <p class="blog-post__category">future proof</p>
         <h1 class="blog-post__title"><span>Will It Still Work in Ten Years?</span></h1>
-        <time class="blog-post__meta" datetime="Mon Sep 14 2026 02:00:00 GMT+0200 (Central European Summer Time)">
+        <time class="blog-post__meta" datetime="Thu Sep 10 2026 02:00:00 GMT+0200 (Central European Summer Time)">
           
-            September 14, 2026
+            September 10, 2026
           
         </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;7 min read</span>
         
@@ -343,7 +359,7 @@
                   
                 
                   
-                    <a class="blog-post__related-card" href="/en/insights/no-vendor-lock-in/">
+                    <a class="blog-post__related-card" href="/en/insights/no-vendor-lock-in/" data-post-date="2026-09-29">
                       <span class="blog-post__related-card-title">No Vendor Lock-In</span>
                       
                         <span class="blog-post__related-card-meta">5 min read</span>
@@ -478,12 +494,12 @@
 
     function switchToDe() {
       if (lang === 'de') return;
-      location.href = '/de/insights/zukunftssicher/'
+      location.href = devHref('/de/insights/zukunftssicher/');
     }
 
     function switchToEn() {
       if (lang === 'en') return;
-      location.href = '/de/insights/zukunftssicher/'
+      location.href = devHref('/de/insights/zukunftssicher/');
     }
 
     (function () {

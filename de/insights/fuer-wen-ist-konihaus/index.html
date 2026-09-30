@@ -6,6 +6,22 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date the page behaves like a 404,
+       unless the URL has ?devmode=super. Runs first so nothing is shown. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super';
+      var d = new Date();
+      var p = function (n) { return String(n).padStart(2, '0'); };
+      var today = d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+      var published = '2026-10-08';
+      window.__scheduledPost = published > today ? published : null;
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <!-- Hide content until JS loads and sets language -->
   <script>
@@ -348,7 +364,7 @@
                   
                 
                   
-                    <a class="blog-post__related-card" href="/de/insights/persoenlicher-service/">
+                    <a class="blog-post__related-card" href="/de/insights/persoenlicher-service/" data-post-date="2026-10-01">
                       <span class="blog-post__related-card-title">Smart Home mit einem Menschen dahinter</span>
                       
                         <span class="blog-post__related-card-meta">5 Min. Lesezeit</span>
@@ -485,12 +501,12 @@
 
     function switchToDe() {
       if (lang === 'de') return;
-      location.href = '/en/insights/who-is-konihaus-for/'
+      location.href = devHref('/en/insights/who-is-konihaus-for/');
     }
 
     function switchToEn() {
       if (lang === 'en') return;
-      location.href = '/en/insights/who-is-konihaus-for/'
+      location.href = devHref('/en/insights/who-is-konihaus-for/');
     }
 
     (function () {
