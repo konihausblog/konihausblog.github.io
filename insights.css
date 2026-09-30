@@ -44,7 +44,7 @@ body {
 
 .insights__grid {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -127,6 +127,12 @@ body {
     color: var(--marine-mid);
 }
 
+.article-image__container {
+    margin: -32px -32px 30px;
+}
+.article-image__container img {
+    border-radius: 3px 3px 0 0;
+}
 @media (max-width: 1100px) {
 
     .insights__grid {
