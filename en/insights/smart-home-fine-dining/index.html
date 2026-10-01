@@ -6,16 +6,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Scheduled posts: before their publication date the page behaves like a 404,
-       unless the URL has ?devmode=super. Runs first so nothing is shown. -->
+  <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
+       default 07:00, Swiss time) the page behaves like a 404, unless the URL has ?devmode=super.
+       Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
   <script>
     (function () {
       var dev = new URLSearchParams(location.search).get('devmode') === 'super';
-      var d = new Date();
-      var p = function (n) { return String(n).padStart(2, '0'); };
-      var today = d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+      var parts = {};
+      new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Zurich',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+      var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
       var published = '2026-09-15';
-      window.__scheduledPost = published > today ? published : null;
+      var m = /^(\d{1,2}):(\d{2})/.exec('10:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '07:00';
+      window.__scheduledPost = (published + 'T' + at) > now ? published : null;
+      window.__scheduledPostTime = at;
       if (window.__scheduledPost && !dev) {
         document.documentElement.style.display = 'none';
         location.replace('/404.html');
@@ -119,6 +127,7 @@
   >
   <link rel="stylesheet" href="/assets/styles.css">
   <link rel="stylesheet" href="/assets/post.css">
+  <link rel="stylesheet" href="/assets/subscribe.css">
 </head>
 <body>
 
@@ -298,6 +307,48 @@
       </div>
 
       
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+<aside class="subscribe subscribe--card" aria-label="Newsletter">
+  <div class="subscribe__intro">
+    <p class="subscribe__eyebrow">Newsletter</p>
+    <h2 class="subscribe__title">New articles straight to <em>your inbox.</em></h2>
+    <p class="subscribe__text">I write about smart homes, privacy and what really works in everyday life. You get an email as soon as a new article is published.</p>
+  </div>
+  <form class="subscribe__form" data-blog-subscribe novalidate
+        data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
+        data-lang="en"
+        data-msg-ok="Thank you! You will get an email as soon as a new article is published."
+        data-msg-duplicate="This address is already subscribed. Thank you!"
+        data-msg-invalid="Please enter a valid email address."
+        data-msg-limit="Too many signups from this address. Please try again later."
+        data-msg-error="Something went wrong. Please try again later.">
+    <div class="subscribe__row">
+      <label class="subscribe__sr" for="subscribe-email">Email address</label>
+      <input class="subscribe__input" id="subscribe-email" type="email" name="email"
+             autocomplete="email" inputmode="email" placeholder="Your email address" required>
+      
+      <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="subscribe__button" type="submit">Subscribe</button>
+    </div>
+    <p class="subscribe__note">Unsubscribe any time. More in the <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
+    <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+
+
+      
         
         
         
@@ -338,7 +389,7 @@
                   
                 
                   
-                    <a class="blog-post__related-card" href="/en/insights/energy-efficiency/" data-post-date="2026-09-02">
+                    <a class="blog-post__related-card" href="/en/insights/energy-efficiency/" data-post-date="2026-09-02" data-post-time="10:00">
                       <span class="blog-post__related-card-title">Warm When You Arrive, Quiet When You Leave</span>
                       
                         <span class="blog-post__related-card-meta">6 min read</span>
