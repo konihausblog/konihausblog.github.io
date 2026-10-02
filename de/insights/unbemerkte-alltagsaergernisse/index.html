@@ -19,8 +19,8 @@
         hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
       }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
       var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
-      var published = '2026-10-01';
-      var m = /^(\d{1,2}):(\d{2})/.exec('18:00');
+      var published = '2026-10-17';
+      var m = /^(\d{1,2}):(\d{2})/.exec('10:00');
       var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '07:00';
       window.__scheduledPost = (published + 'T' + at) > now ? published : null;
       window.__scheduledPostTime = at;
@@ -47,48 +47,48 @@
   <meta name="theme-color" content="#2a4a35">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
   <link rel="apple-touch-icon" href="/assets/favicon.svg">
-  <title>Smart Home mit einem Menschen dahinter - Konihaus</title>
-  <meta name="description" content="Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite.">
+  <title>Die Alltagsärgernisse, die wir nicht mehr bemerken - Konihaus</title>
+  <meta name="description" content="Manche Handgriffe sind uns so vertraut, dass wir sie nicht mehr als lästig wahrnehmen. Ein Smart Home beginnt damit, sie wieder zu bemerken.">
   <meta name="author" content="Konrad Hefelle">
 
   <!-- Canonical + language alternates -->
-  <link rel="canonical" href="https://blog.konihaus.ch/de/insights/persoenlicher-service/">
+  <link rel="canonical" href="https://blog.konihaus.ch/de/insights/unbemerkte-alltagsaergernisse/">
   
-  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/persoenlicher-service/">
-  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/personal-service/">
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/unbemerkte-alltagsaergernisse/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/pain-points-we-stopped-noticing/">
   
-  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/de/insights/persoenlicher-service/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/de/insights/unbemerkte-alltagsaergernisse/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite. - Konihaus">
-  <meta property="og:description" content="Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite.">
-  <meta property="og:url" content="https://blog.konihaus.ch/de/insights/persoenlicher-service/">
+  <meta property="og:title" content="Manche Handgriffe sind uns so vertraut, dass wir sie nicht mehr als lästig wahrnehmen. Ein Smart Home beginnt damit, sie wieder zu bemerken. - Konihaus">
+  <meta property="og:description" content="Manche Handgriffe sind uns so vertraut, dass wir sie nicht mehr als lästig wahrnehmen. Ein Smart Home beginnt damit, sie wieder zu bemerken.">
+  <meta property="og:url" content="https://blog.konihaus.ch/de/insights/unbemerkte-alltagsaergernisse/">
   <meta property="og:type" content="article">
-  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/personal-service/og.jpg">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/pain-points/og.jpg">
   <meta property="og:locale" content="de_CH">
   <meta property="og:locale:alternate" content="en_US">
-  <meta property="article:published_time" content="Thu Oct 01 2026 02:00:00 GMT+0200 (Central European Summer Time)">
+  <meta property="article:published_time" content="Sat Oct 17 2026 02:00:00 GMT+0200 (Central European Summer Time)">
   
   <meta property="article:author" content="Konrad Hefelle">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite. - Konihaus">
-  <meta name="twitter:description" content="Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite.">
-  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/personal-service/og.jpg">
+  <meta name="twitter:title" content="Manche Handgriffe sind uns so vertraut, dass wir sie nicht mehr als lästig wahrnehmen. Ein Smart Home beginnt damit, sie wieder zu bemerken. - Konihaus">
+  <meta name="twitter:description" content="Manche Handgriffe sind uns so vertraut, dass wir sie nicht mehr als lästig wahrnehmen. Ein Smart Home beginnt damit, sie wieder zu bemerken.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/pain-points/og.jpg">
 
   <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "Smart Home mit einem Menschen dahinter",
-    "description": "Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite.",
-    "image": "https://blog.konihaus.ch/images/insights/personal-service/og.jpg",
-    "datePublished": "2026-10-01T00:00:00.000Z",
-    "dateModified": "2026-10-01T00:00:00.000Z",
+    "headline": "Die Alltagsärgernisse, die wir nicht mehr bemerken",
+    "description": "Manche Handgriffe sind uns so vertraut, dass wir sie nicht mehr als lästig wahrnehmen. Ein Smart Home beginnt damit, sie wieder zu bemerken.",
+    "image": "https://blog.konihaus.ch/images/insights/pain-points/og.jpg",
+    "datePublished": "2026-10-17T00:00:00.000Z",
+    "dateModified": "2026-10-17T00:00:00.000Z",
     "inLanguage": "de",
-    "mainEntityOfPage": "https://blog.konihaus.ch/de/insights/persoenlicher-service/",
+    "mainEntityOfPage": "https://blog.konihaus.ch/de/insights/unbemerkte-alltagsaergernisse/",
     "author": {
       "@type": "Person",
       "name": "Konrad Hefelle"
@@ -205,13 +205,13 @@
     <article>
       <header class="blog-post__header">
         
-        <p class="blog-post__category">persönlicher service</p>
-        <h1 class="blog-post__title"><span>Smart Home mit einem Menschen dahinter</span></h1>
-        <time class="blog-post__meta" datetime="Thu Oct 01 2026 02:00:00 GMT+0200 (Central European Summer Time)">
+        <p class="blog-post__category">insights</p>
+        <h1 class="blog-post__title"><span>Die Alltagsärgernisse, die wir nicht mehr bemerken</span></h1>
+        <time class="blog-post__meta" datetime="Sat Oct 17 2026 02:00:00 GMT+0200 (Central European Summer Time)">
           
-            1. Oktober 2026
+            17. Oktober 2026
           
-        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;5 Min. Lesezeit</span>
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;3 Min. Lesezeit</span>
         
           &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">von</span> Koni
         
@@ -258,45 +258,51 @@
 
 
       <div class="blog-post__content">
-        <h2>Gute Beratung ist rar</h2>
-<p>Wer sich zum Thema Smart Home beraten lassen möchte, macht schnell dieselbe Erfahrung: Unabhängige, persönliche Beratung gibt es kaum, oder sie ist teuer. Die meisten Haushalte setzen sich ihr Wissen aus Produktseiten, Foren und Videoanleitungen zusammen.</p>
-<p>Dabei ist die Technik selten das eigentliche Problem. Das Problem ist, dass niemand für das Ganze zuständig ist.</p>
-<h2>Beratung, die an der Kasse endet</h2>
-<p>Ein Besuch in einem grossen Möbel- oder Elektrofachgeschäft kann ein guter Anfang sein. Die Mitarbeitenden erklären ein Produkt, und mit etwas Glück nehmen Sie einen brauchbaren Tipp mit. Ist das Produkt aber bezahlt, bleiben Sie meist allein mit der Bedienungsanleitung. Wo es überhaupt Unterstützung bei Installation oder Betrieb gibt, ist sie in der Regel kostenpflichtig und beschränkt sich auf die Produkte genau dieses einen Herstellers.</p>
-<p>Das ist keine Kritik an den Menschen hinter der Theke. Dort endet schlicht ihre Aufgabe.</p>
+        <p>Kaum jemand schichtet gern Brennholz. Manche lieben das Spalten: den Rhythmus, den Geruch, das Gefühl, dass der Kopf ruhig wird. Aber dann kommt der Rest. Die Stücke einsammeln, ordentlich aufstapeln, Rinde und Späne zusammenwischen. Dieser Teil ist langweilig, und darum kaufen die meisten von uns das Holz einfach fertig gespalten im Paket.</p>
+<p>Ich denke oft darüber nach, weil ich das Smart Home genau so betrachte.</p>
 <figure class="blog-post__figure">
-  <img src="/images/insights/personal-service/advice-ends-at-checkout.jpg" alt="Eine Kundin verlässt ein Geschäft mit einer Smart-Home-Schachtel, während eine dicke, ungelesene Anleitung auf dem Tresen liegen bleibt" width="1536" height="1024" loading="lazy" decoding="async">
+  <img src="/images/insights/pain-points/parts-we-outsource.jpg" alt="Ein ordentlicher Stapel fertig gespaltenes Brennholz neben einem Schneidebrett mit küchenfertigen Zutaten: die ungeliebten Teile einer Arbeit sind schon erledigt" width="1536" height="1024" loading="lazy" decoding="async">
 </figure>
-<h2>Jedes Gewerk bringt sein eigenes Stück</h2>
-<p>Dazu kommen die Fachbetriebe, die «smart» gleich zu ihrer eigenen Arbeit mitliefern:</p>
+<h2>Jede Arbeit hat einen Teil, den niemand vermisst</h2>
+<p>Beim Kochen ist es genauso. Viele lieben es. Aber was vor der Küche passiert, macht kaum noch jemand selbst. Das Poulet kaufen wir küchenfertig, manchmal sogar schon zerlegt. Das Kochen bleibt unsere Sache. Der unangenehme Teil ging vor langer Zeit an andere, und niemand nennt das Schummeln.</p>
+<p>Es war also nie schwarz oder weiss. Jede Arbeit hat Teile, die wir gern machen, und Teile, die wir nur in Kauf nehmen, weil sie dazugehören.</p>
+<h2>Wir gewöhnen uns an alles</h2>
+<p>Das Tückische an kleinen Ärgernissen: Sie fühlen sich irgendwann nicht mehr wie Ärgernisse an.</p>
 <ul>
-<li>Die Firma, die Ihre Storen montiert, bietet eine Fernbedienung an und nennt das smart.</li>
-<li>Die Firma, die das Dachfenster einbaut, liefert ihren eigenen Antrieb samt eigener App.</li>
-<li>Der Elektriker installiert alles von der smarten Türklingel bis zur Beleuchtung.</li>
-<li>Der Sanitärinstallateur schraubt vielleicht smarte Thermostate an Ihre Heizkörper, falls das überhaupt zum Auftrag gehört.</li>
+<li>Der Herd, den man vor dem Weggehen zweimal geprüft hat.</li>
+<li>Die Tür, zu der man zurückgeht, nur um sicher zu sein.</li>
+<li>Das Licht in einem Raum, in dem niemand ist.</li>
 </ul>
-<p>Jeder erledigt seinen Teil gut. Aber jeder Teil bringt seine eigene App, seine eigene Logik und seine eigenen Grenzen mit, und niemand ist dafür zuständig, dass alles zusammenspielt. Wenn es nicht klappt, zeigt jeder aufs nächste Gewerk.</p>
-<h2>Der wahre Preis ist die Frustration</h2>
-<p>Für Menschen, die keine Technik-Enthusiasten sind, ist das mühsam. Erst eine App, dann die nächste. Ein Gerät, das am Montag funktioniert und am Donnerstag nicht. Und niemand, den man fragen kann. Da geht die Motivation schnell verloren, und es bleibt die Haltung: Hauptsache, es funktioniert, sonst vergessen wir es.</p>
-<p>So landen halbfertige Lösungen in der Schublade, und aus dem Versprechen eines smarteren Zuhauses wird ein weiteres Ärgernis.</p>
-<h2>Es muss nicht so sein</h2>
-<p>Ein Smart Home soll keine Wissenschaft sein. Es sauber einzurichten und zu betreuen ist ein Handwerk, aber für jemanden, der das regelmässig macht, kostet es nicht viel Aufwand. Wer neugierig ist, versteht die Grundlagen rasch, und mit der Zeit können viele immer mehr selbst erledigen.</p>
-<p>Trotzdem ist es eine grosse Erleichterung, wenn jemand Sie begleitet und da ist, wenn etwas Unerwartetes passiert. Genau das meint persönlicher Service: nicht für immer alles für Sie zu tun, sondern an Ihrer Seite zu bleiben, solange Sie das möchten.</p>
+<p>Diese manuellen Routinen gehören so lange zu unserem Leben, dass wir sie nicht mehr als Pain Points wahrnehmen. Es ist einfach so.</p>
+<p>Neu ist, dass immer mehr Geräte bereits IoT-fähig sind und sich die meisten anderen mit einem Sensor oder einer smarten Steckdose erweitern lassen. Das lohnt einen zweiten Blick. Genau da setzt mein Ansatz an: nicht bei einer Einkaufsliste, sondern bei der Entdeckung der Pain Points. Was tun Sie jeden Tag, das Ihnen gar nicht mehr auffällt?</p>
 <figure class="blog-post__figure">
-  <img src="/images/insights/personal-service/one-person-to-ask.jpg" alt="Eine Person erklärt am Küchentisch die Smart-Home-Einrichtung, während die Bewohnerin auf dem Tablet mitverfolgt" width="1536" height="1024" loading="lazy" decoding="async">
+  <img src="/images/insights/pain-points/habit-blind-spot.jpg" alt="Jemand geht zu einer Tür zurück, um zu prüfen, ob sie abgeschlossen ist: eine kleine Alltagsgewohnheit, die unsichtbar geworden ist" width="1536" height="1024" loading="lazy" decoding="async">
 </figure>
-<h2>Was persönlicher Service bei Konihaus bedeutet</h2>
-<blockquote>
-<p>Kein Callcenter. Kein Ticket-System. Wenn Sie bei Konihaus anrufen oder schreiben, landen Sie bei mir — Koni.</p>
-<p>Ich installiere, richte ein und betreue Ihr Smart Home persönlich, von der ersten Beratung bis zum laufenden Support. So soll Technik-Support sein.</p>
-</blockquote>
-<p>In der Praxis heisst das: eine Person von Anfang bis Ende. Dieselbe Person hört zu, was Ihnen im Alltag wirklich helfen soll, wählt mit Ihnen die Geräte aus, richtet alles ein und bleibt danach erreichbar. Sie müssen Ihr Zuhause nie zweimal erklären.</p>
-<p>Persönlich heisst nicht Notfalldienst, und kein System kann versprechen, dass nie etwas schiefgeht. Aber wenn doch etwas passiert oder Sie einfach eine Frage haben, wissen Sie genau, wen Sie fragen können.</p>
-<h2>Warum es Konihaus gibt</h2>
-<p>Konihaus ist nicht aus einem Businessplan entstanden. Es ist entstanden, weil Menschen in meinem Umfeld genau diese Art von Hilfe brauchten und davon profitiert haben.</p>
-<p>Damit diese Hilfe auf Dauer möglich bleibt und für alle zugänglich wird, brauchte sie eine feste Form. Das ist Konihaus: persönlicher Smart-Home-Service, gebaut für die Dauer.</p>
+<h2>Smart heisst nicht automatisch</h2>
+<p>Smart heisst nicht, dass alles von selbst läuft. Es heisst, dass genau der Teil Unterstützung bekommt, der sie braucht.</p>
+<p>Ich schalte das Bügeleisen nach dem Bügeln immer von Hand aus. Das gefällt mir: «Ich habe es ausgeschaltet, also ist es aus» ist eine echte Form von Sicherheit. Aber sobald ich aus dem Haus bin, meldet sich eine leise Stimme: Habe ich? Seit das Bügeleisen an einer smarten Steckdose hängt, kann ich nachsehen. Ein Blick, und die Frage ist weg. Es wurde nichts automatisiert. Ich habe einfach Ruhe gewonnen.</p>
+<p>Von Hand bleibt eine völlig gute Option. Die smarte Ebene ist für die Momente da, in denen man sich nicht sicher ist.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/pain-points/iron-peace-of-mind.jpg" alt="Ein Handybildschirm bestätigt, dass eine smarte Steckdose ausgeschaltet ist, während ihr Besitzer nicht zu Hause ist" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>«Und was bleibt dann für mich?»</h2>
+<p>Eine berechtigte Frage: Wenn Maschinen alles übernehmen, was tue ich dann? Nichts verlangt, dass sie das tun. Wenn Sie Holz spalten, weil dabei der Kopf abschaltet, dann spalten Sie weiter. Automatisieren Sie das Zusammenwischen, oder nur den Teil, in dem man sich fragt, ob man etwas ausgeschaltet hat. Sie entscheiden, wo die Grenze verläuft, und sie darf sich verschieben.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/pain-points/you-draw-the-line.jpg" alt="Eine Person spaltet von Hand Holz, neben einem ruhigen, unauffälligen Smart Home, das den Rest übernimmt" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Jede Liste sieht anders aus</h2>
+<p>Ein Barbier denkt an den Handtuchwärmer. Junge Eltern denken an die Temperatur im Kinderzimmer. Wer für sechs Monate verreist, denkt an Wasser. Pain Points sind von Mensch zu Mensch verschieden, darum löst kein einzelnes Gerät und kein Standard-Set sie alle. Deshalb sehen die Beispiele auf unserer Website so unterschiedlich aus.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/pain-points/every-home-different.jpg" alt="Vier verschiedene Orte, ein Barbershop, ein Kinderzimmer, ein Bauernhaus und ein Ferienhaus, jeweils mit einem eigenen kleinen Set unauffälliger Sensoren" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Warum es einen Menschen braucht</h2>
+<p>Pain Points zu finden ist ein Gespräch, kein Produkt. Es braucht jemanden, der fragt, zuhört und bemerkt, was Sie selbst nicht mehr sehen.</p>
+<p>Und es endet nicht mit der Einrichtung. Die Welt dreht sich weiter: neue Geräte, neue Standards, bessere Wege für dieselbe Aufgabe. Ich verfolge, was neu ist, und passe laufend an, damit Ihr Zuhause mit der Welt mitgeht und Sie nicht hinterherrennen müssen. Stellen Sie es sich vor wie ein Begleiten an der Hand: zuerst beim Entdecken, was Sie stört, und dann, wenn sich Dinge verändern.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/pain-points/holding-hands.jpg" alt="Eine Person und ein Berater betrachten gemeinsam eine einfache Heimübersicht, während draussen die Welt weiterzieht" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
 <hr>
-<p><strong>Fragen zu Ihrem Zuhause?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Sprechen Sie mit Koni</a> darüber, was bei Ihnen wirklich einen Unterschied machen würde — unverbindlich, ohne Verkaufsgespräch.</p>
+<p><strong>Neugierig, wo Ihre eigenen blinden Flecken liegen?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Sprechen Sie mit Koni</a> — wir suchen sie gemeinsam, unverbindlich und ohne Verkaufsgespräch.</p>
 
       </div>
 
@@ -356,9 +362,9 @@
             
           
             
-              
-            
           
+            
+              
             
           
             
@@ -381,14 +387,14 @@
                   
                 
                   
-                    <a class="blog-post__related-card" href="/de/insights/kein-vendor-lock-in/" data-post-date="2026-09-29" data-post-time="10:00">
-                      <span class="blog-post__related-card-title">Kein Vendor Lock-In</span>
+                
+                  
+                    <a class="blog-post__related-card" href="/de/insights/smart-home-wie-fine-dining/" data-post-date="2026-09-15" data-post-time="10:00">
+                      <span class="blog-post__related-card-title">Smart Home ist das Fine Dining von heute</span>
                       
-                        <span class="blog-post__related-card-meta">5 Min. Lesezeit</span>
+                        <span class="blog-post__related-card-meta">3 Min. Lesezeit</span>
                       
                     </a>
-                  
-                
                   
                 
                   
@@ -516,17 +522,17 @@
 
     function switchToDe() {
       if (lang === 'de') return;
-      location.href = devHref('/en/insights/personal-service/');
+      location.href = devHref('/en/insights/pain-points-we-stopped-noticing/');
     }
 
     function switchToEn() {
       if (lang === 'en') return;
-      location.href = devHref('/en/insights/personal-service/');
+      location.href = devHref('/en/insights/pain-points-we-stopped-noticing/');
     }
 
     (function () {
-      const shareUrl = "https://blog.konihaus.ch/de/insights/persoenlicher-service/";
-      const shareTitle = "Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite.";
+      const shareUrl = "https://blog.konihaus.ch/de/insights/unbemerkte-alltagsaergernisse/";
+      const shareTitle = "Manche Handgriffe sind uns so vertraut, dass wir sie nicht mehr als lästig wahrnehmen. Ein Smart Home beginnt damit, sie wieder zu bemerken.";
       const encodedUrl = encodeURIComponent(shareUrl);
       const encodedTitle = encodeURIComponent(shareTitle);
 

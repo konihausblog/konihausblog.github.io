@@ -3,7 +3,7 @@
 
 
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
@@ -19,8 +19,8 @@
         hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
       }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
       var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
-      var published = '2026-10-01';
-      var m = /^(\d{1,2}):(\d{2})/.exec('18:00');
+      var published = '2026-10-17';
+      var m = /^(\d{1,2}):(\d{2})/.exec('10:00');
       var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '07:00';
       window.__scheduledPost = (published + 'T' + at) > now ? published : null;
       window.__scheduledPostTime = at;
@@ -47,48 +47,48 @@
   <meta name="theme-color" content="#2a4a35">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
   <link rel="apple-touch-icon" href="/assets/favicon.svg">
-  <title>Smart Home mit einem Menschen dahinter - Konihaus</title>
-  <meta name="description" content="Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite.">
+  <title>The Pain Points We Stopped Noticing - Konihaus</title>
+  <meta name="description" content="Some chores are so familiar that we no longer see them as chores. A smart home starts with noticing them again.">
   <meta name="author" content="Konrad Hefelle">
 
   <!-- Canonical + language alternates -->
-  <link rel="canonical" href="https://blog.konihaus.ch/de/insights/persoenlicher-service/">
+  <link rel="canonical" href="https://blog.konihaus.ch/en/insights/pain-points-we-stopped-noticing/">
   
-  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/persoenlicher-service/">
-  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/personal-service/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/pain-points-we-stopped-noticing/">
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/unbemerkte-alltagsaergernisse/">
   
-  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/de/insights/persoenlicher-service/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/en/insights/pain-points-we-stopped-noticing/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite. - Konihaus">
-  <meta property="og:description" content="Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite.">
-  <meta property="og:url" content="https://blog.konihaus.ch/de/insights/persoenlicher-service/">
+  <meta property="og:title" content="Some chores are so familiar that we no longer see them as chores. A smart home starts with noticing them again. - Konihaus">
+  <meta property="og:description" content="Some chores are so familiar that we no longer see them as chores. A smart home starts with noticing them again.">
+  <meta property="og:url" content="https://blog.konihaus.ch/en/insights/pain-points-we-stopped-noticing/">
   <meta property="og:type" content="article">
-  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/personal-service/og.jpg">
-  <meta property="og:locale" content="de_CH">
-  <meta property="og:locale:alternate" content="en_US">
-  <meta property="article:published_time" content="Thu Oct 01 2026 02:00:00 GMT+0200 (Central European Summer Time)">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/pain-points/og.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="de_CH">
+  <meta property="article:published_time" content="Sat Oct 17 2026 02:00:00 GMT+0200 (Central European Summer Time)">
   
   <meta property="article:author" content="Konrad Hefelle">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite. - Konihaus">
-  <meta name="twitter:description" content="Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite.">
-  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/personal-service/og.jpg">
+  <meta name="twitter:title" content="Some chores are so familiar that we no longer see them as chores. A smart home starts with noticing them again. - Konihaus">
+  <meta name="twitter:description" content="Some chores are so familiar that we no longer see them as chores. A smart home starts with noticing them again.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/pain-points/og.jpg">
 
   <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "Smart Home mit einem Menschen dahinter",
-    "description": "Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite.",
-    "image": "https://blog.konihaus.ch/images/insights/personal-service/og.jpg",
-    "datePublished": "2026-10-01T00:00:00.000Z",
-    "dateModified": "2026-10-01T00:00:00.000Z",
-    "inLanguage": "de",
-    "mainEntityOfPage": "https://blog.konihaus.ch/de/insights/persoenlicher-service/",
+    "headline": "The Pain Points We Stopped Noticing",
+    "description": "Some chores are so familiar that we no longer see them as chores. A smart home starts with noticing them again.",
+    "image": "https://blog.konihaus.ch/images/insights/pain-points/og.jpg",
+    "datePublished": "2026-10-17T00:00:00.000Z",
+    "dateModified": "2026-10-17T00:00:00.000Z",
+    "inLanguage": "en",
+    "mainEntityOfPage": "https://blog.konihaus.ch/en/insights/pain-points-we-stopped-noticing/",
     "author": {
       "@type": "Person",
       "name": "Konrad Hefelle"
@@ -198,26 +198,26 @@
 
     <header class="blog-post__link">
       
-        <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+        <a href="/en/insights/" class="blog-post__back-link">← Back to Insights</a>
       
     </header>
 
     <article>
       <header class="blog-post__header">
         
-        <p class="blog-post__category">persönlicher service</p>
-        <h1 class="blog-post__title"><span>Smart Home mit einem Menschen dahinter</span></h1>
-        <time class="blog-post__meta" datetime="Thu Oct 01 2026 02:00:00 GMT+0200 (Central European Summer Time)">
+        <p class="blog-post__category">insights</p>
+        <h1 class="blog-post__title"><span>The Pain Points We Stopped Noticing</span></h1>
+        <time class="blog-post__meta" datetime="Sat Oct 17 2026 02:00:00 GMT+0200 (Central European Summer Time)">
           
-            1. Oktober 2026
+            October 17, 2026
           
-        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;5 Min. Lesezeit</span>
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;3 min read</span>
         
-          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">von</span> Koni
+          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">by</span> Koni
         
 
         <div class="blog-post__share">
-          <span class="blog-post__share-label">Teilen</span>
+          <span class="blog-post__share-label">Share</span>
           <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
               <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
@@ -258,45 +258,51 @@
 
 
       <div class="blog-post__content">
-        <h2>Gute Beratung ist rar</h2>
-<p>Wer sich zum Thema Smart Home beraten lassen möchte, macht schnell dieselbe Erfahrung: Unabhängige, persönliche Beratung gibt es kaum, oder sie ist teuer. Die meisten Haushalte setzen sich ihr Wissen aus Produktseiten, Foren und Videoanleitungen zusammen.</p>
-<p>Dabei ist die Technik selten das eigentliche Problem. Das Problem ist, dass niemand für das Ganze zuständig ist.</p>
-<h2>Beratung, die an der Kasse endet</h2>
-<p>Ein Besuch in einem grossen Möbel- oder Elektrofachgeschäft kann ein guter Anfang sein. Die Mitarbeitenden erklären ein Produkt, und mit etwas Glück nehmen Sie einen brauchbaren Tipp mit. Ist das Produkt aber bezahlt, bleiben Sie meist allein mit der Bedienungsanleitung. Wo es überhaupt Unterstützung bei Installation oder Betrieb gibt, ist sie in der Regel kostenpflichtig und beschränkt sich auf die Produkte genau dieses einen Herstellers.</p>
-<p>Das ist keine Kritik an den Menschen hinter der Theke. Dort endet schlicht ihre Aufgabe.</p>
+        <p>Hardly anyone enjoys stacking firewood. Some people do love chopping it: the rhythm, the smell, the way the head goes quiet. But then comes the rest. Collecting the pieces, stacking them in order, sweeping up the bark and splinters. That part is boring, so most of us simply buy the wood already chopped, in packs.</p>
+<p>I think about this a lot, because it's exactly how I look at the smart home.</p>
 <figure class="blog-post__figure">
-  <img src="/images/insights/personal-service/advice-ends-at-checkout.jpg" alt="Eine Kundin verlässt ein Geschäft mit einer Smart-Home-Schachtel, während eine dicke, ungelesene Anleitung auf dem Tresen liegen bleibt" width="1536" height="1024" loading="lazy" decoding="async">
+  <img src="/images/insights/pain-points/parts-we-outsource.jpg" alt="A neat stack of ready-cut firewood next to a cutting board with ready-to-cook ingredients, the unloved parts of a job already taken care of" width="1536" height="1024" loading="lazy" decoding="async">
 </figure>
-<h2>Jedes Gewerk bringt sein eigenes Stück</h2>
-<p>Dazu kommen die Fachbetriebe, die «smart» gleich zu ihrer eigenen Arbeit mitliefern:</p>
+<h2>Every job has a part nobody misses</h2>
+<p>Cooking is the same. Plenty of people love it. But hardly anyone does what happens before the kitchen anymore. We buy the chicken ready to cook, sometimes even already cut. The cooking stays ours. The unpleasant part went to someone else long ago, and nobody calls that cheating.</p>
+<p>So this was never black and white. Every job has parts we enjoy and parts we only put up with because they come with it.</p>
+<h2>We get used to everything</h2>
+<p>The trouble with small annoyances is that they stop feeling like annoyances:</p>
 <ul>
-<li>Die Firma, die Ihre Storen montiert, bietet eine Fernbedienung an und nennt das smart.</li>
-<li>Die Firma, die das Dachfenster einbaut, liefert ihren eigenen Antrieb samt eigener App.</li>
-<li>Der Elektriker installiert alles von der smarten Türklingel bis zur Beleuchtung.</li>
-<li>Der Sanitärinstallateur schraubt vielleicht smarte Thermostate an Ihre Heizkörper, falls das überhaupt zum Auftrag gehört.</li>
+<li>The stove you checked twice before leaving.</li>
+<li>The door you walked back to, just to be sure.</li>
+<li>The light in a room nobody is in.</li>
 </ul>
-<p>Jeder erledigt seinen Teil gut. Aber jeder Teil bringt seine eigene App, seine eigene Logik und seine eigenen Grenzen mit, und niemand ist dafür zuständig, dass alles zusammenspielt. Wenn es nicht klappt, zeigt jeder aufs nächste Gewerk.</p>
-<h2>Der wahre Preis ist die Frustration</h2>
-<p>Für Menschen, die keine Technik-Enthusiasten sind, ist das mühsam. Erst eine App, dann die nächste. Ein Gerät, das am Montag funktioniert und am Donnerstag nicht. Und niemand, den man fragen kann. Da geht die Motivation schnell verloren, und es bleibt die Haltung: Hauptsache, es funktioniert, sonst vergessen wir es.</p>
-<p>So landen halbfertige Lösungen in der Schublade, und aus dem Versprechen eines smarteren Zuhauses wird ein weiteres Ärgernis.</p>
-<h2>Es muss nicht so sein</h2>
-<p>Ein Smart Home soll keine Wissenschaft sein. Es sauber einzurichten und zu betreuen ist ein Handwerk, aber für jemanden, der das regelmässig macht, kostet es nicht viel Aufwand. Wer neugierig ist, versteht die Grundlagen rasch, und mit der Zeit können viele immer mehr selbst erledigen.</p>
-<p>Trotzdem ist es eine grosse Erleichterung, wenn jemand Sie begleitet und da ist, wenn etwas Unerwartetes passiert. Genau das meint persönlicher Service: nicht für immer alles für Sie zu tun, sondern an Ihrer Seite zu bleiben, solange Sie das möchten.</p>
+<p>These manual routines have been part of life for so long that they no longer register as pain points. They're just how things are.</p>
+<p>What has changed is that more and more devices are already IoT-capable, and most of the others can be extended with a sensor or a smart socket. That makes it worth looking again. My approach starts there: not with a shopping list, but with pain-point discovery. What do you do every day that you've simply stopped noticing?</p>
 <figure class="blog-post__figure">
-  <img src="/images/insights/personal-service/one-person-to-ask.jpg" alt="Eine Person erklärt am Küchentisch die Smart-Home-Einrichtung, während die Bewohnerin auf dem Tablet mitverfolgt" width="1536" height="1024" loading="lazy" decoding="async">
+  <img src="/images/insights/pain-points/habit-blind-spot.jpg" alt="Someone walking back to check a door they may have locked, a small daily habit that has become invisible" width="1536" height="1024" loading="lazy" decoding="async">
 </figure>
-<h2>Was persönlicher Service bei Konihaus bedeutet</h2>
-<blockquote>
-<p>Kein Callcenter. Kein Ticket-System. Wenn Sie bei Konihaus anrufen oder schreiben, landen Sie bei mir — Koni.</p>
-<p>Ich installiere, richte ein und betreue Ihr Smart Home persönlich, von der ersten Beratung bis zum laufenden Support. So soll Technik-Support sein.</p>
-</blockquote>
-<p>In der Praxis heisst das: eine Person von Anfang bis Ende. Dieselbe Person hört zu, was Ihnen im Alltag wirklich helfen soll, wählt mit Ihnen die Geräte aus, richtet alles ein und bleibt danach erreichbar. Sie müssen Ihr Zuhause nie zweimal erklären.</p>
-<p>Persönlich heisst nicht Notfalldienst, und kein System kann versprechen, dass nie etwas schiefgeht. Aber wenn doch etwas passiert oder Sie einfach eine Frage haben, wissen Sie genau, wen Sie fragen können.</p>
-<h2>Warum es Konihaus gibt</h2>
-<p>Konihaus ist nicht aus einem Businessplan entstanden. Es ist entstanden, weil Menschen in meinem Umfeld genau diese Art von Hilfe brauchten und davon profitiert haben.</p>
-<p>Damit diese Hilfe auf Dauer möglich bleibt und für alle zugänglich wird, brauchte sie eine feste Form. Das ist Konihaus: persönlicher Smart-Home-Service, gebaut für die Dauer.</p>
+<h2>Smart doesn't mean automatic</h2>
+<p>Smart doesn't mean everything runs by itself. It means the one piece that needs help gets help.</p>
+<p>I always switch off the iron after ironing, by hand. I like that: &quot;I switched it off, so it's off&quot; is a real kind of certainty. But once I'm out of the house, a small voice asks: did I? Since the iron sits on a smart socket, I can look. One glance and the question is gone. Nothing was automated. I just got peace of mind.</p>
+<p>Doing it manually remains a perfectly good option. The smart layer is there for the moments when you're not sure.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/pain-points/iron-peace-of-mind.jpg" alt="A phone screen confirms that a smart socket is switched off while its owner is away from home" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>&quot;And what's left for me?&quot;</h2>
+<p>A fair question: if machines take over everything, what do I do? Nothing says they have to. If you enjoy chopping wood because it switches your head off, keep chopping. Automate the sweeping, or just the part where you wonder whether you switched something off. You decide where the line runs, and it's allowed to move.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/pain-points/you-draw-the-line.jpg" alt="A person chopping wood by hand beside a quiet, discreet smart home that handles the rest" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Everybody's list is different</h2>
+<p>A barber worries about the towel warmer. New parents worry about the temperature in the nursery. Someone leaving on a six-month trip worries about water. Pain points differ from person to person, so no single device and no standard set will solve them all. That is why the examples on our site look so different from each other.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/pain-points/every-home-different.jpg" alt="Four different homes, a barbershop, a nursery, a farmhouse and a holiday house, each with its own small set of discreet sensors" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Why it takes a person</h2>
+<p>Finding pain points is a conversation, not a product. It takes someone who asks, listens and notices what you no longer see.</p>
+<p>And it doesn't end after setup. The world keeps moving: new devices, new standards, better ways to do the same thing. I follow what's new and keep adjusting, so your home moves with the world and you don't have to keep up with it. Think of it as holding hands along the way: first to discover what bothers you, then as things change.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/pain-points/holding-hands.jpg" alt="A person and an advisor looking at a simple home overview together while the world moves on outside the window" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
 <hr>
-<p><strong>Fragen zu Ihrem Zuhause?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Sprechen Sie mit Koni</a> darüber, was bei Ihnen wirklich einen Unterschied machen würde — unverbindlich, ohne Verkaufsgespräch.</p>
+<p><strong>Curious what your own blind spots are?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Talk to Koni</a> and we'll look for them together, no obligation, no sales pitch.</p>
 
       </div>
 
@@ -317,26 +323,26 @@
 <aside class="subscribe subscribe--card" aria-label="Newsletter">
   <div class="subscribe__intro">
     <p class="subscribe__eyebrow">Newsletter</p>
-    <h2 class="subscribe__title">Neue Artikel direkt <em>ins Postfach.</em></h2>
-    <p class="subscribe__text">Ich schreibe über Smart Home, Datenschutz und das, was im Alltag wirklich funktioniert. Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint.</p>
+    <h2 class="subscribe__title">New articles straight to <em>your inbox.</em></h2>
+    <p class="subscribe__text">I write about smart homes, privacy and what really works in everyday life. You get an email as soon as a new article is published.</p>
   </div>
   <form class="subscribe__form" data-blog-subscribe novalidate
         data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
-        data-lang="de"
-        data-msg-ok="Danke! Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint."
-        data-msg-duplicate="Diese Adresse ist bereits angemeldet. Danke!"
-        data-msg-invalid="Bitte geben Sie eine gültige E-Mail-Adresse ein."
-        data-msg-limit="Zu viele Anmeldungen von dieser Adresse. Bitte versuchen Sie es später erneut."
-        data-msg-error="Das hat leider nicht geklappt. Bitte versuchen Sie es später erneut.">
+        data-lang="en"
+        data-msg-ok="Thank you! You will get an email as soon as a new article is published."
+        data-msg-duplicate="This address is already subscribed. Thank you!"
+        data-msg-invalid="Please enter a valid email address."
+        data-msg-limit="Too many signups from this address. Please try again later."
+        data-msg-error="Something went wrong. Please try again later.">
     <div class="subscribe__row">
-      <label class="subscribe__sr" for="subscribe-email">E-Mail-Adresse</label>
+      <label class="subscribe__sr" for="subscribe-email">Email address</label>
       <input class="subscribe__input" id="subscribe-email" type="email" name="email"
-             autocomplete="email" inputmode="email" placeholder="Ihre E-Mail-Adresse" required>
+             autocomplete="email" inputmode="email" placeholder="Your email address" required>
       
       <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="subscribe__button" type="submit">Abonnieren</button>
+      <button class="subscribe__button" type="submit">Subscribe</button>
     </div>
-    <p class="subscribe__note">Abmeldung jederzeit möglich. Mehr dazu in der <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.</p>
+    <p class="subscribe__note">Unsubscribe any time. More in the <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
     <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
   </form>
 </aside>
@@ -356,6 +362,8 @@
             
           
             
+          
+            
               
             
           
@@ -363,12 +371,10 @@
           
             
           
-            
-          
         
         
-          <section class="blog-post__related" aria-label="Weiterlesen">
-            <h2 class="blog-post__related-title">Weiterlesen</h2>
+          <section class="blog-post__related" aria-label="Related reading">
+            <h2 class="blog-post__related-title">Related reading</h2>
             <div class="blog-post__related-grid">
               
                 
@@ -381,14 +387,14 @@
                   
                 
                   
-                    <a class="blog-post__related-card" href="/de/insights/kein-vendor-lock-in/" data-post-date="2026-09-29" data-post-time="10:00">
-                      <span class="blog-post__related-card-title">Kein Vendor Lock-In</span>
+                
+                  
+                    <a class="blog-post__related-card" href="/en/insights/smart-home-fine-dining/" data-post-date="2026-09-15" data-post-time="10:00">
+                      <span class="blog-post__related-card-title">Smart Home Is Today&#39;s Fine Dining</span>
                       
-                        <span class="blog-post__related-card-meta">5 Min. Lesezeit</span>
+                        <span class="blog-post__related-card-meta">3 min read</span>
                       
                     </a>
-                  
-                
                   
                 
                   
@@ -403,7 +409,7 @@
 
       <footer class="blog-post__footer">
         
-          <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+          <a href="/en/insights/" class="blog-post__back-link">← Back to Insights</a>
         
 
         <div class="blog-post__share blog-post__share--footer">
@@ -512,21 +518,21 @@
   <script src="/assets/scripts.js"></script>
   <script src="/assets/cookie-consent.js"></script>
   <script>
-    const lang = "de";
+    const lang = "en";
 
     function switchToDe() {
       if (lang === 'de') return;
-      location.href = devHref('/en/insights/personal-service/');
+      location.href = devHref('/de/insights/unbemerkte-alltagsaergernisse/');
     }
 
     function switchToEn() {
       if (lang === 'en') return;
-      location.href = devHref('/en/insights/personal-service/');
+      location.href = devHref('/de/insights/unbemerkte-alltagsaergernisse/');
     }
 
     (function () {
-      const shareUrl = "https://blog.konihaus.ch/de/insights/persoenlicher-service/";
-      const shareTitle = "Beratung zum Smart Home endet meist an der Kasse. Persönlicher Service heisst: Jemand bleibt an Ihrer Seite.";
+      const shareUrl = "https://blog.konihaus.ch/en/insights/pain-points-we-stopped-noticing/";
+      const shareTitle = "Some chores are so familiar that we no longer see them as chores. A smart home starts with noticing them again.";
       const encodedUrl = encodeURIComponent(shareUrl);
       const encodedTitle = encodeURIComponent(shareTitle);
 
