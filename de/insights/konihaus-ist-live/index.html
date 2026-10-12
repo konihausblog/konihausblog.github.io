@@ -1,0 +1,681 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
+       default 07:00, Swiss time) the page behaves like a 404, unless the URL has ?devmode=super.
+       Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super';
+      var parts = {};
+      new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Zurich',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+      var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
+      var published = '2026-10-15';
+      var m = /^(\d{1,2}):(\d{2})/.exec('09:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '07:00';
+      window.__scheduledPost = (published + 'T' + at) > now ? published : null;
+      window.__scheduledPostTime = at;
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- Hide content until JS loads and sets language -->
+  <script>
+    document.documentElement.classList.add('no-js');
+    document.documentElement.classList.add("fonts-loading");
+  </script>
+  <style>
+    html.no-js body {
+      display: none;
+    }
+    html.fonts-loading body {
+      visibility: hidden;
+    }
+  </style>
+  <meta name="theme-color" content="#2a4a35">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
+  <link rel="apple-touch-icon" href="/assets/favicon.svg">
+  <title>Konihaus ist live - Konihaus</title>
+  <meta name="description" content="Ein persönlich betreutes Smart Home für die Schweiz, ab heute: was Konihaus ist, für wen es gedacht ist, wie es abläuft und was die Pakete kosten.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Konrad Hefelle">
+
+  <!-- Canonical + language alternates -->
+  <link rel="canonical" href="https://blog.konihaus.ch/de/insights/konihaus-ist-live/">
+  
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/konihaus-ist-live/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/konihaus-is-live/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/en/insights/konihaus-is-live/">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Konihaus">
+  <meta property="og:title" content="Konihaus ist live">
+  <meta property="og:description" content="Ein persönlich betreutes Smart Home für die Schweiz, ab heute: was Konihaus ist, für wen es gedacht ist, wie es abläuft und was die Pakete kosten.">
+  <meta property="og:url" content="https://blog.konihaus.ch/de/insights/konihaus-ist-live/">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/launch/og.jpg">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="article:published_time" content="2026-10-15">
+  
+  <meta property="article:author" content="Konrad Hefelle">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Konihaus ist live">
+  <meta name="twitter:description" content="Ein persönlich betreutes Smart Home für die Schweiz, ab heute: was Konihaus ist, für wen es gedacht ist, wie es abläuft und was die Pakete kosten.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/launch/og.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Konihaus ist live",
+    "description": "Ein persönlich betreutes Smart Home für die Schweiz, ab heute: was Konihaus ist, für wen es gedacht ist, wie es abläuft und was die Pakete kosten.",
+    "image": "https://blog.konihaus.ch/images/insights/launch/og.jpg",
+    "datePublished": "2026-10-15",
+    "dateModified": "2026-10-15",
+    "inLanguage": "de",
+    "mainEntityOfPage": "https://blog.konihaus.ch/de/insights/konihaus-ist-live/",
+    "author": {
+      "@type": "Person",
+      "name": "Konrad Hefelle"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Konihaus",
+      "url": "https://konihaus.ch",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blog.konihaus.ch/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Insights",
+        "item": "https://blog.konihaus.ch/de/insights/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Konihaus ist live",
+        "item": "https://blog.konihaus.ch/de/insights/konihaus-ist-live/"
+      }
+    ]
+  }
+  </script>
+
+  <link
+    rel="preload"
+    href="/fonts/outfit-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-italic.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/post.css">
+  <link rel="stylesheet" href="/assets/subscribe.css">
+</head>
+<body>
+
+ <nav class="nav  nav--solid" id="nav">
+    <div class="container">
+      <div class="nav__inner ">
+        <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+          <div class="logo-image"></div>
+          <div class="wordmark">konihaus blog</div>
+        </a>
+        <ul class="nav__links">
+          <li><a href="https://konihaus.ch/#intro" data-i18n="nav.intro">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#packages" data-i18n="nav.packages">Pakete</a></li>
+          <li><a href="https://konihaus.ch/#contact" data-i18n="nav.contact">Kontakt</a></li>
+          <li><a href="https://konihaus.ch/#about" data-i18n="nav.about">Über Koni</a></li>
+        </ul>
+        <div class="language-picker">
+          <button
+            type="button"
+            class="language-trigger"
+            aria-expanded="false"
+            aria-controls="language-options"
+            aria-label="Language: Deutsch"
+          >
+            <span class="language-current">DE</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          <div id="language-options" class="language-options" hidden>
+            <button type="button" class="language-option" data-lang="de" onclick="switchToDe()">
+              <span>Deutsch</span>
+              <span class="language-code">DE</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en" onclick="switchToEn()">
+              <span>English</span>
+              <span class="language-code">EN</span>
+            </button>
+          </div>
+
+          <select id="lang-selector" hidden>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="https://konihaus.ch/#contact" class="btn nav__cta" data-i18n="nav.cta">Kostenlose Beratung</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav__drawer" id="drawer">
+    <ul>
+      <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="nav.intro">Was ist Konihaus</a></li>
+      <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="nav.packages">Pakete</a></li>
+      <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="nav.contact">Kontakt</a></li>
+      <li><a href="https://konihaus.ch/#about" class="drawer-link active" data-i18n="nav.about">Über Koni</a></li>
+    </ul>
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+  </div>
+
+
+  <main class="blog-post__container">
+
+    <header class="blog-post__link">
+      
+        <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+      
+    </header>
+
+    <article>
+      <header class="blog-post__header">
+        
+        <p class="blog-post__category">launch</p>
+        <h1 class="blog-post__title"><span>Konihaus ist live</span></h1>
+        <time class="blog-post__meta" datetime="Thu Oct 15 2026 02:00:00 GMT+0200 (Central European Summer Time)">
+          
+            15. Oktober 2026
+          
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;4 Min. Lesezeit</span>
+        
+          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">von</span> Koni
+        
+
+        <div class="blog-post__share">
+          <span class="blog-post__share-label">Teilen</span>
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4.5A9.6 9.6 0 0 0 4.4 15.9L3.5 20.5l4.7-1.2A9.6 9.6 0 1 0 20 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M8.8 9.4c.2 3 3.1 5.8 6 6 1 .1 1.4-.6 1.4-1.2l-.2-1.2-1.9-.8c-.3-.1-.6 0-.8.2l-.5.6a5.9 5.9 0 0 1-2.6-2.6l.6-.5c.2-.2.3-.5.2-.8L10.2 7l-1.2-.2c-.6 0-1.3.4-1.2 1.4Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="email" href="#" aria-label="Share by email" title="Share by email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m4 6.5 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+
+      <div class="blog-post__content">
+        <h2>Heute wird aus der Idee ein Angebot</h2>
+<p>In den letzten Wochen haben wir geschrieben, warum ein Smart Home persönlich, privat und langlebig sein sollte. Heute sind das keine Ideen mehr: Konihaus ist live auf <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch">konihaus.ch</a>.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/launch/konihaus-is-live.webp" alt="Ein warmes, ruhiges Zuhause mit einer Haustür, die sich zum Abend hin öffnet" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Was Konihaus ist</h2>
+<p>Konihaus ist ein Smart Home mit einem echten Menschen dahinter. Ich plane, richte ein und betreue Ihr System, und ich bleibe auch danach für Sie da. Alles läuft lokal auf einem Hub bei Ihnen zu Hause, basierend auf dem Open-Source-System Home Assistant. Geräte mit Zigbee, Matter und Thread von verschiedenen Herstellern arbeiten zusammen. Es gibt keine Cloud-Pflicht und keine einzelne Plattform, an die Sie gebunden sind. Wenn Sie Fernzugriff möchten, läuft er über ein verschlüsseltes privates VPN.</p>
+<h2>Für wen es gedacht ist</h2>
+<p>Für Senioren, die nachts Sicherheit und tagsüber Selbstständigkeit wollen. Für Mieterinnen und Mieter, die nicht bohren dürfen. Für Besitzer von Ferienhäusern, die präsent sein möchten, ohne dort zu sein. Wie das in der Praxis aussieht, sehen Sie in <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#examples">unseren Beispielen</a>. Oder lesen Sie <a target="_blank" rel="noopener noreferrer" href="/de/insights/fuer-wen-ist-konihaus/">Für wen ist Konihaus?</a>.</p>
+<h2>So läuft es ab</h2>
+<ol>
+<li><strong>Kostenlose Beratung.</strong> 30 Minuten, online oder vor Ort, ohne Verkaufsgespräch.</li>
+<li><strong>Installation und Einrichtung.</strong> Vor Ort in 2 bis 4 Stunden, ohne Eingriff ins Mauerwerk.</li>
+<li><strong>Einführung.</strong> Eine Einweisung für Ihren Haushalt auf Deutsch oder Englisch, mit Handbuch.</li>
+<li><strong>Laufende Betreuung.</strong> Fernüberwachung, Updates und Support sind inklusive, dazu ein monatlicher Bericht.</li>
+</ol>
+<p>Den ganzen Ablauf finden Sie auf <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#process">konihaus.ch</a>.</p>
+<h2>Was es kostet</h2>
+<p>Jedes Paket enthält Installation, Einrichtung und laufenden Support aus der Ferne:</p>
+<ul>
+<li><strong>Basis</strong>, ab CHF 29 pro Monat: eine 1- bis 2-Zimmer-Wohnung, ca. 7 Geräte.</li>
+<li><strong>Standard</strong>, ab CHF 49 pro Monat: eine 3-Zimmer-Wohnung, ca. 10 Geräte.</li>
+<li><strong>Advanced</strong>, ab CHF 89 pro Monat: ein Einfamilienhaus, ca. 15 Geräte.</li>
+<li><strong>All-in</strong>, ab CHF 149 pro Monat: ein grosses Haus, 25+ Geräte mit individuellen Automationen.</li>
+</ul>
+<p>Das sind Richtwerte inklusive MwSt. Die Hardware ist eine einmalige Anschaffung bei der ersten Installation, und Ihr endgültiges Angebot hängt von Ihrem Zuhause und den gewünschten Automationen ab. Alle Details finden Sie bei den <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#packages">Paketen</a>.</p>
+<h2>Vier Dinge, für die wir stehen</h2>
+<ul>
+<li><strong>Persönlich.</strong> Eine Person bleibt bei Ihnen, vor und nach der Installation. <a target="_blank" rel="noopener noreferrer" href="/de/insights/persoenlicher-service/">Mehr dazu</a></li>
+<li><strong>Privat.</strong> Die Daten Ihres Zuhauses bleiben auf Hardware in Ihrem Zuhause. <a target="_blank" rel="noopener noreferrer" href="/de/insights/datenschutz-by-default/">Mehr dazu</a></li>
+<li><strong>Offen.</strong> Geräte verschiedener Hersteller kombinieren, ohne sich zu binden. <a target="_blank" rel="noopener noreferrer" href="/de/insights/kein-vendor-lock-in/">Mehr dazu</a></li>
+<li><strong>Schweizerisch.</strong> In der Schweiz etabliert, betreut und betrieben, und für die Langlebigkeit gebaut. <a target="_blank" rel="noopener noreferrer" href="/de/insights/schweizer-qualitaet/">Mehr dazu</a></li>
+</ul>
+<figure class="blog-post__figure">
+  <img src="/images/insights/launch/four-principles.webp" alt="Vier einfache Symbole für persönlich, privat, offen und schweizerisch" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Eine ehrliche Anmerkung</h2>
+<p>Konihaus ist kein Notrufdienst. Im Notfall wählen Sie bitte immer die üblichen Notrufnummern. Für alles andere antworten wir innerhalb von 24 Stunden.</p>
+<h2>Sprechen wir über Ihr Zuhause</h2>
+<p>Wenn Sie noch unsicher sind, ist das in Ordnung. Buchen Sie eine kostenlose Beratung, erzählen Sie uns von Ihrem Zuhause, und wir sagen Ihnen ehrlich, was einen Unterschied machen würde und was nicht.</p>
+<p>Danke, dass Sie uns auf dem Weg hierher begleitet haben. Wir freuen uns, Ihnen zu zeigen, was wir gebaut haben.</p>
+<hr>
+<p><strong>Sie denken über Ihr eigenes Zuhause nach?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Sprechen Sie mit Koni</a> darüber, was bei Ihnen wirklich einen Unterschied machen würde — unverbindlich und ohne Verkaufsgespräch.</p>
+
+      </div>
+
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+<aside class="subscribe subscribe--card" aria-label="Newsletter">
+  <div class="subscribe__intro">
+    <p class="subscribe__eyebrow">Newsletter</p>
+    <h2 class="subscribe__title">Neue Artikel direkt <em>ins Postfach.</em></h2>
+    <p class="subscribe__text">Ich schreibe über Smart Home, Datenschutz und das, was im Alltag wirklich funktioniert. Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint.</p>
+  </div>
+  <form class="subscribe__form" data-blog-subscribe novalidate
+        data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
+        data-lang="de"
+        data-msg-ok="Danke! Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint."
+        data-msg-duplicate="Diese Adresse ist bereits angemeldet. Danke!"
+        data-msg-invalid="Bitte geben Sie eine gültige E-Mail-Adresse ein."
+        data-msg-limit="Zu viele Anmeldungen von dieser Adresse. Bitte versuchen Sie es später erneut."
+        data-msg-error="Das hat leider nicht geklappt. Bitte versuchen Sie es später erneut.">
+    <div class="subscribe__row">
+      <label class="subscribe__sr" for="subscribe-email">E-Mail-Adresse</label>
+      <input class="subscribe__input" id="subscribe-email" type="email" name="email"
+             autocomplete="email" inputmode="email" placeholder="Ihre E-Mail-Adresse" required>
+      
+      <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="subscribe__button" type="submit">Abonnieren</button>
+    </div>
+    <p class="subscribe__note">Abmeldung jederzeit möglich. Mehr dazu in der <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.</p>
+    <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+
+
+      
+        
+        
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+              
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+              
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+        
+        
+          <section class="blog-post__related" aria-label="Weiterlesen">
+            <h2 class="blog-post__related-title">Weiterlesen</h2>
+            <div class="blog-post__related-grid">
+              
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                    <a class="blog-post__related-card" href="/de/insights/persoenlicher-service/" data-post-date="2026-10-01" data-post-time="18:00">
+                      <span class="blog-post__related-card-title">Smart Home mit einem Menschen dahinter</span>
+                      
+                        <span class="blog-post__related-card-meta">5 Min. Lesezeit</span>
+                      
+                    </a>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                    <a class="blog-post__related-card" href="/de/insights/fuer-wen-ist-konihaus/" data-post-date="2026-10-08" data-post-time="18:00">
+                      <span class="blog-post__related-card-title">Für wen ist Konihaus? Vier Zuhause, ein Prinzip</span>
+                      
+                        <span class="blog-post__related-card-meta">6 Min. Lesezeit</span>
+                      
+                    </a>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              
+            </div>
+          </section>
+        
+      
+
+      <footer class="blog-post__footer">
+        
+          <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+        
+
+        <div class="blog-post__share blog-post__share--footer">
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+            <div class="logo-image"></div>
+            <div class="wordmark">konihaus blog</div>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
+            Ferienhausbesitzer in der
+            Schweiz.</p>
+          <div class="footer__social" aria-label="Social Media">
+            <a href="https://www.instagram.com/ch.konihaus/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/konihaus.ch" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://x.com/konihaus" class="social-icon social-icon--x" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/konihaus" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+                <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col1_title">Service</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete & Preise</a></li>
+            <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte & Technik</a></li>
+            <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+            <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col2_title">Unternehmen</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert's</a></li>
+            <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col3_title">Rechtliches</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/impressum" data-i18n="footer.col3_l1">Impressum</a></li>
+            <li><a href="https://konihaus.ch/datenschutz" data-legal="privacy" data-i18n="footer.col3_l2">Datenschutz</a></li>
+            <li><a href="https://konihaus.ch/#cookie-declaration" data-cc-open data-i18n="footer.col3_l3">Cookie-Erklärung</a></li>
+            <li><a href="https://konihaus.ch/agb" data-i18n="footer.col3_l4">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Konihaus · Affoltern am Albis, Schweiz
+        </p>
+        <p class="fch" data-i18n="footer.ch">🇨🇭 Made in Switzerland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/scripts.js"></script>
+  <script src="/assets/cookie-consent.js"></script>
+  <script>
+    const lang = "de";
+
+    function switchToDe() {
+      if (lang === 'de') return;
+      location.href = devHref('/en/insights/konihaus-is-live/');
+    }
+
+    function switchToEn() {
+      if (lang === 'en') return;
+      location.href = devHref('/en/insights/konihaus-is-live/');
+    }
+
+    (function () {
+      const shareUrl = "https://blog.konihaus.ch/de/insights/konihaus-ist-live/";
+      const shareTitle = "Ein persönlich betreutes Smart Home für die Schweiz, ab heute: was Konihaus ist, für wen es gedacht ist, wie es abläuft und was die Pakete kosten.";
+      const encodedUrl = encodeURIComponent(shareUrl);
+      const encodedTitle = encodeURIComponent(shareTitle);
+
+      const links = {
+        x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+        email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+      };
+ 
+      document.querySelectorAll('[data-share]').forEach((el) => {
+        const platform = el.getAttribute('data-share');
+        if (links[platform]) el.href = links[platform];
+      });
+
+      /*if (navigator.share) {
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }*/
+
+      const isTouchMobile = window.matchMedia('(pointer: coarse)').matches
+        && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isTouchMobile && navigator.share) {
+        document.querySelectorAll('[data-share="native"]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-copy-link]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            btn.setAttribute('data-copied', 'true');
+            setTimeout(() => btn.removeAttribute('data-copied'), 2000);
+          } catch {
+            
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
