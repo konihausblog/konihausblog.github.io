@@ -40,6 +40,12 @@
     <lastmod>2026-10-17</lastmod>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-cost-switzerland/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/zukunftssicher/</loc>
     <lastmod>2026-09-10</lastmod>
   </url>
@@ -73,6 +79,12 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/privacy-by-default/</loc>
     <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/smart-home-cost-switzerland/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-cost-switzerland/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/smart-home-fine-dining/</loc>

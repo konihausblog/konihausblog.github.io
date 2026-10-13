@@ -1,0 +1,619 @@
+
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
+       default 07:00, Swiss time) the page behaves like a 404, unless the URL has ?devmode=super.
+       Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super';
+      var parts = {};
+      new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Zurich',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+      var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
+      var published = '2026-10-22';
+      var m = /^(\d{1,2}):(\d{2})/.exec('08:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '07:00';
+      window.__scheduledPost = (published + 'T' + at) > now ? published : null;
+      window.__scheduledPostTime = at;
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- Hide content until JS loads and sets language -->
+  <script>
+    document.documentElement.classList.add('no-js');
+    document.documentElement.classList.add("fonts-loading");
+  </script>
+  <style>
+    html.no-js body {
+      display: none;
+    }
+    html.fonts-loading body {
+      visibility: hidden;
+    }
+  </style>
+  <meta name="theme-color" content="#2a4a35">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
+  <link rel="apple-touch-icon" href="/assets/favicon.svg">
+  <title>Was kostet ein Smart Home in der Schweiz? Die ehrliche Antwort - Konihaus</title>
+  <meta name="description" content="Was kostet ein Smart Home in der Schweiz? Was Anbieter veröffentlichen, was fehlt, und was es kostet, wenn Sie nur wissen, dass Sie es sich einfacher wünschen.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Konrad Hefelle">
+
+  <!-- Canonical + language alternates -->
+  <link rel="canonical" href="https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/">
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-cost-switzerland/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/en/insights/smart-home-cost-switzerland/">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Konihaus">
+  <meta property="og:title" content="Was kostet ein Smart Home in der Schweiz? Die ehrliche Antwort">
+  <meta property="og:description" content="Was kostet ein Smart Home in der Schweiz? Was Anbieter veröffentlichen, was fehlt, und was es kostet, wenn Sie nur wissen, dass Sie es sich einfacher wünschen.">
+  <meta property="og:url" content="https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/smart-home-cost/og.jpg">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="article:published_time" content="2026-10-22">
+  
+  <meta property="article:author" content="Konrad Hefelle">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Was kostet ein Smart Home in der Schweiz? Die ehrliche Antwort">
+  <meta name="twitter:description" content="Was kostet ein Smart Home in der Schweiz? Was Anbieter veröffentlichen, was fehlt, und was es kostet, wenn Sie nur wissen, dass Sie es sich einfacher wünschen.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/smart-home-cost/og.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Was kostet ein Smart Home in der Schweiz? Die ehrliche Antwort",
+    "description": "Was kostet ein Smart Home in der Schweiz? Was Anbieter veröffentlichen, was fehlt, und was es kostet, wenn Sie nur wissen, dass Sie es sich einfacher wünschen.",
+    "image": "https://blog.konihaus.ch/images/insights/smart-home-cost/og.jpg",
+    "datePublished": "2026-10-22",
+    "dateModified": "2026-10-22",
+    "inLanguage": "de",
+    "mainEntityOfPage": "https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/",
+    "author": {
+      "@type": "Person",
+      "name": "Konrad Hefelle"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Konihaus",
+      "url": "https://konihaus.ch",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blog.konihaus.ch/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Insights",
+        "item": "https://blog.konihaus.ch/de/insights/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Was kostet ein Smart Home in der Schweiz? Die ehrliche Antwort",
+        "item": "https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/"
+      }
+    ]
+  }
+  </script>
+
+  <link
+    rel="preload"
+    href="/fonts/outfit-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-italic.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/post.css">
+  <link rel="stylesheet" href="/assets/subscribe.css">
+</head>
+<body>
+
+ <nav class="nav  nav--solid" id="nav">
+    <div class="container">
+      <div class="nav__inner ">
+        <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+          <div class="logo-image"></div>
+          <div class="wordmark">konihaus blog</div>
+        </a>
+        <ul class="nav__links">
+          <li><a href="https://konihaus.ch/#intro" data-i18n="nav.intro">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#packages" data-i18n="nav.packages">Pakete</a></li>
+          <li><a href="https://konihaus.ch/#contact" data-i18n="nav.contact">Kontakt</a></li>
+          <li><a href="https://konihaus.ch/#about" data-i18n="nav.about">Über Koni</a></li>
+        </ul>
+        <div class="language-picker">
+          <button
+            type="button"
+            class="language-trigger"
+            aria-expanded="false"
+            aria-controls="language-options"
+            aria-label="Language: Deutsch"
+          >
+            <span class="language-current">DE</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          <div id="language-options" class="language-options" hidden>
+            <button type="button" class="language-option" data-lang="de" onclick="switchToDe()">
+              <span>Deutsch</span>
+              <span class="language-code">DE</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en" onclick="switchToEn()">
+              <span>English</span>
+              <span class="language-code">EN</span>
+            </button>
+          </div>
+
+          <select id="lang-selector" hidden>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="https://konihaus.ch/#contact" class="btn nav__cta" data-i18n="nav.cta">Kostenlose Beratung</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav__drawer" id="drawer">
+    <ul>
+      <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="nav.intro">Was ist Konihaus</a></li>
+      <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="nav.packages">Pakete</a></li>
+      <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="nav.contact">Kontakt</a></li>
+      <li><a href="https://konihaus.ch/#about" class="drawer-link active" data-i18n="nav.about">Über Koni</a></li>
+    </ul>
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+  </div>
+
+
+  <main class="blog-post__container">
+
+    <header class="blog-post__link">
+        <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+    </header>
+
+    <article>
+      <header class="blog-post__header">
+        <p class="blog-post__category">preise</p>
+        <h1 class="blog-post__title"><span>Was kostet ein Smart Home in der Schweiz? Die ehrliche Antwort</span></h1>
+        <time class="blog-post__meta" datetime="Thu Oct 22 2026 02:00:00 GMT+0200 (Central European Summer Time)">
+            22. Oktober 2026
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;6 Min. Lesezeit</span>
+          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">von</span> Koni
+
+        <div class="blog-post__share">
+          <span class="blog-post__share-label">Teilen</span>
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4.5A9.6 9.6 0 0 0 4.4 15.9L3.5 20.5l4.7-1.2A9.6 9.6 0 1 0 20 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M8.8 9.4c.2 3 3.1 5.8 6 6 1 .1 1.4-.6 1.4-1.2l-.2-1.2-1.9-.8c-.3-.1-.6 0-.8.2l-.5.6a5.9 5.9 0 0 1-2.6-2.6l.6-.5c.2-.2.3-.5.2-.8L10.2 7l-1.2-.2c-.6 0-1.3.4-1.2 1.4Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="email" href="#" aria-label="Share by email" title="Share by email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m4 6.5 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+
+      <div class="blog-post__content">
+        <p><strong>Kurz gesagt:</strong> Ein klassisches Smart Home mit Elektroinstallation kostet in der Schweiz laut veröffentlichten Preisen etwa <strong>CHF 3'400 bis 16'200</strong> einmalig. Ein offenes, nachrüstbares System kostet bei einem Anbieter <strong>CHF 4'000 bis 7'500</strong> einmalig. Und es gibt eine Variante, die <strong>ab CHF 29 im Monat</strong> startet und betreut wird. Welcher Weg passt, hängt weniger vom Budget ab als von einer Frage: Wissen Sie schon, was Sie wollen?</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-home-cost/smart-home-cost.webp" alt="Planning a smart-home budget with a floor plan and a few simple devices" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Was Anbieter in der Schweiz öffentlich verlangen</h2>
+<p>Ich habe die Seiten von zehn Schweizer Anbietern gelesen (Stand Oktober 2026). Nur wenige veröffentlichen Preise:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Anbieter</th>
+<th>Was</th>
+<th>Preis</th>
+<th>Bemerkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener noreferrer" href="https://smart-home-schweiz.ch/de/faq-und-preise/preise/">Härz AG</a></td>
+<td>KNX, Installation durch Elektroinstallateur</td>
+<td>CHF 3'400 bis 16'200 einmalig (exkl. MwSt.)</td>
+<td>je nach Paket (4 Stufen) und Wohnungsgrösse, Zusatzmodule extra</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener noreferrer" href="https://smarthome.ispag.ch/was-kostet-ein-smart-home">ISP Electro Solutions</a></td>
+<td>Loxone-Pakete</td>
+<td>ab CHF 5'500 / 8'500 / 14'500 einmalig</td>
+<td>für Neubau-Wohnung oder -Haus, <strong>zusätzlich</strong> zur normalen Elektroinstallation</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener noreferrer" href="https://smarli.ch/smarli-wow">smarli.</a></td>
+<td>offenes System mit lokalem Hub, nachrüstbar, auch für Mieter</td>
+<td>CHF 4'000 bis 5'000 (3½-Zimmer-Wohnung), CHF 6'000 bis 7'500 (5-Zimmer-Haus) einmalig</td>
+<td>inkl. Produkte, Installation, Konfiguration; Monatsgebühren nicht erwähnt</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener noreferrer" href="https://pavilon.ch/">Pavilon Automation</a></td>
+<td>Wartungsvertrag für Loxone-Anlagen</td>
+<td>CHF 599 / 899 / 1'199 pro Jahr</td>
+<td>nur Betreuung, ohne die Anlage selbst</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener noreferrer" href="https://www.securitas-direct.ch/">Securitas Direct</a></td>
+<td>Alarmanlage mit Überwachung</td>
+<td>«weniger als CHF 3 pro Tag»</td>
+<td>nur Sicherheit, keine Hausautomation</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener noreferrer" href="https://spline.ch/">Spline</a>, <a target="_blank" rel="noopener noreferrer" href="https://new.abb.com/buildings/de-ch/smart-home">ABB</a>, <a target="_blank" rel="noopener noreferrer" href="https://www.bkw.ch/de/gebaeude/automation/smart-home">BKW</a>, <a target="_blank" rel="noopener noreferrer" href="https://www.renomation.ch/de/smart-home/ihr-mehrwert">Renomation</a>, <a target="_blank" rel="noopener noreferrer" href="https://smarthome.ch/">Smart Home Swiss</a></td>
+<td>KNX, free@home und weitere</td>
+<td>keine Preise veröffentlicht</td>
+<td>«Offerte anfragen», «Partner finden» oder «Beratung buchen»</td>
+</tr>
+</tbody>
+</table></div>
+<p>Das sind seriöse Lösungen. Eine KNX-Installation in der Wand hält Jahrzehnte und lässt sich sehr tief integrieren. Wenn Sie bauen oder Ihr Haus gerade komplett renovieren, ist das ein guter Weg.</p>
+<h2>Was auffällt</h2>
+<p><strong>1. Meist braucht es einen Elektriker.</strong> Härz, ISP, Spline, ABB und BKW arbeiten mit Installateuren oder Partnerbetrieben. ISP schreibt selbst, der Preis komme zur normalen Elektroinstallation hinzu. Die Ausnahme ist smarli.: offen, lokal, nachrüstbar, auch für Mieter. Dort beginnt es bei rund CHF 4'000 einmalig.</p>
+<p><strong>2. Am Anfang steht fast immer eine Offerte.</strong> Auf den Seiten heisst es «Offerte anfragen», «Beratung buchen» oder «Partner finden». Das passt, wenn Sie schon wissen, dass Sie Storen, Dimmer und Multiroom-Audio möchten. Nicht, wenn Sie nur denken: «Es müsste doch einfacher gehen.» Die Ratgeber von <a target="_blank" rel="noopener noreferrer" href="https://www.obi.ch/magazin/wohnen/was-bedeutet-smart-home">OBI</a> und <a target="_blank" rel="noopener noreferrer" href="https://en.houzy.ch/post/smart-home">Houzy</a> (2021) sind ehrlicher: Beginnen Sie klein, mit einem Starter-Set für ein paar hundert Franken. Dann sind Sie allerdings Ihr eigener Support, und für Storen oder 230-Volt-Schalter empfiehlt Houzy ohnehin den Elektriker. OBI weist ausserdem darauf hin, dass Mieter die Erlaubnis der Vermietung brauchen. Verkabelte Systeme könnten bis zu CHF 50'000 für ein ganzes Haus kosten.</p>
+<p><strong>3. Betreuung ist selten und wird separat verkauft.</strong> Auf den meisten Seiten steht dazu nichts. Wo sie vorkommt, ist sie ein eigenes Produkt: Pavilon verlangt CHF 599 bis 1'199 im Jahr für den Wartungsvertrag einer Loxone-Anlage, die bereits steht. Securitas Direct betreut Alarmanlagen. Smart Home Swiss bietet Serviceverträge für Überbauungen an.</p>
+<p>Das ist die Lücke. Sie betrifft nicht eine Randgruppe, sondern viele Menschen: alle, die zur Miete wohnen, alle mit einer bestehenden Wohnung oder einem bestehenden Haus, und alle, die einfach neugierig sind und sich nicht gleich für CHF 4'000 bis 5'000 oder mehr festlegen wollen. Und alle, die nicht selbst für den Support zuständig sein möchten.</p>
+<h2>Wie es für Sie anders aussehen kann</h2>
+<p>Konihaus ist genau für diese Menschen gedacht. Ich nehme Geräte, die Sie bereits besitzen, ergänze sie mit bewährter Hardware, und alles läuft lokal über eine Zentrale in Ihrem Zuhause. Es braucht <strong>keine Bohrungen, keinen Elektriker und keinen Umbau</strong>. Und ich bleibe danach Ihr Ansprechpartner.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-home-cost/no-renovation-needed.jpg" alt="A wireless window sensor being attached without drilling" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Paket</th>
+<th>Typisch für</th>
+<th>Pro Monat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Basis</td>
+<td>1–2-Zimmer-Wohnung, ca. 7 Geräte</td>
+<td>ab CHF 29</td>
+</tr>
+<tr>
+<td>Standard</td>
+<td>3-Zimmer-Wohnung, ca. 10 Geräte</td>
+<td>ab CHF 49</td>
+</tr>
+<tr>
+<td>Advanced</td>
+<td>Einfamilienhaus, ca. 15 Geräte</td>
+<td>ab CHF 89</td>
+</tr>
+<tr>
+<td>All-in</td>
+<td>grosses Haus, 25+ Geräte</td>
+<td>ab CHF 149</td>
+</tr>
+</tbody>
+</table></div>
+<p>Installation, Einrichtung und Fernbetreuung sind inklusive. Wenn Sie die Einrichtung nicht sofort bezahlen wollen, ersetzt ein 2-Jahres-Servicevertrag die einmalige Einrichtungsinvestition (je nach Paket rund CHF 200 bis 1'500). Es gibt keine versteckten Kosten. Alle Preise sind Richtwerte, die Offerte ist immer individuell.</p>
+<p>Über zwei Jahre gerechnet kostet das Basis-Paket 696 Franken, das Standard-Paket 1'176 und das Advanced-Paket 2'136. Zum Vergleich: Allein die Betreuung einer fremden Loxone-Anlage kostet bei Pavilon CHF 599 bis 1'199 im Jahr. Beim Standard-Paket sind es bei mir 588 Franken im Jahr, mit Anlage, Fernbetreuung und Updates. Die Leistungen sind nicht identisch, aber die Grössenordnung ist es.</p>
+<h2>Ehrlich gerechnet: Wann sind die anderen Wege günstiger?</h2>
+<p>Ein Monatsabo ist kein Schnäppchen, wenn man sehr lange rechnet. Über zehn Jahre sind es beim Basis-Paket rund CHF 3'480, beim Standard-Paket CHF 5'880 und beim Advanced-Paket CHF 10'680.</p>
+<ul>
+<li><strong>Gegenüber smarli.:</strong> Deren Einmalpreis für eine 3½-Zimmer-Wohnung (CHF 4'000 bis 5'000) entspricht etwa sieben bis achteinhalb Jahren Standard-Paket. Wer sicher ist, dass er lange bleibt, kann mit einem Einmalpreis günstiger fahren. Auf der Seite von smarli. ist allerdings keine laufende Betreuung beschrieben, bei mir ist sie inbegriffen.</li>
+<li><strong>Gegenüber KNX:</strong> Wenn Sie ein Haus bauen, dort mindestens 15 Jahre bleiben und genau wissen, was Sie wollen, kann eine KNX-Installation unter dem Strich günstiger und besser sein.</li>
+</ul>
+<p>Die Vergleiche sind nicht gleichwertig. Eine Wandinstallation ersetzt Ihren Elektroinstallateur, ein nachrüstbares System ergänzt, was Sie schon haben. Und im Abo steckt, was bei der Einmalinstallation fehlt: jemand, der Updates einspielt, Geräte tauscht und erreichbar ist.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-home-cost/support-over-time.jpg" alt="A homeowner and technician reviewing a smart-home device together" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Was Sie tun können, wenn Sie nicht wissen, wo Sie anfangen sollen</h2>
+<p>Sie müssen kein Konzept haben. Drei Fragen genügen:</p>
+<ul>
+<li>Was nervt Sie im Alltag? (Licht, Heizung, Storen, die Frage «Habe ich die Tür abgeschlossen?»)</li>
+<li>Wohnen Sie zur Miete oder besitzen Sie die Wohnung?</li>
+<li>Möchten Sie etwas, das Sie selbst bedienen, oder etwas, das einfach funktioniert?</li>
+</ul>
+<p>Mit den Antworten finden wir gemeinsam einen kleinen, rückbaubaren ersten Schritt, zum Beispiel in einem einzigen Raum. Wenn es Ihnen gefällt, bauen wir aus. Wenn nicht, hören wir auf.</p>
+<p><strong>Kostenlose Erstberatung, ohne Verpflichtung:</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">konihaus.ch</a> oder per E-Mail an hallo@konihaus.ch. Sie sprechen direkt mit mir, ich antworte innert 24 Stunden.</p>
+<p><em>Quellen: veröffentlichte Seiten der genannten Anbieter und Ratgeber, abgerufen im Oktober 2026. Preise können sich ändern; alle Angaben ohne Gewähr.</em></p>
+
+      </div>
+
+      
+<aside class="subscribe subscribe--card" aria-label="Newsletter">
+  <div class="subscribe__intro">
+    <p class="subscribe__eyebrow">Newsletter</p>
+    <h2 class="subscribe__title">Neue Artikel direkt <em>ins Postfach.</em></h2>
+    <p class="subscribe__text">Ich schreibe über Smart Home, Datenschutz und das, was im Alltag wirklich funktioniert. Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint.</p>
+  </div>
+  <form class="subscribe__form" data-blog-subscribe novalidate
+        data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
+        data-lang="de"
+        data-msg-ok="Danke! Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint."
+        data-msg-duplicate="Diese Adresse ist bereits angemeldet. Danke!"
+        data-msg-invalid="Bitte geben Sie eine gültige E-Mail-Adresse ein."
+        data-msg-limit="Zu viele Anmeldungen von dieser Adresse. Bitte versuchen Sie es später erneut."
+        data-msg-error="Das hat leider nicht geklappt. Bitte versuchen Sie es später erneut.">
+    <div class="subscribe__row">
+      <label class="subscribe__sr" for="subscribe-email">E-Mail-Adresse</label>
+      <input class="subscribe__input" id="subscribe-email" type="email" name="email"
+             autocomplete="email" inputmode="email" placeholder="Ihre E-Mail-Adresse" required>
+      <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="subscribe__button" type="submit">Abonnieren</button>
+    </div>
+    <p class="subscribe__note">Abmeldung jederzeit möglich. Mehr dazu in der <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.</p>
+    <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+
+          <section class="blog-post__related" aria-label="Weiterlesen">
+            <h2 class="blog-post__related-title">Weiterlesen</h2>
+            <div class="blog-post__related-grid">
+                    <a class="blog-post__related-card" href="/de/insights/persoenlicher-service/" data-post-date="2026-10-01" data-post-time="18:00">
+                      <span class="blog-post__related-card-title">Smart Home mit einem Menschen dahinter</span>
+                        <span class="blog-post__related-card-meta">5 Min. Lesezeit</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/de/insights/fuer-wen-ist-konihaus/" data-post-date="2026-10-08" data-post-time="18:00">
+                      <span class="blog-post__related-card-title">Für wen ist Konihaus? Vier Zuhause, ein Prinzip</span>
+                        <span class="blog-post__related-card-meta">6 Min. Lesezeit</span>
+                    </a>
+            </div>
+          </section>
+
+      <footer class="blog-post__footer">
+          <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+
+        <div class="blog-post__share blog-post__share--footer">
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+            <div class="logo-image"></div>
+            <div class="wordmark">konihaus blog</div>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
+            Ferienhausbesitzer in der
+            Schweiz.</p>
+          <div class="footer__social" aria-label="Social Media">
+            <a href="https://www.instagram.com/ch.konihaus/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/konihaus.ch" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://x.com/konihaus" class="social-icon social-icon--x" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/konihaus" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+                <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col1_title">Service</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete & Preise</a></li>
+            <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte & Technik</a></li>
+            <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+            <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col2_title">Unternehmen</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert's</a></li>
+            <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col3_title">Rechtliches</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/impressum" data-i18n="footer.col3_l1">Impressum</a></li>
+            <li><a href="https://konihaus.ch/datenschutz" data-legal="privacy" data-i18n="footer.col3_l2">Datenschutz</a></li>
+            <li><a href="https://konihaus.ch/#cookie-declaration" data-cc-open data-i18n="footer.col3_l3">Cookie-Erklärung</a></li>
+            <li><a href="https://konihaus.ch/agb" data-i18n="footer.col3_l4">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Konihaus · Affoltern am Albis, Schweiz
+        </p>
+        <p class="fch" data-i18n="footer.ch">🇨🇭 Made in Switzerland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/scripts.js"></script>
+  <script src="/assets/cookie-consent.js"></script>
+  <script>
+    const lang = "de";
+
+    function switchToDe() {
+      if (lang === 'de') return;
+      location.href = devHref('/en/insights/smart-home-cost-switzerland/');
+    }
+
+    function switchToEn() {
+      if (lang === 'en') return;
+      location.href = devHref('/en/insights/smart-home-cost-switzerland/');
+    }
+
+    (function () {
+      const shareUrl = "https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/";
+      const shareTitle = "Was kostet ein Smart Home in der Schweiz? Was Anbieter veröffentlichen, was fehlt, und was es kostet, wenn Sie nur wissen, dass Sie es sich einfacher wünschen.";
+      const encodedUrl = encodeURIComponent(shareUrl);
+      const encodedTitle = encodeURIComponent(shareTitle);
+
+      const links = {
+        x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+        email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+      };
+ 
+      document.querySelectorAll('[data-share]').forEach((el) => {
+        const platform = el.getAttribute('data-share');
+        if (links[platform]) el.href = links[platform];
+      });
+
+      /*if (navigator.share) {
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }*/
+
+      const isTouchMobile = window.matchMedia('(pointer: coarse)').matches
+        && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isTouchMobile && navigator.share) {
+        document.querySelectorAll('[data-share="native"]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-copy-link]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            btn.setAttribute('data-copied', 'true');
+            setTimeout(() => btn.removeAttribute('data-copied'), 2000);
+          } catch {
+            
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
