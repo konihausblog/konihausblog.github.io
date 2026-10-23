@@ -5,7 +5,8 @@
 <head>
   <meta charset="UTF-8">
   <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
-       default 07:00, Swiss time) the page behaves like a 404, unless the URL has ?devmode=super.
+       default 07:00, Swiss time) the page behaves like a 404 and is marked noindex, nofollow,
+       unless the URL has ?devmode=super (then it shows, but still noindex, nofollow).
        Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
   <script>
     (function () {
@@ -22,6 +23,15 @@
       var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '07:00';
       window.__scheduledPost = (published + 'T' + at) > now ? published : null;
       window.__scheduledPostTime = at;
+      // Not released yet (or a dev preview): tell search engines not to index or follow.
+      // The static robots tag below stays "index"; when two robots tags conflict,
+      // search engines apply the stricter one. After release this tag is no longer added.
+      if (window.__scheduledPost || dev) {
+        var robots = document.createElement('meta');
+        robots.name = 'robots';
+        robots.content = 'noindex, nofollow';
+        document.head.appendChild(robots);
+      }
       if (window.__scheduledPost && !dev) {
         document.documentElement.style.display = 'none';
         location.replace('/404.html');
@@ -348,7 +358,7 @@
 <p>Manches berührt das Gebäude, die gemeinsamen Flächen oder andere Menschen. Fragen Sie dafür vorher schriftlich beim Vermieter oder der Verwaltung nach:</p>
 <ul>
 <li><strong>Alles, was an 230 Volt angeschlossen wird:</strong> Schalter, Deckenlampen, der Sicherungskasten. Das ist ohnehin Sache des Elektrikers.</li>
-<li><strong>Motoren für Storen.</strong> Sie gehören zum Gebäude.</li>
+<li><strong>Motoren für Storen.</strong> Sie gehören zum Gebäude. Viele verkabelte Storen und Rollläden lassen sich trotzdem ohne neue Verkabelung smart machen: Hat das Motorkabel einen Steckanschluss, kommt ein Funkempfänger zum Einstecken, zum Beispiel <a target="_blank" rel="noopener noreferrer" href="https://www.somfy.ch/de-ch/produkte/1811685/rs-rollladen-slim-receiver-io-plug">von Somfy</a> für Rollläden oder Lamellenstoren, zwischen Motor und Stromzufuhr und lässt sich später wieder entfernen. Er hängt aber an der 230-Volt-Installation des Gebäudes. Fragen Sie deshalb vorher und lassen Sie ihn von einer Fachperson einbauen.</li>
 <li><strong>Der Zylinder der Wohnungstür oder ein Schloss daran,</strong> vor allem, wenn er Teil einer Schliessanlage ist.</li>
 <li><strong>Bohren in Plättli</strong> oder alles an der Fassade oder am Balkongeländer.</li>
 <li><strong>Kameras, die gemeinsame Flächen sehen,</strong> wie das Treppenhaus, den Eingang oder die Tür der Nachbarn. Auch Ihre Nachbarn haben ein Recht auf Privatsphäre. Was in Ihren vier Wänden passiert, ist Ihre Sache; das Treppenhaus nicht.</li>

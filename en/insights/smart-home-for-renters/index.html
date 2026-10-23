@@ -5,7 +5,8 @@
 <head>
   <meta charset="UTF-8">
   <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
-       default 07:00, Swiss time) the page behaves like a 404, unless the URL has ?devmode=super.
+       default 07:00, Swiss time) the page behaves like a 404 and is marked noindex, nofollow,
+       unless the URL has ?devmode=super (then it shows, but still noindex, nofollow).
        Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
   <script>
     (function () {
@@ -22,6 +23,15 @@
       var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '07:00';
       window.__scheduledPost = (published + 'T' + at) > now ? published : null;
       window.__scheduledPostTime = at;
+      // Not released yet (or a dev preview): tell search engines not to index or follow.
+      // The static robots tag below stays "index"; when two robots tags conflict,
+      // search engines apply the stricter one. After release this tag is no longer added.
+      if (window.__scheduledPost || dev) {
+        var robots = document.createElement('meta');
+        robots.name = 'robots';
+        robots.content = 'noindex, nofollow';
+        document.head.appendChild(robots);
+      }
       if (window.__scheduledPost && !dev) {
         document.documentElement.style.display = 'none';
         location.replace('/404.html');
@@ -348,7 +358,7 @@
 <p>Some things touch the building, the shared areas or other people. Ask your landlord, or the administration, in writing before you do them:</p>
 <ul>
 <li><strong>Anything wired into 230 volts:</strong> switches, ceiling lights, the fuse box. That's for an electrician anyway.</li>
-<li><strong>Motors for exterior blinds</strong> (Storen). They belong to the building.</li>
+<li><strong>Motors for exterior blinds</strong> (Storen). They belong to the building. Many wired blinds can still be made smart without new wiring: if the motor cable has a plug connector, a plug-in radio receiver, for example <a target="_blank" rel="noopener noreferrer" href="https://www.somfy.ch/de-ch/produkte/1811685/rs-rollladen-slim-receiver-io-plug">from Somfy</a> for roller shutters or exterior venetian blinds, goes between the motor and the power supply and can be removed again later. It still sits on the building's 230-volt installation, so ask first and have it fitted by a specialist.</li>
 <li><strong>The front door cylinder or a lock on it,</strong> especially if it's part of a building-wide key system.</li>
 <li><strong>Drilling into tiles</strong> or anything on the façade or balcony railing.</li>
 <li><strong>Cameras that see shared areas,</strong> like the stairwell, the entrance or the neighbour's door. Your neighbours have a right to privacy too. Inside your own four walls is your business; the stairwell isn't.</li>
