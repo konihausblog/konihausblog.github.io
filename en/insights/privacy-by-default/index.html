@@ -45,8 +45,8 @@
   <meta name="theme-color" content="#2a4a35">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
   <link rel="apple-touch-icon" href="/assets/favicon.svg">
-  <title>Your Home, Your Data: Privacy by Default - Konihaus</title>
-  <meta name="description" content="How Konihaus keeps smart-home data local, limits dependence on vendor clouds, and gives you control over remote access and connected services.">
+  <title>Smart Home Privacy: Your Data Stays Home - Konihaus</title>
+  <meta name="description" content="Smart home privacy: how Konihaus processes data locally, reduces dependence on vendor clouds and keeps remote access in your control.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="author" content="Konrad Hefelle">
 
@@ -59,21 +59,28 @@
   <!-- Open Graph -->
   <meta property="og:site_name" content="Konihaus">
   <meta property="og:title" content="Your Home, Your Data: Privacy by Default">
-  <meta property="og:description" content="How Konihaus keeps smart-home data local, limits dependence on vendor clouds, and gives you control over remote access and connected services.">
+  <meta property="og:description" content="Smart home privacy: how Konihaus processes data locally, reduces dependence on vendor clouds and keeps remote access in your control.">
   <meta property="og:url" content="https://blog.konihaus.ch/en/insights/privacy-by-default/">
   <meta property="fb:app_id" content="2188289105366537" />
   <meta property="og:type" content="article">
   <meta property="og:image" content="https://blog.konihaus.ch/images/insights/privacy/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Your Home, Your Data: Privacy by Default">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="de_CH">
   <meta property="article:published_time" content="2026-10-05">
   
   <meta property="article:author" content="Konrad Hefelle">
+  <meta property="article:section" content="privacy">
+  <meta property="article:tag" content="privacy">
+  <meta property="article:tag" content="local-first">
+  <meta property="article:tag" content="voice-control">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Your Home, Your Data: Privacy by Default">
-  <meta name="twitter:description" content="How Konihaus keeps smart-home data local, limits dependence on vendor clouds, and gives you control over remote access and connected services.">
+  <meta name="twitter:description" content="Smart home privacy: how Konihaus processes data locally, reduces dependence on vendor clouds and keeps remote access in your control.">
   <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/privacy/og.jpg">
 
   <!-- Structured data -->
@@ -82,15 +89,23 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Your Home, Your Data: Privacy by Default",
-    "description": "How Konihaus keeps smart-home data local, limits dependence on vendor clouds, and gives you control over remote access and connected services.",
-    "image": "https://blog.konihaus.ch/images/insights/privacy/og.jpg",
+    "description": "Smart home privacy: how Konihaus processes data locally, reduces dependence on vendor clouds and keeps remote access in your control.",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.konihaus.ch/images/insights/privacy/og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "articleSection": "privacy",
+    "keywords": "smart home privacy, privacy, local-first, voice-control",
     "datePublished": "2026-10-05",
     "dateModified": "2026-10-05",
     "inLanguage": "en",
     "mainEntityOfPage": "https://blog.konihaus.ch/en/insights/privacy-by-default/",
     "author": {
       "@type": "Person",
-      "name": "Konrad Hefelle"
+      "name": "Konrad Hefelle",
+      "url": "https://konihaus.ch"
     },
     "publisher": {
       "@type": "Organization",
@@ -308,7 +323,7 @@
 
 
       <div class="blog-post__content">
-        <h2>Your Data Stays at Home</h2>
+        <h2>Smart Home Privacy: Your Data Stays at Home</h2>
 <p>Google Home and Amazon Alexa are only the most obvious examples. A typical smart home may also include Philips Hue or IKEA lights, tado° thermostats, Somfy shades, Tuya devices, and products from several other manufacturers. Each ecosystem comes with its own app and account. Some apps are simple; others offer polished dashboards, themes, routines, and a long list of functions.</p>
 <p>That convenience can come with a less visible cost: more vendor clouds, more external accounts, and more information about your home being processed outside it. With cloud-based voice assistants, commands, routines, and preferences are sent to remote servers. Other products differ in how much they can do locally, but many still rely on a manufacturer’s service for setup, control, notifications, or advanced features. You are not only choosing functions. You are also choosing who your home depends on and where its data may go.</p>
 <figure class="blog-post__figure">
@@ -334,7 +349,7 @@
 <figure class="blog-post__figure">
   <img src="/images/insights/privacy/local-resilience.webp" alt="Lights, shades, and heating continue working through local automation" width="1536" height="1024" loading="lazy" decoding="async">
 </figure>
-<p><strong>Less lock-in.</strong> You can access your own data directly. Konihaus brings devices from established standards and ecosystems—such as Zigbee, Z-Wave, Matter, and WiFi—into one system, subject to each device's actual capabilities.</p>
+<p><strong>Less <a target="_blank" rel="noopener noreferrer" href="/en/insights/no-vendor-lock-in/">lock-in</a>.</strong> You can access your own data directly. Konihaus brings devices from established standards and ecosystems—such as Zigbee, Z-Wave, Matter, and WiFi—into one system, subject to each device's actual capabilities.</p>
 <p><strong>Faster response times.</strong> Local processing avoids a trip to a distant server when you turn on a light or adjust the thermostat.</p>
 <h2>Remote Access: Secure and Optional</h2>
 <p>Want to check on your home while traveling? Konihaus supports a private VPN connection—encrypted end-to-end, using protocols such as WireGuard or OpenVPN. You control the credentials and decide when to use it.</p>
@@ -355,7 +370,7 @@
 <figure class="blog-post__figure">
   <img src="/images/insights/privacy/privacy-foundation.webp" alt="A private, locally controlled home at dusk in the Swiss landscape" width="1536" height="1024" loading="lazy" decoding="async">
 </figure>
-<p>Local-first architecture reduces that exposure by design. You can still choose connected services when they provide real value, but the basic operation of your home remains in your hands.</p>
+<p>Local-first architecture reduces that exposure by design, and it <a target="_blank" rel="noopener noreferrer" href="/en/insights/future-proof/">keeps the system running for years</a>. You can still choose connected services when they provide real value, but the basic operation of your home remains in your hands.</p>
 <hr>
 <p><strong>Thinking about your own home?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Talk to Koni</a> about what would actually make a difference in yours — no obligation, no sales pitch.</p>
 

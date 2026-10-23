@@ -45,8 +45,8 @@
   <meta name="theme-color" content="#2a4a35">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
   <link rel="apple-touch-icon" href="/assets/favicon.svg">
-  <title>No Vendor Lock-In - Konihaus</title>
-  <meta name="description" content="Combine devices from different manufacturers without handing your entire smart home to a single ecosystem.">
+  <title>No Vendor Lock-In: Mix Smart Home Brands - Konihaus</title>
+  <meta name="description" content="Combine Philips Hue, Shelly, tado° and more without vendor lock-in. How Home Assistant brings different smart home brands into one system.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="author" content="Konrad Hefelle">
 
@@ -59,21 +59,28 @@
   <!-- Open Graph -->
   <meta property="og:site_name" content="Konihaus">
   <meta property="og:title" content="No Vendor Lock-In">
-  <meta property="og:description" content="Combine devices from different manufacturers without handing your entire smart home to a single ecosystem.">
+  <meta property="og:description" content="Combine Philips Hue, Shelly, tado° and more without vendor lock-in. How Home Assistant brings different smart home brands into one system.">
   <meta property="og:url" content="https://blog.konihaus.ch/en/insights/no-vendor-lock-in/">
   <meta property="fb:app_id" content="2188289105366537" />
   <meta property="og:type" content="article">
   <meta property="og:image" content="https://blog.konihaus.ch/images/insights/vendor-lock-in/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="No Vendor Lock-In">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="de_CH">
   <meta property="article:published_time" content="2026-09-29">
   
   <meta property="article:author" content="Konrad Hefelle">
+  <meta property="article:section" content="technology">
+  <meta property="article:tag" content="interoperability">
+  <meta property="article:tag" content="zigbee">
+  <meta property="article:tag" content="matter">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="No Vendor Lock-In">
-  <meta name="twitter:description" content="Combine devices from different manufacturers without handing your entire smart home to a single ecosystem.">
+  <meta name="twitter:description" content="Combine Philips Hue, Shelly, tado° and more without vendor lock-in. How Home Assistant brings different smart home brands into one system.">
   <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/vendor-lock-in/og.jpg">
 
   <!-- Structured data -->
@@ -82,15 +89,23 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "No Vendor Lock-In",
-    "description": "Combine devices from different manufacturers without handing your entire smart home to a single ecosystem.",
-    "image": "https://blog.konihaus.ch/images/insights/vendor-lock-in/og.jpg",
+    "description": "Combine Philips Hue, Shelly, tado° and more without vendor lock-in. How Home Assistant brings different smart home brands into one system.",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.konihaus.ch/images/insights/vendor-lock-in/og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "articleSection": "technology",
+    "keywords": "smart home without vendor lock-in, interoperability, zigbee, matter",
     "datePublished": "2026-09-29",
     "dateModified": "2026-09-29",
     "inLanguage": "en",
     "mainEntityOfPage": "https://blog.konihaus.ch/en/insights/no-vendor-lock-in/",
     "author": {
       "@type": "Person",
-      "name": "Konrad Hefelle"
+      "name": "Konrad Hefelle",
+      "url": "https://konihaus.ch"
     },
     "publisher": {
       "@type": "Organization",
@@ -259,7 +274,7 @@
 
     <article>
       <header class="blog-post__header">
-        <p class="blog-post__category">interoperability</p>
+        <p class="blog-post__category">technology</p>
         <h1 class="blog-post__title"><span>No Vendor Lock-In</span></h1>
         <time class="blog-post__meta" datetime="Tue Sep 29 2026 02:00:00 GMT+0200 (Central European Summer Time)">
             September 29, 2026
@@ -322,7 +337,7 @@
 <figure class="blog-post__figure">
   <img src="/images/insights/vendor-lock-in/connected-systems.webp" alt="A central local hub connects lighting, heating, sensors, audio, weather, and garden devices" width="1536" height="1024" loading="lazy" decoding="async">
 </figure>
-<p>This does not mean that every smart device is automatically compatible or fully local. Some products expose only part of their functionality. Others still require a manufacturer account or cloud connection. Compatibility can also change between product generations; tado° and tado° X, for example, do not use exactly the same integration path.</p>
+<p>This does not mean that every smart device is automatically compatible or fully local. Some products expose only part of their functionality. Others still require a manufacturer account or <a target="_blank" rel="noopener noreferrer" href="/en/insights/privacy-by-default/">cloud connection</a>. Compatibility can also change between product generations; tado° and tado° X, for example, do not use exactly the same integration path.</p>
 <p>Konihaus therefore checks the exact model, protocol, available integration, and required external services before recommending or installing a device. The goal is not a vague promise that everything works with everything. It is a documented system in which the important functions work together and any remaining dependency is visible from the start.</p>
 <h2>One Interface, Shared Automations</h2>
 <p>Once compatible devices are connected, their manufacturer matters less to the automation. A Shelly sensor can trigger Philips Hue or Paulmann lights. A Netatmo weather value can influence shades or ventilation. A tado° temperature reading can become one condition in a wider energy routine. Sonos can take part in a scene without becoming the platform that controls the rest of the home.</p>
@@ -338,12 +353,12 @@
 <p>After the new lights are paired, the existing room logic can be reassigned to them. The automation does not have to be rewritten around a different brand's app. The same principle applies when replacing a motion sensor, smart plug, thermostat, or another component: the device changes, while the purpose of the automation remains understandable and reusable.</p>
 <p>This is practical interoperability. It preserves the structure of the home even when individual products change, while acknowledging that specialized features still need to be checked.</p>
 <h2>Your System Remains Yours</h2>
-<p>The central configuration, dashboards, schedules, and automations are stored on the local Home Assistant system and can be backed up. If a manufacturer changes its subscription, discontinues a service, or leaves the market, only the dependent integration is directly affected. Locally connected devices and unrelated automations can continue operating.</p>
+<p>The central configuration, dashboards, schedules, and automations are stored on the local Home Assistant system and can be backed up. If a manufacturer changes its subscription, <a target="_blank" rel="noopener noreferrer" href="/en/insights/future-proof/">discontinues a service, or leaves the market</a>, only the dependent integration is directly affected. Locally connected devices and unrelated automations can continue operating.</p>
 <figure class="blog-post__figure">
   <img src="/images/insights/vendor-lock-in/system-remains-yours.webp" alt="An organized local smart-home computer and backup remain inside the home" width="1536" height="1024" loading="lazy" decoding="async">
 </figure>
 <p>If you later choose another service provider, the hardware does not belong to Konihaus. Your installation can be documented, handed over, maintained independently, or migrated where the target platform supports the devices and data involved. No migration between complex systems is entirely automatic, but an open, documented setup gives you a realistic path forward.</p>
-<h2>Why This Matters</h2>
+<h2>Why a Brand-Independent Smart Home Matters</h2>
 <p>A smart home develops over many years. Lights are replaced, heating systems change, new standards appear, and manufacturers alter products or commercial terms. A system designed around a single brand makes every later decision depend on that brand's catalogue and priorities.</p>
 <figure class="blog-post__figure">
   <img src="/images/insights/vendor-lock-in/long-term-interoperability.webp" alt="Older and newer smart-home components work together in one enduring home" width="1536" height="1024" loading="lazy" decoding="async">

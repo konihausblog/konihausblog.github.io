@@ -4,12 +4,24 @@
     <loc>https://blog.konihaus.ch/de/insights/</loc>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/apple-homeview-schweiz/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/apple-homeview-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/apple-homeview-switzerland/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/datenschutz-by-default/</loc>
     <lastmod>2026-10-05</lastmod>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/de/insights/energieeffizienz/</loc>
     <lastmod>2026-09-02</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/de/insights/ferienwohnung-frostschutz/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/ferienwohnung-frostschutz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/holiday-home-frost-watch/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/de/insights/fuer-wen-ist-konihaus/</loc>
@@ -36,8 +48,26 @@
     <lastmod>2026-10-13</lastmod>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/sicher-durch-die-nacht/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/sicher-durch-die-nacht/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/safer-hallways-at-night/"/>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/de/insights/smart-home-fuer-mieter/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smart-home-fuer-mieter/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-for-renters/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/smart-home-wie-fine-dining/</loc>
     <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/de/insights/strompreise-2027/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/strompreise-2027/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/electricity-prices-2027/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/de/insights/unbemerkte-alltagsaergernisse/</loc>
@@ -63,10 +93,22 @@
     <loc>https://blog.konihaus.ch/en/insights/</loc>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/en/insights/apple-homeview-switzerland/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/apple-homeview-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/apple-homeview-switzerland/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/en/insights/clocks-go-back/</loc>
     <lastmod>2026-10-24</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/zeitumstellung/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/clocks-go-back/"/>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/electricity-prices-2027/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/strompreise-2027/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/electricity-prices-2027/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/energy-efficiency/</loc>
@@ -75,6 +117,12 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/future-proof/</loc>
     <lastmod>2026-09-10</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/holiday-home-frost-watch/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/ferienwohnung-frostschutz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/holiday-home-frost-watch/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/konihaus-app/</loc>
@@ -101,6 +149,12 @@
     <lastmod>2026-10-05</lastmod>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/en/insights/safer-hallways-at-night/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/sicher-durch-die-nacht/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/safer-hallways-at-night/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/en/insights/smart-home-cost-switzerland/</loc>
     <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/"/>
@@ -109,6 +163,12 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/smart-home-fine-dining/</loc>
     <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/smart-home-for-renters/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smart-home-fuer-mieter/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-for-renters/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/swiss-quality/</loc>

@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
+       default 07:00, Swiss time) the page behaves like a 404, unless the URL has ?devmode=super.
+       Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super';
+      var parts = {};
+      new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Zurich',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+      var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
+      var published = '2026-10-26';
+      var m = /^(\d{1,2}):(\d{2})/.exec('10:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '07:00';
+      window.__scheduledPost = (published + 'T' + at) > now ? published : null;
+      window.__scheduledPostTime = at;
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- Hide content until JS loads and sets language -->
+  <script>
+    document.documentElement.classList.add('no-js');
+    document.documentElement.classList.add("fonts-loading");
+  </script>
+  <style>
+    html.no-js body {
+      display: none;
+    }
+    html.fonts-loading body {
+      visibility: hidden;
+    }
+  </style>
+  <meta name="theme-color" content="#2a4a35">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
+  <link rel="apple-touch-icon" href="/assets/favicon.svg">
+  <title>Apple HomeView in der Schweiz: Noch nicht. Warum? - Konihaus</title>
+  <meta name="description" content="Apple HomeView: in der EU nicht im Verkauf, für die Schweiz kein Datum. Warum, und wie Home Assistant trotzdem mit Apple Home zusammenarbeitet.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Konrad Hefelle">
+
+  <!-- Canonical + language alternates -->
+  <link rel="canonical" href="https://blog.konihaus.ch/de/insights/apple-homeview-schweiz/">
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/apple-homeview-schweiz/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/apple-homeview-switzerland/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/en/insights/apple-homeview-switzerland/">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Konihaus">
+  <meta property="og:title" content="Apple HomeView: Warum es nicht zu uns kommt, und was das zeigt">
+  <meta property="og:description" content="Apple HomeView: in der EU nicht im Verkauf, für die Schweiz kein Datum. Warum, und wie Home Assistant trotzdem mit Apple Home zusammenarbeitet.">
+  <meta property="og:url" content="https://blog.konihaus.ch/de/insights/apple-homeview-schweiz/">
+  <meta property="fb:app_id" content="2188289105366537" />
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/apple-homeview/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Apple HomeView: Warum es nicht zu uns kommt, und was das zeigt">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="article:published_time" content="2026-10-26">
+  
+  <meta property="article:author" content="Konrad Hefelle">
+  <meta property="article:section" content="news">
+  <meta property="article:tag" content="apple">
+  <meta property="article:tag" content="smart-display">
+  <meta property="article:tag" content="datenschutz">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Apple HomeView: Warum es nicht zu uns kommt, und was das zeigt">
+  <meta name="twitter:description" content="Apple HomeView: in der EU nicht im Verkauf, für die Schweiz kein Datum. Warum, und wie Home Assistant trotzdem mit Apple Home zusammenarbeitet.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/apple-homeview/og.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Apple HomeView: Warum es nicht zu uns kommt, und was das zeigt",
+    "description": "Apple HomeView: in der EU nicht im Verkauf, für die Schweiz kein Datum. Warum, und wie Home Assistant trotzdem mit Apple Home zusammenarbeitet.",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.konihaus.ch/images/insights/apple-homeview/og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "articleSection": "news",
+    "keywords": "Apple HomeView Schweiz, apple, smart-display, datenschutz",
+    "datePublished": "2026-10-26",
+    "dateModified": "2026-10-26",
+    "inLanguage": "de",
+    "mainEntityOfPage": "https://blog.konihaus.ch/de/insights/apple-homeview-schweiz/",
+    "author": {
+      "@type": "Person",
+      "name": "Konrad Hefelle",
+      "url": "https://konihaus.ch"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Konihaus",
+      "url": "https://konihaus.ch",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blog.konihaus.ch/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Insights",
+        "item": "https://blog.konihaus.ch/de/insights/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Apple HomeView: Warum es nicht zu uns kommt, und was das zeigt",
+        "item": "https://blog.konihaus.ch/de/insights/apple-homeview-schweiz/"
+      }
+    ]
+  }
+  </script>
+
+  <link
+    rel="preload"
+    href="/fonts/outfit-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-italic.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/post.css">
+  <link rel="stylesheet" href="/assets/subscribe.css">
+</head>
+<body>
+
+ <nav class="nav  nav--solid" id="nav">
+    <div class="container">
+      <div class="nav__inner ">
+        <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+          <div class="logo-image"></div>
+          <div class="wordmark">konihaus blog</div>
+        </a>
+        <ul class="nav__links">
+            <li class="has-sub">
+              <a href="https://konihaus.ch/#about" class="nav__parent" aria-haspopup="true"><span data-i18n="nav.about_us">Über uns</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+                <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="https://konihaus.ch/#packages" class="nav__parent" aria-haspopup="true"><span data-i18n="nav.service">Service</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+                <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+                <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+                <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+                <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+              </ul>
+            </li>
+            <li><a href="https://app.konihaus.ch" class="nav__app" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+            <li><a href="https://blog.konihaus.ch/" class="active" aria-current="page" data-i18n="nav.blog">Blog</a></li>
+          </ul>
+
+        <div class="language-picker">
+          <button
+            type="button"
+            class="language-trigger"
+            aria-expanded="false"
+            aria-controls="language-options"
+            aria-label="Language: Deutsch"
+          >
+            <span class="language-current">DE</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          <div id="language-options" class="language-options" hidden>
+            <button type="button" class="language-option" data-lang="de" onclick="switchToDe()">
+              <span>Deutsch</span>
+              <span class="language-code">DE</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en" onclick="switchToEn()">
+              <span>English</span>
+              <span class="language-code">EN</span>
+            </button>
+          </div>
+
+          <select id="lang-selector" hidden>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="https://konihaus.ch/#contact" class="btn nav__cta" data-i18n="nav.cta">Kostenlose Beratung</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav__drawer" id="drawer">
+    <ul>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-about"><span data-i18n="nav.about_us">Über uns</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-about" hidden>
+          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#process" class="drawer-link" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+          <li><a href="https://konihaus.ch/#why" class="drawer-link" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
+        </ul>
+      </li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-service"><span data-i18n="nav.service">Service</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-service" hidden>
+          <li><a href="https://konihaus.ch/#devices" class="drawer-link" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+          <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link class="drawer-link" data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+          <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+          <li><a href="https://konihaus.ch/#faq" class="drawer-link" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+          <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="footer.col1_l4">Kontakt</a></li>
+        </ul>
+      </li>
+      <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+      <li><a href="https://blog.konihaus.ch/" class="drawer-link active" aria-current="page" data-i18n="nav.blog">Blog</a></li>
+    </ul>
+
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+  </div>
+
+
+  <main class="blog-post__container">
+
+    <header class="blog-post__link">
+        <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+    </header>
+
+    <article>
+      <header class="blog-post__header">
+        <p class="blog-post__category">news</p>
+        <h1 class="blog-post__title"><span>Apple HomeView: Warum es nicht zu uns kommt, und was das zeigt</span></h1>
+        <time class="blog-post__meta" datetime="Mon Oct 26 2026 01:00:00 GMT+0100 (Central European Standard Time)">
+            26. Oktober 2026
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;5 Min. Lesezeit</span>
+          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">von</span> Koni
+
+        <div class="blog-post__share">
+          <span class="blog-post__share-label">Teilen</span>
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4.5A9.6 9.6 0 0 0 4.4 15.9L3.5 20.5l4.7-1.2A9.6 9.6 0 1 0 20 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M8.8 9.4c.2 3 3.1 5.8 6 6 1 .1 1.4-.6 1.4-1.2l-.2-1.2-1.9-.8c-.3-.1-.6 0-.8.2l-.5.6a5.9 5.9 0 0 1-2.6-2.6l.6-.5c.2-.2.3-.5.2-.8L10.2 7l-1.2-.2c-.6 0-1.3.4-1.2 1.4Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="email" href="#" aria-label="Share by email" title="Share by email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m4 6.5 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+
+      <div class="blog-post__content">
+        <p>Am 13. Oktober hat Apple HomeView vorgestellt: einen 7-Zoll-Bildschirm auf einem kleinen Lautsprecher, gemacht für die Küchenablage, den Nachttisch oder, in einer zweiten Version, die Wand. Er zeigt Ihren Kalender, spielt Musik, führt FaceTime-Anrufe und begleitet Sie Schritt für Schritt durch ein Rezept, mit Timern, die Sie per Stimme starten. Er steuert Licht, Heizung und Türschlösser, zeigt bis zu neun Kamerabilder gleichzeitig und erkennt bis zu sechs Personen im Haushalt, jede mit ihrem eigenen Startbildschirm. Er arbeitet mit Matter-Geräten zusammen und kann allein die Zentrale eines Apple-Zuhauses sein.</p>
+<p>Er kostet 299 Dollar in den USA und 299 Pfund in Grossbritannien und kommt am 13. November in einer ersten Gruppe von Ländern in den Verkauf: USA, Grossbritannien, Kanada, Australien, Indien und Neuseeland.</p>
+<p>Ein schönes Gerät. Und vorerst können Sie es hier nicht kaufen.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/apple-homeview/display-in-window.webp" alt="Ein neutrales Smart Display hinter einem Schaufenster mit einem Nicht-erhältlich-Symbol" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Warum es HomeView in der Schweiz nicht gibt</h2>
+<p>Apple hat HomeView um Siri AI gebaut, seinen neuen Assistenten. Siri AI ist auf iPhones in der EU nicht verfügbar, deshalb ist HomeView laut Apple vorerst «in der Europäischen Union nicht im Verkauf», und Apple arbeite mit der EU an einer Lösung. Laut 9to5Mac hängt das mit dem Digital Markets Act der EU zusammen, der das Betriebssystem des iPhones anders behandelt als Apples andere Plattformen.</p>
+<p>Die Schweiz ist nicht in der EU, steht aber auch nicht auf der Liste der ersten Länder, und ein Schweizer Datum wurde nicht angekündigt. Ausserdem spricht Siri AI vorerst nur Englisch. Deutsch, Französisch oder Italienisch, also die Sprachen, die bei uns zu Hause meist gesprochen werden, hat Apple nicht angekündigt.</p>
+<h2>Was das zeigt</h2>
+<p>Das ist keine Geschichte darüber, dass Apple schlecht wäre. Es ist eine Geschichte darüber, woher die Funktionen eines Geräts kommen.</p>
+<p>Viele Funktionen von HomeView stecken nicht im Gerät auf Ihrer Ablage. Sie hängen von Dingen ausserhalb Ihres Zuhauses ab: einem Konto, einem Cloud-Dienst, einem passenden iPhone (für den vollen Funktionsumfang eines mit Apple Intelligence), manchmal einem Abo (einige Kamerafunktionen brauchen iCloud+) und Entscheidungen, die ein Konzern und Behörden weit weg treffen. Ändert sich eines davon, ändert sich Ihr Gerät, obwohl sich in Ihrem Wohnzimmer nichts geändert hat. Mehr dazu in <a target="_blank" rel="noopener noreferrer" href="/de/insights/zukunftssicher/">Läuft das auch in zehn Jahren noch?</a>.</p>
+<p>Bei einem Lautsprecher ist das ärgerlich. Bei dem Gerät, das Ihre Heizung schaltet oder Ihre Haustür öffnet, ist es eine Frage, die man vor dem Kauf stellen sollte.</p>
+<h2>Ein Bildschirm für die ganze Familie. Brauchen wir das?</h2>
+<p>Die spannendste Idee von HomeView ist, dass ein Bildschirm dem ganzen Haushalt dient. Er erkennt bis zu sechs Personen an Gesicht und Stimme. Wenn Sie davortreten, wechselt er von der gemeinsamen Haushaltsansicht zu Ihrer eigenen: Ihre Apps, Ihr Kalender, Ihre Nachrichten. Gäste und alle, die er nicht erkennt, können trotzdem das Licht schalten, sehen aber keine persönlichen Inhalte. Technisch ist das beeindruckend.</p>
+<p>Es lohnt sich aber zu fragen, wie sehr wir das wirklich brauchen. Ihre persönlichen Inhalte erscheinen nur, wenn Ihr eigenes iPhone in der Nähe ist, im gleichen WLAN und vor kurzem entsperrt. Das Handy ist also ohnehin in Ihrer Tasche, und dort haben die meisten von uns ihr privates Leben: Nachrichten, Chats mit Freunden, den eigenen Kalender. Ich kann mir meine Kinder nicht vorstellen, wie sie auf dem Bildschirm in der Küche mit ihren Freunden schreiben, während der Rest der Familie vorbeigeht. Vielleicht ist das in amerikanischen Haushalten anders. Hier, denke ich, nutzen die meisten für ihre eigenen Dinge lieber ihr eigenes Gerät.</p>
+<p>Was ein Haushalt wirklich teilt, ist kleiner und praktischer: den Familienkalender, das Licht, die Heizung, wer zu Hause ist. Das kann Home Assistant schon heute gut. Es liest den gemeinsamen Familienkalender, und wenn die Ferien darin stehen, weiss das Zuhause, dass niemand da ist, und wechselt von selbst in den Abwesenheitsmodus: Heizung runter, Licht, das die Wohnung bewohnt aussehen lässt, Meldungen an. Jede Person kann ihr eigenes Dashboard auf dem eigenen Handy haben, und das Tablet im Gang zeigt ein gemeinsames für die ganze Familie.</p>
+<p>Eine offene Frage habe ich bei Anrufen. Laut Apple können Sie Anrufe Ihres iPhones auf HomeView annehmen, wenn das Handy in einem anderen Raum klingelt. In dem, was ich gelesen habe, sagt Apple nicht, ob jeder, der vor dem Bildschirm steht, Ihren Anruf annehmen kann, wie beim alten Haustelefon, oder nur Sie. Für einen Familienbildschirm in der Küche ist das ein Detail, das man vor dem Kauf kennen sollte.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/apple-homeview/family-shared-calendar.webp" alt="Eine Familie nutzt in der Küche ihre eigenen Handys, während ein gemeinsames Wanddisplay den Familienkalender und die Haussteuerung zeigt" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Fünf Fragen an jedes Smart-Home-Gerät</h2>
+<p>Egal welche Marke Sie anschauen, diese Fragen würde ich stellen:</p>
+<ul>
+<li><strong>Funktioniert es heute in meiner Sprache?</strong> Nicht «bald», heute.</li>
+<li><strong>Was funktioniert noch, wenn das Internet ausfällt?</strong> Licht, Heizung, die Tür?</li>
+<li><strong>Was braucht ein Abo,</strong> und was passiert, wenn ich nicht mehr zahle?</li>
+<li><strong>Kann ich Geräte anderer Marken einbinden?</strong> Offene Standards wie Matter und Zigbee machen das möglich.</li>
+<li><strong>Wenn die Firma ihre Pläne ändert,</strong> läuft mein Zuhause dann weiter?</li>
+</ul>
+<figure class="blog-post__figure">
+  <img src="/images/insights/apple-homeview/five-device-questions.webp" alt="Fünf verbundene Symbole für Fragen vor dem Kauf eines Smart-Home-Geräts" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Wie ein Konihaus-Zuhause darauf antwortet</h2>
+<p>Ein Konihaus-Zuhause läuft mit Home Assistant, auf einer kleinen Box bei Ihnen zu Hause. Licht, Heizung und Sensoren funktionieren auch ohne Internet, weil <a target="_blank" rel="noopener noreferrer" href="/de/insights/datenschutz-by-default/">Ihre Daten zu Hause bleiben</a>. Es spricht schon heute Deutsch, dazu Englisch, Französisch und Italienisch. Fernzugriff gibt es, wenn Sie ihn wollen, und er ist aus, wenn nicht. Geräte vieler Hersteller arbeiten nebeneinander, genau darum geht es in meinem <a target="_blank" rel="noopener noreferrer" href="/de/insights/kein-vendor-lock-in/">Beitrag zu Vendor Lock-In</a>.</p>
+<p>Und Sie müssen sich nicht zwischen den beiden Welten entscheiden. Home Assistant kann Ihre Geräte über seine HomeKit- oder Matter-Brücke an Apple Home weitergeben. Dann sagen Sie «Hey Siri, mach das Licht im Wohnzimmer an» heute auf dem iPhone, und auf einem HomeView, falls es je hierher kommt. Apple Home zeigt nur die Geräte und Funktionen, die es kennt, das vollständige Bild bleibt also in Home Assistant. Der Unterschied ist, wo das Gehirn des Hauses sitzt: in Ihrem Gang, nicht im Rechenzentrum von jemand anderem.</p>
+<p>Wenn Sie schon jetzt einen Bildschirm an der Wand möchten: Die <a target="_blank" rel="noopener noreferrer" href="/de/insights/konihaus-app/">Konihaus-App</a> läuft auf einem Tablet. Sie ist nicht so poliert wie ein Apple-Gerät für 299 Dollar. Aber sie funktioniert in Affoltern genauso wie in Ohio, und niemand weit weg kann sie abschalten.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/apple-homeview/local-home-dashboard.webp" alt="Ein illustriertes Haus-Dashboard und eine lokale Zentrale in einem einladenden Gang" width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Und wenn HomeView doch kommt?</h2>
+<p>Wenn HomeView eines Tages in die Schweiz kommt, in Ihrer Sprache, dann kann ein Konihaus-Zuhause über die Brücke auch darauf erscheinen. Das ist eine gute Nachricht. Ein gut gebautes Zuhause kämpft nicht gegen gute Geräte. Es hängt nur von keinem einzelnen ab.</p>
+<p>Das alles im Blick zu behalten, gehört zu meiner Arbeit. Ich verfolge neue Geräte und Entwicklungen, sobald sie auf den Markt kommen, vor allem alles, was ein Zuhause komfortabler, bequemer, sicherer oder einfach angenehmer zum Wohnen macht. Wenn sich etwas lohnt, sage ich es Ihnen. Und wenn es für Schweizer Haushalte noch nicht bereit ist, wie HomeView heute, sage ich Ihnen das auch.</p>
+<hr>
+<p><strong>Möchten Sie wissen, welche Ihrer Geräte morgen auch ohne Cloud noch funktionieren?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Sprechen Sie mit Koni</a>. Das erste Gespräch ist kostenlos und unverbindlich.</p>
+
+      </div>
+
+      
+<aside class="subscribe subscribe--card" aria-label="Newsletter">
+  <div class="subscribe__intro">
+    <p class="subscribe__eyebrow">Newsletter</p>
+    <h2 class="subscribe__title">Neue Artikel direkt <em>ins Postfach.</em></h2>
+    <p class="subscribe__text">Ich schreibe über Smart Home, Datenschutz und das, was im Alltag wirklich funktioniert. Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint.</p>
+  </div>
+  <form class="subscribe__form" data-blog-subscribe novalidate
+        data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
+        data-lang="de"
+        data-msg-ok="Danke! Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint."
+        data-msg-duplicate="Diese Adresse ist bereits angemeldet. Danke!"
+        data-msg-invalid="Bitte geben Sie eine gültige E-Mail-Adresse ein."
+        data-msg-limit="Zu viele Anmeldungen von dieser Adresse. Bitte versuchen Sie es später erneut."
+        data-msg-error="Das hat leider nicht geklappt. Bitte versuchen Sie es später erneut.">
+    <div class="subscribe__row">
+      <label class="subscribe__sr" for="subscribe-email">E-Mail-Adresse</label>
+      <input class="subscribe__input" id="subscribe-email" type="email" name="email"
+             autocomplete="email" inputmode="email" placeholder="Ihre E-Mail-Adresse" required>
+      <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="subscribe__button" type="submit">Abonnieren</button>
+    </div>
+    <p class="subscribe__note">Abmeldung jederzeit möglich. Mehr dazu in der <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.</p>
+    <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+
+          <section class="blog-post__related" aria-label="Weiterlesen">
+            <h2 class="blog-post__related-title">Weiterlesen</h2>
+            <div class="blog-post__related-grid">
+                    <a class="blog-post__related-card" href="/de/insights/datenschutz-by-default/" data-post-date="2026-10-05" data-post-time="10:00">
+                      <span class="blog-post__related-card-title">Ihr Zuhause, Ihre Daten: Datenschutz by Default</span>
+                        <span class="blog-post__related-card-meta">4 Min. Lesezeit</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/de/insights/kein-vendor-lock-in/" data-post-date="2026-09-29" data-post-time="10:00">
+                      <span class="blog-post__related-card-title">Kein Vendor Lock-In</span>
+                        <span class="blog-post__related-card-meta">5 Min. Lesezeit</span>
+                    </a>
+            </div>
+          </section>
+
+      <footer class="blog-post__footer">
+          <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+
+        <div class="blog-post__share blog-post__share--footer">
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+            <div class="logo-image"></div>
+            <div class="wordmark">konihaus blog</div>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
+            Ferienhausbesitzer in der
+            Schweiz.</p>
+          <div class="footer__social" aria-label="Social Media">
+            <a href="https://www.instagram.com/ch.konihaus/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/konihaus.ch" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://x.com/konihaus" class="social-icon social-icon--x" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/konihaus" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+                <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col1_title">Service</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+            <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+            <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+            <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+            <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col2_title">Unternehmen</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+            <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col3_title">Rechtliches</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/impressum" data-i18n="footer.col3_l1">Impressum</a></li>
+            <li><a href="https://konihaus.ch/datenschutz" data-legal="privacy" data-i18n="footer.col3_l2">Datenschutz</a></li>
+            <li><a href="https://konihaus.ch/#cookie-declaration" data-cc-open data-i18n="footer.col3_l3">Cookie-Erklärung</a></li>
+            <li><a href="https://konihaus.ch/agb" data-i18n="footer.col3_l4">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Konihaus · Affoltern am Albis, Schweiz
+        </p>
+        <p class="fch" data-i18n="footer.ch">🇨🇭 Made in Switzerland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/scripts.js"></script>
+  <script src="/assets/cookie-consent.js"></script>
+  <script>
+    const lang = "de";
+
+    function switchToDe() {
+      if (lang === 'de') return;
+      location.href = devHref('/en/insights/apple-homeview-switzerland/');
+    }
+
+    function switchToEn() {
+      if (lang === 'en') return;
+      location.href = devHref('/en/insights/apple-homeview-switzerland/');
+    }
+
+    (function () {
+      const shareUrl = "https://blog.konihaus.ch/de/insights/apple-homeview-schweiz/";
+      const shareTitle = "Apples neues Smart Display kommt im November in den USA und in Grossbritannien in den Verkauf, aber nicht in der EU, und für die Schweiz gibt es kein Datum. Ein ruhiger Blick darauf, warum, und was das für Ihr Zuhause heisst.";
+      const encodedUrl = encodeURIComponent(shareUrl);
+      const encodedTitle = encodeURIComponent(shareTitle);
+
+      const links = {
+        x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+        email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+      };
+ 
+      document.querySelectorAll('[data-share]').forEach((el) => {
+        const platform = el.getAttribute('data-share');
+        if (links[platform]) el.href = links[platform];
+      });
+
+      /*if (navigator.share) {
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }*/
+
+      const isTouchMobile = window.matchMedia('(pointer: coarse)').matches
+        && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isTouchMobile && navigator.share) {
+        document.querySelectorAll('[data-share="native"]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-copy-link]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            btn.setAttribute('data-copied', 'true');
+            setTimeout(() => btn.removeAttribute('data-copied'), 2000);
+          } catch {
+            
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

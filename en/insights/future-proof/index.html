@@ -45,8 +45,8 @@
   <meta name="theme-color" content="#2a4a35">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
   <link rel="apple-touch-icon" href="/assets/favicon.svg">
-  <title>Will It Still Work in Ten Years? - Konihaus</title>
-  <meta name="description" content="A smart home does not have to age like a gadget. The platform keeps developing, and your system grows with new standards.">
+  <title>Future-Proof Smart Home: Will It Last 10 Years? - Konihaus</title>
+  <meta name="description" content="Will a smart home still work in ten years? How open standards, local control and Home Assistant keep a smart home future-proof.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="author" content="Konrad Hefelle">
 
@@ -59,21 +59,28 @@
   <!-- Open Graph -->
   <meta property="og:site_name" content="Konihaus">
   <meta property="og:title" content="Will It Still Work in Ten Years?">
-  <meta property="og:description" content="A smart home does not have to age like a gadget. The platform keeps developing, and your system grows with new standards.">
+  <meta property="og:description" content="Will a smart home still work in ten years? How open standards, local control and Home Assistant keep a smart home future-proof.">
   <meta property="og:url" content="https://blog.konihaus.ch/en/insights/future-proof/">
   <meta property="fb:app_id" content="2188289105366537" />
   <meta property="og:type" content="article">
   <meta property="og:image" content="https://blog.konihaus.ch/images/insights/future-proof/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Will It Still Work in Ten Years?">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="de_CH">
   <meta property="article:published_time" content="2026-09-10">
   
   <meta property="article:author" content="Konrad Hefelle">
+  <meta property="article:section" content="technology">
+  <meta property="article:tag" content="open-standards">
+  <meta property="article:tag" content="home-assistant">
+  <meta property="article:tag" content="matter">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Will It Still Work in Ten Years?">
-  <meta name="twitter:description" content="A smart home does not have to age like a gadget. The platform keeps developing, and your system grows with new standards.">
+  <meta name="twitter:description" content="Will a smart home still work in ten years? How open standards, local control and Home Assistant keep a smart home future-proof.">
   <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/future-proof/og.jpg">
 
   <!-- Structured data -->
@@ -82,15 +89,23 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Will It Still Work in Ten Years?",
-    "description": "A smart home does not have to age like a gadget. The platform keeps developing, and your system grows with new standards.",
-    "image": "https://blog.konihaus.ch/images/insights/future-proof/og.jpg",
+    "description": "Will a smart home still work in ten years? How open standards, local control and Home Assistant keep a smart home future-proof.",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.konihaus.ch/images/insights/future-proof/og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "articleSection": "technology",
+    "keywords": "future-proof smart home, open-standards, home-assistant, matter",
     "datePublished": "2026-09-10",
     "dateModified": "2026-09-10",
     "inLanguage": "en",
     "mainEntityOfPage": "https://blog.konihaus.ch/en/insights/future-proof/",
     "author": {
       "@type": "Person",
-      "name": "Konrad Hefelle"
+      "name": "Konrad Hefelle",
+      "url": "https://konihaus.ch"
     },
     "publisher": {
       "@type": "Organization",
@@ -259,7 +274,7 @@
 
     <article>
       <header class="blog-post__header">
-        <p class="blog-post__category">future proof</p>
+        <p class="blog-post__category">technology</p>
         <h1 class="blog-post__title"><span>Will It Still Work in Ten Years?</span></h1>
         <time class="blog-post__meta" datetime="Thu Sep 10 2026 02:00:00 GMT+0200 (Central European Summer Time)">
             September 10, 2026
@@ -319,7 +334,7 @@
 <p>A good kitchen is not replaced when the oven breaks. You replace the oven. The sockets, the wiring and the layout stay, and a new appliance simply plugs in.</p>
 <p>A smart home can work the same way. It has three layers:</p>
 <ul>
-<li><strong>Standards</strong> are the sockets. Open standards such as Zigbee, Z-Wave and Matter mean that devices from many makers speak the same language, and they outlive individual brands.</li>
+<li><strong>Standards</strong> are the sockets. Open standards such as Zigbee, Z-Wave and Matter mean that devices from many makers speak the same language, and they <a target="_blank" rel="noopener noreferrer" href="/en/insights/no-vendor-lock-in/">outlive individual brands</a>.</li>
 <li><strong>Devices</strong> are the appliances. A sensor, a lamp or a thermostat can be replaced one at a time, when it breaks or when something better comes along.</li>
 <li><strong>The brain</strong> is the software that connects everything and decides what happens. It runs in your home and is updated over time.</li>
 </ul>
@@ -336,7 +351,7 @@
 <p>If that is all you wanted to know, you can stop reading here. The rest of this article is for the curious: it is more technical, and it explains how such a system is built.</p>
 <hr>
 <h2>For the Curious: Keep the Brain at Home</h2>
-<p>The foundation is a local hub, either a small dedicated device such as <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#devices">Konihaus Greenhub</a> or a mini-PC. Your data stays in your home, and you can control your smart home even when the internet is down. Basic operation needs no subscription, which also means no monthly fee and no service that can be switched off.</p>
+<p>The foundation is a local hub, either a small dedicated device such as <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#devices">Konihaus Greenhub</a> or a mini-PC. <a target="_blank" rel="noopener noreferrer" href="/en/insights/privacy-by-default/">Your data stays in your home</a>, and you can control your smart home even when the internet is down. Basic operation needs no subscription, which also means no monthly fee and no service that can be switched off.</p>
 <p>Cloud services are then an option, not a foundation. If you choose to connect a voice assistant from Google or Amazon, for example, that is a deliberate decision, and the core system does not depend on it.</p>
 <h2>Open Radios, One Main Network</h2>
 <p>Devices talk to the hub over radio networks, and the important ones are Zigbee, Z-Wave and Thread, which carries Matter. Home Assistant Green has no Zigbee or Thread radio built in. You add one with a USB/POE coordinator such as the <a target="_blank" rel="noopener noreferrer" href="https://sonoff.tech/products/sonoff-dongle-max-zigbee-thread-poe-dongle-dongle-m">SONOFF Dongle Max</a>, which supports Zigbee and Thread. It can run only one of them at a time, so each radio you want gets its own dongle.</p>
@@ -374,7 +389,7 @@
 <li><strong>Single points of failure.</strong> The whole home should not go down because one component fails. Plan for the day something breaks.</li>
 <li><strong>A cloud-only backbone.</strong> Cloud features are fine as extras. Cloud-only devices at the centre of the system bring back the exact risk this article started with.</li>
 </ul>
-<h2>Why This Matters</h2>
+<h2>What Makes a Smart Home Future-Proof</h2>
 <p>A smart home earns your trust by still working, calmly and predictably, long after the excitement of the first week. That comes from a few unglamorous decisions: keep the brain local, use open standards, plan for failure, and lay the right conduits.</p>
 <p>Done that way, the question &quot;will it be obsolete in two years?&quot; has a good answer: probably not as a whole, and where a part does age, you replace the part.</p>
 <hr>
