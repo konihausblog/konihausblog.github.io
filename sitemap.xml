@@ -50,11 +50,23 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-cost-switzerland/"/>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/zeitumstellung/</loc>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/zeitumstellung/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/clocks-go-back/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/zukunftssicher/</loc>
     <lastmod>2026-09-10</lastmod>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/</loc>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/clocks-go-back/</loc>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/zeitumstellung/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/clocks-go-back/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/energy-efficiency/</loc>
