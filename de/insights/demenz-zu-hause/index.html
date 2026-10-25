@@ -1,0 +1,613 @@
+
+
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
+       default 07:00, Swiss time) the page behaves like a 404 and is marked noindex, nofollow,
+       unless the URL has ?devmode=super (then it shows, but still noindex, nofollow).
+       Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super';
+      var parts = {};
+      new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Zurich',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+      var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
+      var published = '2026-11-05';
+      var m = /^(\d{1,2}):(\d{2})/.exec('10:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '07:00';
+      window.__scheduledPost = (published + 'T' + at) > now ? published : null;
+      window.__scheduledPostTime = at;
+      // Not released yet (or a dev preview): tell search engines not to index or follow.
+      // The static robots tag below stays "index"; when two robots tags conflict,
+      // search engines apply the stricter one. After release this tag is no longer added.
+      if (window.__scheduledPost || dev) {
+        var robots = document.createElement('meta');
+        robots.name = 'robots';
+        robots.content = 'noindex, nofollow';
+        document.head.appendChild(robots);
+      }
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- Hide content until JS loads and sets language -->
+  <script>
+    document.documentElement.classList.add('no-js');
+    document.documentElement.classList.add("fonts-loading");
+  </script>
+  <style>
+    html.no-js body {
+      display: none;
+    }
+    html.fonts-loading body {
+      visibility: hidden;
+    }
+  </style>
+  <meta name="theme-color" content="#2a4a35">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
+  <link rel="apple-touch-icon" href="/assets/favicon.svg">
+  <title>Demenz zu Hause: Sicherheit ohne Überwachung - Konihaus</title>
+  <meta name="description" content="Demenz zu Hause: Herdwächter, Nachtlicht und ein stiller Tages-Check helfen, sicher zu Hause zu bleiben. Und warum Einwilligung und Würde ebenso zählen.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Konrad Hefelle">
+
+  <!-- Canonical + language alternates -->
+  <link rel="canonical" href="https://blog.konihaus.ch/de/insights/demenz-zu-hause/">
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/demenz-zu-hause/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/dementia-at-home/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/en/insights/dementia-at-home/">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Konihaus">
+  <meta property="og:title" content="Mit Demenz zu Hause leben: Hilfe ohne Überwachung">
+  <meta property="og:description" content="Demenz zu Hause: Herdwächter, Nachtlicht und ein stiller Tages-Check helfen, sicher zu Hause zu bleiben. Und warum Einwilligung und Würde ebenso zählen.">
+  <meta property="og:url" content="https://blog.konihaus.ch/de/insights/demenz-zu-hause/">
+  <meta property="fb:app_id" content="2188289105366537" />
+  <meta property="fb:pages" content="1067591876443915">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/dementia-at-home/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mit Demenz zu Hause leben: Hilfe ohne Überwachung">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="article:published_time" content="2026-11-05">
+  
+  <meta property="article:author" content="Konrad Hefelle">
+  <meta property="article:publisher" content="https://www.facebook.com/konihaus.ch">
+  <meta property="article:section" content="sicherheit">
+  <meta property="article:tag" content="demenz">
+  <meta property="article:tag" content="selbststaendigkeit">
+  <meta property="article:tag" content="sicherheit">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mit Demenz zu Hause leben: Hilfe ohne Überwachung">
+  <meta name="twitter:description" content="Demenz zu Hause: Herdwächter, Nachtlicht und ein stiller Tages-Check helfen, sicher zu Hause zu bleiben. Und warum Einwilligung und Würde ebenso zählen.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/dementia-at-home/og.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Mit Demenz zu Hause leben: Hilfe ohne Überwachung",
+    "description": "Demenz zu Hause: Herdwächter, Nachtlicht und ein stiller Tages-Check helfen, sicher zu Hause zu bleiben. Und warum Einwilligung und Würde ebenso zählen.",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.konihaus.ch/images/insights/dementia-at-home/og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "articleSection": "sicherheit",
+    "keywords": "Demenz zu Hause, demenz, selbststaendigkeit, sicherheit",
+    "datePublished": "2026-11-05",
+    "dateModified": "2026-11-05",
+    "inLanguage": "de",
+    "mainEntityOfPage": "https://blog.konihaus.ch/de/insights/demenz-zu-hause/",
+    "author": {
+      "@type": "Person",
+      "name": "Konrad Hefelle",
+      "url": "https://konihaus.ch"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Konihaus",
+      "url": "https://konihaus.ch",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blog.konihaus.ch/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Insights",
+        "item": "https://blog.konihaus.ch/de/insights/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Mit Demenz zu Hause leben: Hilfe ohne Überwachung",
+        "item": "https://blog.konihaus.ch/de/insights/demenz-zu-hause/"
+      }
+    ]
+  }
+  </script>
+
+  <link
+    rel="preload"
+    href="/fonts/outfit-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-italic.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/post.css">
+  <link rel="stylesheet" href="/assets/subscribe.css">
+</head>
+<body>
+
+ <nav class="nav  nav--solid" id="nav">
+    <div class="container">
+      <div class="nav__inner ">
+        <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+          <div class="logo-image"></div>
+          <div class="wordmark">konihaus blog</div>
+        </a>
+        <ul class="nav__links">
+            <li class="has-sub">
+              <a href="https://konihaus.ch/#about" class="nav__parent" aria-haspopup="true"><span data-i18n="nav.about_us">Über uns</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+                <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="https://konihaus.ch/#packages" class="nav__parent" aria-haspopup="true"><span data-i18n="nav.service">Service</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+                <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+                <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+                <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+                <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+              </ul>
+            </li>
+            <li><a href="https://app.konihaus.ch" class="nav__app" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+            <li><a href="https://blog.konihaus.ch/" class="active" aria-current="page" data-i18n="nav.blog">Blog</a></li>
+          </ul>
+
+        <div class="language-picker">
+          <button
+            type="button"
+            class="language-trigger"
+            aria-expanded="false"
+            aria-controls="language-options"
+            aria-label="Language: Deutsch"
+          >
+            <span class="language-current">DE</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          <div id="language-options" class="language-options" hidden>
+            <button type="button" class="language-option" data-lang="de" onclick="switchToDe()">
+              <span>Deutsch</span>
+              <span class="language-code">DE</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en" onclick="switchToEn()">
+              <span>English</span>
+              <span class="language-code">EN</span>
+            </button>
+          </div>
+
+          <select id="lang-selector" hidden>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="https://konihaus.ch/#contact" class="btn nav__cta" data-i18n="nav.cta">Kostenlose Beratung</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav__drawer" id="drawer">
+    <ul>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-about"><span data-i18n="nav.about_us">Über uns</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-about" hidden>
+          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#process" class="drawer-link" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+          <li><a href="https://konihaus.ch/#why" class="drawer-link" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
+        </ul>
+      </li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-service"><span data-i18n="nav.service">Service</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-service" hidden>
+          <li><a href="https://konihaus.ch/#devices" class="drawer-link" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+          <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link class="drawer-link" data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+          <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+          <li><a href="https://konihaus.ch/#faq" class="drawer-link" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+          <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="footer.col1_l4">Kontakt</a></li>
+        </ul>
+      </li>
+      <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+      <li><a href="https://blog.konihaus.ch/" class="drawer-link active" aria-current="page" data-i18n="nav.blog">Blog</a></li>
+    </ul>
+
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+  </div>
+
+
+  <main class="blog-post__container">
+
+    <header class="blog-post__link">
+        <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+    </header>
+
+    <article>
+      <header class="blog-post__header">
+        <p class="blog-post__category">sicherheit</p>
+        <h1 class="blog-post__title"><span>Mit Demenz zu Hause leben: Hilfe ohne Überwachung</span></h1>
+        <time class="blog-post__meta" datetime="Thu Nov 05 2026 01:00:00 GMT+0100 (Central European Standard Time)">
+            5. November 2026
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;5 Min. Lesezeit</span>
+          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">von</span> Koni
+
+        <div class="blog-post__share">
+          <span class="blog-post__share-label">Teilen</span>
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4.5A9.6 9.6 0 0 0 4.4 15.9L3.5 20.5l4.7-1.2A9.6 9.6 0 1 0 20 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M8.8 9.4c.2 3 3.1 5.8 6 6 1 .1 1.4-.6 1.4-1.2l-.2-1.2-1.9-.8c-.3-.1-.6 0-.8.2l-.5.6a5.9 5.9 0 0 1-2.6-2.6l.6-.5c.2-.2.3-.5.2-.8L10.2 7l-1.2-.2c-.6 0-1.3.4-1.2 1.4Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="email" href="#" aria-label="Share by email" title="Share by email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m4 6.5 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+
+      <div class="blog-post__content">
+        <p>Jeden Abend um sieben ruft die Tochter an. «Hast du gegessen? Ist der Herd aus? Hast du die Tür abgeschlossen?» Ihre Mutter antwortet geduldig, dann weniger geduldig. Sie mag es nicht, kontrolliert zu werden. Die Tochter mag es nicht, kontrollieren zu müssen. Beide würden lieber einfach miteinander reden.</p>
+<p>Viele Familien in der Schweiz kennen diesen Anruf.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/dementia-at-home/01-evening-phone-call.webp" alt="Eine ältere Frau nimmt im Wohnzimmer einen abendlichen Anruf entgegen; dahinter ist der ausgeschaltete Herd in der Küche zu sehen." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Die meisten Menschen mit Demenz leben zu Hause</h2>
+<p>Laut dem Bundesamt für Gesundheit (BAG) leben in der Schweiz rund 166'300 Menschen mit Demenz, und jedes Jahr kommen etwa 35'800 neue Diagnosen dazu. Der weitaus grösste Teil von ihnen lebt zu Hause, unterstützt von Partnerinnen und Partnern, Kindern, Nachbarn und der Spitex.</p>
+<p>So lange wie möglich zu Hause zu leben, wünschen sich die meisten. Es bedeutet aber auch, dass die Menschen rundherum viele Sorgen tragen: der Herd, die Nacht, die Haustür, ein Sturz, den niemand bemerkt.</p>
+<h2>Wo ein Zuhause still helfen kann</h2>
+<p>Im frühen Stadium einer Demenz können ein paar gut gewählte Helfer einen Teil dieser Sorgen abnehmen, ohne dass sich das Zuhause anders anfühlt.</p>
+<ul>
+<li><strong>Ein Herdwächter.</strong> Ein kleines Gerät, das ein Elektriker an einem Elektroherd montiert. Es bemerkt Überhitzung, Rauch oder eine Pfanne, die zu lange auf dem Herd steht, und schaltet den Herd mit einem Warnton ab. Gedacht ist es für das frühe Stadium, solange Kochen noch zum Alltag gehört.</li>
+<li><strong>Sanftes Licht in der Nacht.</strong> Bewegungsmelder schalten auf dem Weg ins Bad ein gedämpftes Licht ein, damit niemand im Dunkeln einen Schalter suchen muss. Darüber habe ich in <a target="_blank" rel="noopener noreferrer" href="/de/insights/sicher-durch-die-nacht/">Dunkle Abende, sichere Wege</a> geschrieben.</li>
+<li><strong>Die Haustür in der Nacht.</strong> Geht die Tür zwischen Mitternacht und sechs Uhr auf, geht im Gang das Licht an, und ein Familienmitglied bekommt eine kurze Nachricht. Niemand wird eingeschlossen, und tagsüber wird niemand umsonst gestört.</li>
+<li><strong>Wasser.</strong> Ein Wassersensor unter dem Spülbecken und der Waschmaschine bemerkt einen laufenden Hahn oder ein überlaufendes Becken früh.</li>
+<li><strong>Ein stilles tägliches Lebenszeichen.</strong> Gab es bis am Vormittag keine Bewegung in der Wohnung, bekommt die Tochter eine Nachricht. An allen anderen Tagen weiss sie, ohne zu fragen, dass der Morgen wie gewohnt begonnen hat. Der Anruf am Abend darf wieder ein Gespräch sein.</li>
+</ul>
+<figure class="blog-post__figure">
+  <img src="/images/insights/dementia-at-home/02-quiet-household-helpers.webp" alt="Ein einfacher Wohnungsgrundriss zeigt Herdwächter, sanftes Nachtlicht, Türsensor und Wassersensor." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Für Notfälle, was für Notfälle gebaut ist</h2>
+<p>Konihaus ist kein Notfalldienst, und ein Smart Home sollte nicht so tun, als wäre es einer. Wer jederzeit Hilfe erreichen können muss, findet in der Schweiz überwachte Notrufdienste, zum Beispiel vom Schweizerischen Roten Kreuz, mit einer Zentrale, die rund um die Uhr antwortet. Ein Smart Home kann sie ergänzen, nie ersetzen.</p>
+<h2>Das Schwierige ist nicht die Technik</h2>
+<p>Die eigentliche Frage ist eine andere: Wie viel Aufpassen ist Hilfe, und ab wann wird es Kontrolle?</p>
+<p>Ein Sensor, der «bis zehn Uhr keine Bewegung» meldet, ist etwas ganz anderes als eine Kamera im Wohnzimmer. Eine Nachricht, wenn um drei Uhr nachts die Tür aufgeht, ist etwas ganz anderes, als jeden Schritt zu verfolgen. Menschen mit Demenz sind Erwachsene, die das Recht haben, über ihr Zuhause zu entscheiden, solange sie das können.</p>
+<p>Darum halte ich mich an ein paar Regeln:</p>
+<ul>
+<li><strong>Früh reden, und mit der betroffenen Person.</strong> Der beste Zeitpunkt, um festzulegen, was das Zuhause tun soll, ist, solange die Person noch selbst entscheiden kann. Ihre Wünsche zuerst, nicht nur die Sorgen der Familie.</li>
+<li><strong>So wenig wie möglich, so viel wie nötig.</strong> Ein klares Signal ist besser als zehn Berichte. Niemand muss wissen, wann jemand auf der Toilette war.</li>
+<li><strong>Keine Kameras in der Wohnung.</strong> Was hier beschrieben ist, funktioniert ohne.</li>
+<li><strong>Die Daten bleiben im Haus.</strong> Alles läuft lokal, nichts geht in eine Cloud. Mehr dazu in <a target="_blank" rel="noopener noreferrer" href="/de/insights/datenschutz-by-default/">Ihr Zuhause, Ihre Daten</a>.</li>
+<li><strong>Regelmässig neu hinschauen.</strong> Eine Demenz verändert sich, und mit ihr die Bedürfnisse. Was heute hilft, kann nächstes Jahr zu viel oder zu wenig sein.</li>
+</ul>
+<figure class="blog-post__figure">
+  <img src="/images/insights/dementia-at-home/03-mother-and-daughter-decide.webp" alt="Eine Mutter führt das Gespräch mit ihrer erwachsenen Tochter, während beide gemeinsam die Haussteuerung auf einem Tablet anschauen." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Ehrliche Grenzen</h2>
+<p>Die Forschung zu Smart Homes bei Demenz ist noch dünn. Es gibt gute Gründe für diese Helfer, aber keinen Beweis, dass sie jemanden länger zu Hause halten. Und kein Gerät ersetzt Menschen: Familie, Nachbarn, Spitex, die Ärztin. In späteren Stadien sind die Bedürfnisse anders, und es braucht andere Lösungen.</p>
+<p>Für Beratung betreibt Alzheimer Schweiz das kostenlose und anonyme Alzheimer-Telefon (058 058 80 00, Montag bis Freitag), für Menschen mit Demenz und ihre Angehörigen.</p>
+<p>Was ich anbieten kann, ist der Teil dazwischen: ein paar stille Helfer, sorgfältig eingerichtet, allen Beteiligten erklärt und angepasst, wenn sich etwas ändert. Und <a target="_blank" rel="noopener noreferrer" href="/de/insights/persoenlicher-service/">eine Person, die man anrufen kann</a>, wenn etwas nicht funktioniert.</p>
+<hr>
+<p><strong>Begleiten Sie einen Elternteil, der zu Hause bleiben möchte?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Sprechen Sie mit Koni</a>. Das erste Gespräch ist kostenlos und unverbindlich.</p>
+
+      </div>
+
+      
+<aside class="subscribe subscribe--card" aria-label="Newsletter">
+  <div class="subscribe__intro">
+    <p class="subscribe__eyebrow">Newsletter</p>
+    <h2 class="subscribe__title">Neue Artikel direkt <em>ins Postfach.</em></h2>
+    <p class="subscribe__text">Ich schreibe über Smart Home, Datenschutz und das, was im Alltag wirklich funktioniert. Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint.</p>
+  </div>
+  <form class="subscribe__form" data-blog-subscribe novalidate
+        data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
+        data-lang="de"
+        data-msg-ok="Danke! Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint."
+        data-msg-duplicate="Diese Adresse ist bereits angemeldet. Danke!"
+        data-msg-invalid="Bitte geben Sie eine gültige E-Mail-Adresse ein."
+        data-msg-limit="Zu viele Anmeldungen von dieser Adresse. Bitte versuchen Sie es später erneut."
+        data-msg-error="Das hat leider nicht geklappt. Bitte versuchen Sie es später erneut.">
+    <div class="subscribe__row">
+      <label class="subscribe__sr" for="subscribe-email">E-Mail-Adresse</label>
+      <input class="subscribe__input" id="subscribe-email" type="email" name="email"
+             autocomplete="email" inputmode="email" placeholder="Ihre E-Mail-Adresse" required>
+      <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="subscribe__button" type="submit">Abonnieren</button>
+    </div>
+    <p class="subscribe__note">Abmeldung jederzeit möglich. Mehr dazu in der <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.</p>
+    <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+
+          <section class="blog-post__related" aria-label="Weiterlesen">
+            <h2 class="blog-post__related-title">Weiterlesen</h2>
+            <div class="blog-post__related-grid">
+                    <a class="blog-post__related-card" href="/de/insights/sicher-durch-die-nacht/" data-post-date="2026-10-30" data-post-time="10:00">
+                      <span class="blog-post__related-card-title">Dunkle Abende, sichere Wege</span>
+                        <span class="blog-post__related-card-meta">4 Min. Lesezeit</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/de/insights/persoenlicher-service/" data-post-date="2026-10-01" data-post-time="18:00">
+                      <span class="blog-post__related-card-title">Smart Home mit einem Menschen dahinter</span>
+                        <span class="blog-post__related-card-meta">5 Min. Lesezeit</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/de/insights/datenschutz-by-default/" data-post-date="2026-10-05" data-post-time="10:00">
+                      <span class="blog-post__related-card-title">Ihr Zuhause, Ihre Daten: Datenschutz by Default</span>
+                        <span class="blog-post__related-card-meta">4 Min. Lesezeit</span>
+                    </a>
+            </div>
+          </section>
+
+      <footer class="blog-post__footer">
+          <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+
+        <div class="blog-post__share blog-post__share--footer">
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+            <div class="logo-image"></div>
+            <div class="wordmark">konihaus blog</div>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
+            Ferienhausbesitzer in der
+            Schweiz.</p>
+          <div class="footer__social" aria-label="Social Media">
+            <a href="https://www.instagram.com/ch.konihaus/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/konihaus.ch" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://x.com/konihaus" class="social-icon social-icon--x" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/konihaus" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+                <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col1_title">Service</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+            <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+            <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+            <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+            <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col2_title">Unternehmen</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+            <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col3_title">Rechtliches</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/impressum" data-i18n="footer.col3_l1">Impressum</a></li>
+            <li><a href="https://konihaus.ch/datenschutz" data-legal="privacy" data-i18n="footer.col3_l2">Datenschutz</a></li>
+            <li><a href="https://konihaus.ch/#cookie-declaration" data-cc-open data-i18n="footer.col3_l3">Cookie-Erklärung</a></li>
+            <li><a href="https://konihaus.ch/agb" data-i18n="footer.col3_l4">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Konihaus · Affoltern am Albis, Schweiz
+        </p>
+        <p class="fch" data-i18n="footer.ch">🇨🇭 Made in Switzerland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/scripts.js"></script>
+  <script src="/assets/cookie-consent.js"></script>
+  <script>
+    const lang = "de";
+
+    function switchToDe() {
+      if (lang === 'de') return;
+      location.href = devHref('/en/insights/dementia-at-home/');
+    }
+
+    function switchToEn() {
+      if (lang === 'en') return;
+      location.href = devHref('/en/insights/dementia-at-home/');
+    }
+
+    (function () {
+      const shareUrl = "https://blog.konihaus.ch/de/insights/demenz-zu-hause/";
+      const shareTitle = "Die meisten Menschen mit Demenz in der Schweiz leben zu Hause, betreut von ihren Angehörigen. Ein paar stille Helfer können das sicherer machen, wenn sie den Menschen respektieren, den sie schützen sollen.";
+      const encodedUrl = encodeURIComponent(shareUrl);
+      const encodedTitle = encodeURIComponent(shareTitle);
+
+      const links = {
+        x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+        email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+      };
+ 
+      document.querySelectorAll('[data-share]').forEach((el) => {
+        const platform = el.getAttribute('data-share');
+        if (links[platform]) el.href = links[platform];
+      });
+
+      /*if (navigator.share) {
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }*/
+
+      const isTouchMobile = window.matchMedia('(pointer: coarse)').matches
+        && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isTouchMobile && navigator.share) {
+        document.querySelectorAll('[data-share="native"]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-copy-link]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            btn.setAttribute('data-copied', 'true');
+            setTimeout(() => btn.removeAttribute('data-copied'), 2000);
+          } catch {
+            
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
