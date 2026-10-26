@@ -1,0 +1,685 @@
+
+
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
+       default 07:00, Swiss time) the page behaves like a 404 and is marked noindex, nofollow,
+       unless the URL has ?devmode=super (then it shows, but still noindex, nofollow).
+       Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super';
+      var parts = {};
+      new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Zurich',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+      var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
+      var published = '2026-10-27';
+      var m = /^(\d{1,2}):(\d{2})/.exec('10:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '07:00';
+      window.__scheduledPost = (published + 'T' + at) > now ? published : null;
+      window.__scheduledPostTime = at;
+      // Not released yet (or a dev preview): tell search engines not to index or follow.
+      // The static robots tag below stays "index"; when two robots tags conflict,
+      // search engines apply the stricter one. After release this tag is no longer added.
+      if (window.__scheduledPost || dev) {
+        var robots = document.createElement('meta');
+        robots.name = 'robots';
+        robots.content = 'noindex, nofollow';
+        document.head.appendChild(robots);
+      }
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- Hide content until JS loads and sets language -->
+  <script>
+    document.documentElement.classList.add('no-js');
+    document.documentElement.classList.add("fonts-loading");
+  </script>
+  <style>
+    html.no-js body {
+      display: none;
+    }
+    html.fonts-loading body {
+      visibility: hidden;
+    }
+  </style>
+  <meta name="theme-color" content="#2a4a35">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
+  <link rel="apple-touch-icon" href="/assets/favicon.svg">
+  <title>Smartes Licht Schweiz: Lampen, Streifen, Leuchten - Konihaus</title>
+  <meta name="description" content="Smartes Licht in der Schweiz: Sockel und Formate, LED-Streifen, Schreibtisch- und Wohnzimmerleuchten, Marken bei Hornbach und IKEA, Hue Sync für Filme und Szenen für jede Stimmung.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Konrad Hefelle">
+
+  <!-- Canonical + language alternates -->
+  <link rel="canonical" href="https://blog.konihaus.ch/de/insights/smarte-beleuchtung-schweiz/">
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-beleuchtung-schweiz/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-lights-switzerland/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/en/insights/smart-lights-switzerland/">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Konihaus">
+  <meta property="og:title" content="Smartes Licht: Lampen, Streifen und Leuchten, und was es in der Schweiz zu kaufen gibt">
+  <meta property="og:description" content="Smartes Licht in der Schweiz: Sockel und Formate, LED-Streifen, Schreibtisch- und Wohnzimmerleuchten, Marken bei Hornbach und IKEA, Hue Sync für Filme und Szenen für jede Stimmung.">
+  <meta property="og:url" content="https://blog.konihaus.ch/de/insights/smarte-beleuchtung-schweiz/">
+  <meta property="fb:app_id" content="2188289105366537" />
+  <meta property="fb:pages" content="1067591876443915">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/smart-lights/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Smartes Licht: Lampen, Streifen und Leuchten, und was es in der Schweiz zu kaufen gibt">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="article:published_time" content="2026-10-27">
+  
+  <meta property="article:author" content="Konrad Hefelle">
+  <meta property="article:publisher" content="https://www.facebook.com/konihaus.ch">
+  <meta property="article:section" content="technik">
+  <meta property="article:tag" content="licht">
+  <meta property="article:tag" content="hue">
+  <meta property="article:tag" content="ikea">
+  <meta property="article:tag" content="matter">
+  <meta property="article:tag" content="szenen">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Smartes Licht: Lampen, Streifen und Leuchten, und was es in der Schweiz zu kaufen gibt">
+  <meta name="twitter:description" content="Smartes Licht in der Schweiz: Sockel und Formate, LED-Streifen, Schreibtisch- und Wohnzimmerleuchten, Marken bei Hornbach und IKEA, Hue Sync für Filme und Szenen für jede Stimmung.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/smart-lights/og.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Smartes Licht: Lampen, Streifen und Leuchten, und was es in der Schweiz zu kaufen gibt",
+    "description": "Smartes Licht in der Schweiz: Sockel und Formate, LED-Streifen, Schreibtisch- und Wohnzimmerleuchten, Marken bei Hornbach und IKEA, Hue Sync für Filme und Szenen für jede Stimmung.",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.konihaus.ch/images/insights/smart-lights/og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "articleSection": "technik",
+    "keywords": "smartes Licht Schweiz, licht, hue, ikea, matter, szenen",
+    "datePublished": "2026-10-27",
+    "dateModified": "2026-10-27",
+    "inLanguage": "de",
+    "mainEntityOfPage": "https://blog.konihaus.ch/de/insights/smarte-beleuchtung-schweiz/",
+    "author": {
+      "@type": "Person",
+      "name": "Konrad Hefelle",
+      "url": "https://konihaus.ch"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Konihaus",
+      "url": "https://konihaus.ch",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blog.konihaus.ch/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Insights",
+        "item": "https://blog.konihaus.ch/de/insights/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Smartes Licht: Lampen, Streifen und Leuchten, und was es in der Schweiz zu kaufen gibt",
+        "item": "https://blog.konihaus.ch/de/insights/smarte-beleuchtung-schweiz/"
+      }
+    ]
+  }
+  </script>
+
+  <link
+    rel="preload"
+    href="/fonts/outfit-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-italic.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/post.css">
+  <link rel="stylesheet" href="/assets/subscribe.css">
+</head>
+<body>
+
+ <nav class="nav  nav--solid" id="nav">
+    <div class="container">
+      <div class="nav__inner ">
+        <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+          <div class="logo-image"></div>
+          <div class="wordmark">konihaus blog</div>
+        </a>
+        <ul class="nav__links">
+            <li><button type="button" class="nav__search" data-blog-search-open aria-label="Suche"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Suche</span></button></li>
+            <li><a href="/de/insights/">Neueste</a></li>
+            <li class="has-sub">
+              <a href="/de/insights/" class="nav__parent" aria-haspopup="true"><span>Themen</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li data-live-from="2026-09-10T10:00"><a href="/de/insights/?topic=technik">Technik</a></li>
+                <li data-live-from="2026-09-15T10:00"><a href="/de/insights/?topic=ratgeber">Ratgeber</a></li>
+                <li data-live-from="2026-10-28T10:00"><a href="/de/insights/?topic=sicherheit">Sicherheit</a></li>
+                <li data-live-from="2026-09-02T10:00"><a href="/de/insights/?topic=energie">Energie</a></li>
+                <li data-live-from="2026-10-05T10:00"><a href="/de/insights/?topic=datenschutz">Datenschutz</a></li>
+                <li data-live-from="2026-10-01T18:00"><a href="/de/insights/?topic=konihaus">Konihaus</a></li>
+                <li data-live-from="2026-10-26T10:00"><a href="/de/insights/?topic=news">News</a></li>
+                <li class="nav__sub-all"><a href="/de/insights/">Alle Beiträge →</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="https://konihaus.ch/" class="nav__parent" aria-haspopup="true"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub nav__sub--wide">
+                <li><a href="https://konihaus.ch/" data-i18n="nav.website">Website</a></li>
+                <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+                <li class="nav__sub-label">Unternehmen</li>
+                <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+                <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+                <li class="nav__sub-label">Service</li>
+                <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+                <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+                <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+                <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+                <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+              </ul>
+            </li>
+          </ul><button type="button" class="nav__searchbar" data-blog-search-open aria-label="Suche"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Beiträge durchsuchen</span></button>
+
+        <div class="language-picker">
+          <button
+            type="button"
+            class="language-trigger"
+            aria-expanded="false"
+            aria-controls="language-options"
+            aria-label="Language: Deutsch"
+          >
+            <span class="language-current">DE</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          <div id="language-options" class="language-options" hidden>
+            <button type="button" class="language-option" data-lang="de" onclick="switchToDe()">
+              <span>Deutsch</span>
+              <span class="language-code">DE</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en" onclick="switchToEn()">
+              <span>English</span>
+              <span class="language-code">EN</span>
+            </button>
+          </div>
+
+          <select id="lang-selector" hidden>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="https://konihaus.ch/#contact" class="btn nav__cta" data-i18n="nav.cta">Kostenlose Beratung</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav__drawer" id="drawer">
+    <ul>
+      <li><a href="/de/insights/" class="drawer-link">Neueste</a></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-topics"><span>Themen</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-topics" hidden>
+          <li data-live-from="2026-09-10T10:00"><a href="/de/insights/?topic=technik" class="drawer-link">Technik</a></li>
+          <li data-live-from="2026-09-15T10:00"><a href="/de/insights/?topic=ratgeber" class="drawer-link">Ratgeber</a></li>
+          <li data-live-from="2026-10-28T10:00"><a href="/de/insights/?topic=sicherheit" class="drawer-link">Sicherheit</a></li>
+          <li data-live-from="2026-09-02T10:00"><a href="/de/insights/?topic=energie" class="drawer-link">Energie</a></li>
+          <li data-live-from="2026-10-05T10:00"><a href="/de/insights/?topic=datenschutz" class="drawer-link">Datenschutz</a></li>
+          <li data-live-from="2026-10-01T18:00"><a href="/de/insights/?topic=konihaus" class="drawer-link">Konihaus</a></li>
+          <li data-live-from="2026-10-26T10:00"><a href="/de/insights/?topic=news" class="drawer-link">News</a></li>
+          <li><a href="/de/insights/" class="drawer-link">Alle Beiträge</a></li>
+        </ul>
+      </li>
+      <li><button type="button" class="drawer-link drawer-search" data-blog-search-open>Suche</button></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-konihaus"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-konihaus" hidden>
+          <li><a href="https://konihaus.ch/" class="drawer-link" data-i18n="nav.website">Website</a></li>
+          <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
+          <li><a href="https://konihaus.ch/#devices" class="drawer-link" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+          <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link class="drawer-link" data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+          <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+          <li><a href="https://konihaus.ch/#faq" class="drawer-link" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+          <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="footer.col1_l4">Kontakt</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+  </div>
+
+
+  <main class="blog-post__container">
+
+    <header class="blog-post__link">
+        <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+    </header>
+
+    <article>
+      <header class="blog-post__header">
+        <p class="blog-post__category">technik</p>
+        <h1 class="blog-post__title"><span>Smartes Licht: Lampen, Streifen und Leuchten, und was es in der Schweiz zu kaufen gibt</span></h1>
+        <time class="blog-post__meta" datetime="Tue Oct 27 2026 01:00:00 GMT+0100 (Central European Standard Time)">
+            27. Oktober 2026
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;7 Min. Lesezeit</span>
+          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">von</span> Koni
+
+        <div class="blog-post__share">
+          <span class="blog-post__share-label">Teilen</span>
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4.5A9.6 9.6 0 0 0 4.4 15.9L3.5 20.5l4.7-1.2A9.6 9.6 0 1 0 20 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M8.8 9.4c.2 3 3.1 5.8 6 6 1 .1 1.4-.6 1.4-1.2l-.2-1.2-1.9-.8c-.3-.1-.6 0-.8.2l-.5.6a5.9 5.9 0 0 1-2.6-2.6l.6-.5c.2-.2.3-.5.2-.8L10.2 7l-1.2-.2c-.6 0-1.3.4-1.2 1.4Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="email" href="#" aria-label="Share by email" title="Share by email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m4 6.5 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+
+      <div class="blog-post__content">
+        <p>Fast jedes Smart Home beginnt mit einer Lampe. Sie ist günstig, man sieht sie, und die Wirkung ist sofort da: Sie sagen «Filmabend», und der Raum verändert sich. Es ist aber auch das Gerät, bei dem man am häufigsten daneben greift: Man kauft etwas, das nur mit einer App oder nur mit der Zentrale eines Herstellers funktioniert.</p>
+<p>Das ist der erste Beitrag einer neuen Serie. Ab heute erscheint jeden zweiten Tag ein neuer technischer Beitrag. In dieser Serie gehe ich eine Gerätegruppe nach der anderen durch: Licht, dann Storen, Sensoren, Heizung und mehr. Jeder Beitrag stellt dieselben Fragen: Was bringt es Ihnen, was sollten Sie vor dem Kauf prüfen, und wo liegen die ehrlichen Grenzen? Und weil Sie danach gefragt haben: Ja, ich nenne Marken und sage, was es in der Schweiz tatsächlich zu kaufen gibt.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-lights/01-warm-living-room.webp" alt="Ein illustriertes Wohnzimmer mit warmer Stehleuchte, indirektem Licht hinter dem Fernseher und einer Schreibtischleuchte." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Drei Arten von smartem Licht</h2>
+<p><strong>Leuchtmittel</strong> sind der einfachste Einstieg. Sie tauschen die Birne, und die Lampe, die Sie schon haben, wird smart. Die gängigen Sockel:</p>
+<ul>
+<li><strong>E27</strong>, der normale Schraubsockel, für die meisten Decken- und Stehlampen</li>
+<li><strong>E14</strong>, der kleine Schraubsockel, für Kerzenbirnen in Lüstern und Wandleuchten</li>
+<li><strong>GU10</strong>, der Spot mit zwei Stiften, für Deckenspots und Schienensysteme</li>
+<li><strong>GU5.3</strong>, der Niedervolt-Spot, häufig in älteren Halogen-Installationen</li>
+</ul>
+<p>Prüfen Sie Sockel und Form vor dem Kauf, und auch, ob die Leuchte dimmbar oder geschlossen ist, denn in engen Fassungen spielt die Wärme eine Rolle.</p>
+<p><strong>LED-Streifen</strong> kommen hinter den Fernseher, unter den Küchenschrank, an ein Regal oder an die Rückseite des Schreibtischs. Sie liefern indirektes Licht und die eindrücklichsten Farbeffekte. Achten Sie auf Streifen, die sich kürzen lassen, mit klarer Angabe zu Länge und Netzteil.</p>
+<p><strong>Smarte Leuchten</strong> haben das Licht schon eingebaut. Eine Schreibtischlampe mit einstellbarem Weissbereich von warm bis kühl, eine Tischleuchte als leuchtender Akzent, eine Stehlampe, die die Wand in Farbe taucht. Für Mieterinnen und Mieter ist das am einfachsten: einstecken, fertig, und die Leuchte zieht mit um.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-lights/02-light-types-de.webp" alt="Schematischer Vergleich von E27- und E14-Schraubsockeln, GU10-Drehverriegelung und geraden GU5.3-Stiften sowie LED-Streifen und integrierter LED-Leuchte." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Was in der Schweiz im Angebot ist</h2>
+<p>Das habe ich heute, am 27. Oktober 2026, gefunden. Preise ändern sich, nehmen Sie sie als Richtwert.</p>
+<p><strong>Hornbach</strong> hat einen eigenen Bereich für smarte Lampen. Philips Hue ist die sichtbarste Marke, mit Starter-Sets und der Bridge. Dazu listet Hornbach weitere Marken wie EGLO und TINT, und viele Artikel tragen das Label «kompatibel mit SMART HOME by hornbach». Einfache smarte Weisslicht-Leuchtmittel beginnen bei etwa CHF 8 bis 15, übliche Leuchtmittel kosten CHF 15 bis 60, Hue-Farbspots und -kerzen liegen höher. Ein Hue Bridge Pro Starter-Set war mit CHF 142.95 gelistet.</p>
+<p><strong>IKEA</strong> hat das breiteste und günstigste Sortiment an einem Ort. Die KAJPLATS-Leuchtmittel (E27, E14, GU10) kosten CHF 7.95 bis 14.95, ein Starter-Set mit Fernbedienung etwa CHF 12.95. Der LED-Streifen SKYDRAG (80 cm) kostete CHF 30, die Tischleuchte VARMBLIXT CHF 79.95 und die Zentrale DIRIGERA CHF 59.95. IKEA schreibt, dass fast alle smarten Produkte inzwischen Matter nutzen.</p>
+<p><strong>Philips Hue</strong> ist der Massstab: ein riesiges Sortiment (Leuchtmittel, Streifen, Leuchten, Aussenbereich) und die besten Sync-Werkzeuge für TV und Games. Der Preis ist der Haken. Neben Hornbach hat Hue einen eigenen Schweizer Webshop, und auch Elektronikhändler wie ElectronicPartner führen es.</p>
+<p><strong>Digitec Galaxus und MediaMarkt</strong> sind die Adressen für die anderen Marken. Galaxus verkauft Govee: ein farbiges E27-Leuchtmittel für CHF 16, einen 5-m-RGBIC-LED-Streifen für CHF 22 und Tischleuchten ab CHF 45.90. Digitec führt WiZ-Leuchtmittel, zum Beispiel ein farbiges E27 für CHF 26.50. Digitec hat auch Nanoleaf: Wandpanel-Sets ab CHF 139 (neun Shapes-Sechsecke) und ein smartes E27-Leuchtmittel für CHF 23.50. Bei MediaMarkt gibt es Panel-Erweiterungen ab CHF 51.50 und im Marketplace ein Matter-Erweiterungsset für Lichtstreifen für CHF 29.</p>
+<p>Eine Anmerkung zu diesen günstigeren Marken: Govee- und WiZ-Leuchtmittel und -Streifen laufen meist über WLAN und die eigene App. Prüfen Sie also den Standard (siehe unten), bevor Sie ein ganzes Zuhause darauf aufbauen. Einige der neueren Essentials-Produkte von Nanoleaf werden als Matter verkauft, das ist ein gutes Zeichen, aber prüfen Sie die Produktseite für das genaue Modell.</p>
+<p>Es gibt viele weitere Shops, in denen Sie diese Produkte finden können. Ich kaufe meist direkt beim Hersteller oder bei den grösseren Händlern, um Ärger mit der Garantie zu vermeiden, falls ein Produkt defekt ist.</p>
+<h2>Zuerst prüfen: der Standard</h2>
+<p>Die entscheidende Frage ist nicht die Marke, sondern welche Sprache das Licht spricht. Davon hängt ab, ob es mit dem Rest Ihres Zuhauses zusammenarbeitet.</p>
+<ul>
+<li><strong>Zigbee</strong> und <strong>Matter über Thread</strong> suche ich. Beide arbeiten lokal, ohne Internet.</li>
+<li><strong>WLAN</strong>-Leuchtmittel sind günstig und brauchen keine Zentrale, hängen aber oft an der Cloud des Herstellers und belasten Ihr WLAN.</li>
+<li><strong>Nur Bluetooth</strong> ist für eine einzelne Lampe in Ordnung, für ein ganzes Zuhause aber umständlich.</li>
+</ul>
+<p>Philips Hue nutzt Zigbee über die eigene Bridge, Sie können die Leuchtmittel aber auch mit einer unabhängigen Zigbee-Bridge koppeln, die an Ihrer Smart-Home-Zentrale hängt, ganz ohne Hue Bridge. Bei Konihaus baue ich das lokale und private System genau so auf. Neuere Hue-Leuchtmittel unterstützen auch Matter. Die neueren KAJPLATS von IKEA nutzen Thread. Offene Standards wie diese sind es, die ein Licht mit Home Assistant und ähnlichen lokalen Systemen zusammenarbeiten lassen, damit bleibt alles in einer App. Warum das wichtig ist, habe ich in <a target="_blank" rel="noopener noreferrer" href="/de/insights/kein-vendor-lock-in/">kein Vendor Lock-in</a> und <a target="_blank" rel="noopener noreferrer" href="/de/insights/zukunftssicher/">Läuft das auch in zehn Jahren noch?</a> beschrieben.</p>
+<p>Eine ehrliche Anmerkung zu IKEA: Das neue Matter-über-Thread-Sortiment ist noch jung, und laut Tests gibt es bei Kopplung und Stabilität einiger IKEA-Zubehörteile, vor allem Tasten und Sensoren, Probleme. Über die Leuchtmittel selbst klagt kaum jemand. Über Schalter und Tasten schreibe ich in einem meiner nächsten Beiträge, bleiben Sie dran.</p>
+<h2>Filmabend: Licht, das dem Bild folgt</h2>
+<p>Das ist der Teil, der die Leute überzeugt. Mit der Philips Hue Play HDMI Sync Box folgen Ihre Hue-Lampen dem, was auf dem Fernseher läuft. Die Box sitzt zwischen Streaming-Gerät oder Konsole und dem Fernseher. Sie liest die Farben im Bild und gibt sie an Ihre Lampen weiter: Eine rote Szene leuchtet rot im Raum, eine Nachtszene wird dunkelblau. Sie verarbeitet bis zu vier HDMI-Eingänge und bis zu zehn Lampen in einem Entertainment-Bereich, und das 8K-Modell unterstützt 4K- und 8K-Signale mit HDR-Formaten. Sie braucht eine Hue Bridge und läuft nach der Einrichtung auch ohne WLAN. Im Schweizer Hue-Shop kostet die 8K-Box CHF 350 und war am 26. Oktober vorrätig.</p>
+<p>Für einen Film legen Sie einen Streifen hinter den Fernseher, je eine Lampe in die Ecken, und lassen die Box den Rest machen. Der Effekt ist grösser, als man denkt, weil das Bild über den Rand des Bildschirms hinauszuwachsen scheint.</p>
+<figure class="blog-post__figure blog-post__figure--video">
+  <video controls playsinline preload="metadata" poster="/images/insights/smart-lights/hue-sync-living-room-poster.jpg" aria-label="Video: Hue-Lampen folgen einem Film im Wohnzimmer">
+    <source src="/images/insights/smart-lights/hue-sync-living-room.mp4" type="video/mp4">
+    <source src="/images/insights/smart-lights/hue-sync-living-room.webm" type="video/webm">
+  </video>
+  <figcaption>Mein eigenes Wohnzimmer: Die Hue-Lampen folgen dem Bild auf der Leinwand.</figcaption>
+</figure>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-lights/03-hdmi-sync-de.webp" alt="Ein externer HDMI-Zuspieler sendet sein Bild über eine Sync-Box zum Fernseher oder Projektor; Steuersignale gelangen über eine Hue Bridge zur Farbleuchte." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Licht, das Ihren Tag begleitet</h2>
+<p>Über die Show hinaus hilft smartes Licht am meisten im Tagesverlauf:</p>
+<ul>
+<li><strong>Morgens:</strong> helles, kühleres Licht zum Aufwachen, sanft einblendend statt hartem Schalter.</li>
+<li><strong>Tagsüber:</strong> neutrales Weiss zum Arbeiten am Schreibtisch.</li>
+<li><strong>Abends:</strong> warmes, gedämpftes Licht ab ungefähr Sonnenuntergang. Viele empfinden das als entspannter, und es fühlt sich viel mehr nach Zuhause an als eine flache weisse Deckenlampe.</li>
+<li><strong>Nachts:</strong> ein sehr schwaches warmes Licht auf dem Weg ins Bad, nur wenn nötig.</li>
+</ul>
+<p>Sie stellen es einmal ein. Danach folgt das Zuhause der Uhr und der Sonne, ohne dass Sie etwas tun müssen.</p>
+<h2>Szenen für jeden Anlass</h2>
+<p>Eine Szene ist eine gespeicherte Stimmung: Ein Druck stellt alle Lampen auf einmal ein. Einige, die ich mag:</p>
+<ul>
+<li><strong>Filmabend:</strong> wenig Licht, Streifen hinter dem Fernseher an, Decke aus.</li>
+<li><strong>Spieleabend:</strong> hell und gleichmässig, damit Brett und Karten gut zu sehen sind.</li>
+<li><strong>Ambiente:</strong> warm und gedämpft, für ein Essen oder Freunde.</li>
+<li><strong>Lesen:</strong> ein gebündeltes Licht beim Sessel, der Rest gedimmt.</li>
+<li><strong>Besuch kommt:</strong> alles hell und einladend mit einem Druck.</li>
+</ul>
+<p>Und für den Kalender:</p>
+<ul>
+<li><strong>Weihnachten:</strong> warmes Weiss und Gold, der Baum leuchtet, ein langsames Flackern an einer Kerzenbirne.</li>
+<li><strong>Halloween:</strong> tiefes Orange und Violett, vielleicht mit Flackern.</li>
+<li><strong>1. August:</strong> Rot und Weiss zum Nationalfeiertag.</li>
+<li><strong>Geburtstage:</strong> eine helle, bunte Szene am Tag selbst, die rechtzeitig vor dem ersten Gast angeht.</li>
+</ul>
+<p>Diese Szenen können nach Zeitplan laufen oder per Tastendruck. In beiden Fällen bauen Sie sie einmal, und sie kommen jedes Jahr wieder.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-lights/04-lighting-scenes.webp" alt="Dasselbe Wohnzimmer in vier Lichtszenen: blaues Filmlicht, warmes Licht zum Abendessen, Weihnachtsgold und Halloween in Orange und Violett." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>So würde ich anfangen</h2>
+<ol>
+<li><strong>Ein Raum, drei Lichter.</strong> Das Wohnzimmer ist am besten: eine Lampe, ein Streifen, noch eine Lampe.</li>
+<li><strong>Einen offenen Standard wählen.</strong> Zigbee oder Matter, nicht eine WLAN-Birne, die ein eigenes Konto verlangt.</li>
+<li><strong>Ein Wanddrehrad oder eine Taste dazu.</strong> Damit niemand eine App braucht, um Licht anzumachen.</li>
+<li><strong>Zwei Szenen bauen.</strong> Eine Abendszene und eine Filmszene. Weitere erst, wenn sie Ihnen fehlen.</li>
+</ol>
+<p>In einem Konihaus-Zuhause läuft das Licht lokal über den Greenhub. Szenen, Zeitpläne und Sync funktionieren dann auch bei Internetausfall weiter, und Sie behalten eine App statt drei.</p>
+<h2>Den Strom nicht abschneiden</h2>
+<p>Eine letzte Regel erspart viel Ärger. Ein smartes Leuchtmittel braucht immer Strom. Schaltet jemand den alten Wandschalter aus, ist die Birne weg aus dem Netz, und keine Automation kann sie wieder einschalten.</p>
+<p>Die Lösung ist einfach: den alten Schalter abkleben, ihn durch einen smarten Schalter ersetzen oder eine kabellose Taste oder ein Drehrad daneben anbringen. Gäste haben dann etwas zum Drücken, und das ist viel besser als «bitte nehmen Sie die App».</p>
+<p>Smarte Schalter, Drehräder und Tasten verdienen einen eigenen Beitrag, und ich schreibe ihn später in dieser Serie. Wenn Sie ihn nicht verpassen möchten, melden Sie sich unten für den Konihaus-Blog-Newsletter an.</p>
+<hr>
+<p><strong>Überlegen Sie, Ihr Zuhause mit smartem Licht auszustatten?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Sprechen Sie mit Koni</a>. Das erste Gespräch ist kostenlos und unverbindlich.</p>
+
+      </div>
+
+      
+<aside class="subscribe subscribe--card" aria-label="Newsletter">
+  <div class="subscribe__intro">
+    <p class="subscribe__eyebrow">Newsletter</p>
+    <h2 class="subscribe__title">Neue Artikel direkt <em>ins Postfach.</em></h2>
+    <p class="subscribe__text">Ich schreibe über Smart Home, Datenschutz und das, was im Alltag wirklich funktioniert. Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint.</p>
+  </div>
+  <form class="subscribe__form" data-blog-subscribe novalidate
+        data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
+        data-lang="de"
+        data-msg-ok="Danke! Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint."
+        data-msg-duplicate="Diese Adresse ist bereits angemeldet. Danke!"
+        data-msg-invalid="Bitte geben Sie eine gültige E-Mail-Adresse ein."
+        data-msg-limit="Zu viele Anmeldungen von dieser Adresse. Bitte versuchen Sie es später erneut."
+        data-msg-error="Das hat leider nicht geklappt. Bitte versuchen Sie es später erneut.">
+    <div class="subscribe__row">
+      <label class="subscribe__sr" for="subscribe-email">E-Mail-Adresse</label>
+      <input class="subscribe__input" id="subscribe-email" type="email" name="email"
+             autocomplete="email" inputmode="email" placeholder="Ihre E-Mail-Adresse" required>
+      <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="subscribe__button" type="submit">Abonnieren</button>
+    </div>
+    <p class="subscribe__note">Abmeldung jederzeit möglich. Mehr dazu in der <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.</p>
+    <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+
+          <section class="blog-post__related" aria-label="Weiterlesen">
+            <h2 class="blog-post__related-title">Weiterlesen</h2>
+            <div class="blog-post__related-grid">
+                    <a class="blog-post__related-card" href="/de/insights/kein-vendor-lock-in/" data-post-date="2026-09-29" data-post-time="10:00">
+                      <span class="blog-post__related-card-title">Kein Vendor Lock-In</span>
+                        <span class="blog-post__related-card-meta">5 Min. Lesezeit</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/de/insights/zukunftssicher/" data-post-date="2026-09-10" data-post-time="10:00">
+                      <span class="blog-post__related-card-title">Läuft das auch in zehn Jahren noch?</span>
+                        <span class="blog-post__related-card-meta">7 Min. Lesezeit</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/de/insights/konihaus-app/" data-post-date="2026-10-20" data-post-time="10:00">
+                      <span class="blog-post__related-card-title">Die Konihaus-App: Ihr Zuhause auf einen Blick</span>
+                        <span class="blog-post__related-card-meta">6 Min. Lesezeit</span>
+                    </a>
+            </div>
+          </section>
+
+      <footer class="blog-post__footer">
+          <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+
+        <div class="blog-post__share blog-post__share--footer">
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+            <div class="logo-image"></div>
+            <div class="wordmark">konihaus blog</div>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
+            Ferienhausbesitzer in der
+            Schweiz.</p>
+          <div class="footer__social" aria-label="Social Media">
+            <a href="https://www.instagram.com/ch.konihaus/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/konihaus.ch" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://x.com/konihaus" class="social-icon social-icon--x" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/konihaus" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+                <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col1_title">Service</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+            <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+            <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+            <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+            <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col2_title">Unternehmen</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+            <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col3_title">Rechtliches</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/impressum" data-i18n="footer.col3_l1">Impressum</a></li>
+            <li><a href="https://konihaus.ch/datenschutz" data-legal="privacy" data-i18n="footer.col3_l2">Datenschutz</a></li>
+            <li><a href="https://konihaus.ch/#cookie-declaration" data-cc-open data-i18n="footer.col3_l3">Cookie-Erklärung</a></li>
+            <li><a href="https://konihaus.ch/agb" data-i18n="footer.col3_l4">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Konihaus · Affoltern am Albis, Schweiz
+        </p>
+        <p class="fch" data-i18n="footer.ch">🇨🇭 Made in Switzerland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/scripts.js"></script>
+  <script src="/assets/cookie-consent.js"></script>
+  <script>
+    const lang = "de";
+
+    function switchToDe() {
+      if (lang === 'de') return;
+      location.href = devHref('/en/insights/smart-lights-switzerland/');
+    }
+
+    function switchToEn() {
+      if (lang === 'en') return;
+      location.href = devHref('/en/insights/smart-lights-switzerland/');
+    }
+
+    (function () {
+      const shareUrl = "https://blog.konihaus.ch/de/insights/smarte-beleuchtung-schweiz/";
+      const shareTitle = "Das erste smarte Gerät in den meisten Haushalten ist eine Lampe. Welche Leuchtmittel, Streifen und Leuchten sich lohnen, wo es sie in der Schweiz gibt und wie Sie Licht für Film, Stimmung und Feiertage nutzen.";
+      const encodedUrl = encodeURIComponent(shareUrl);
+      const encodedTitle = encodeURIComponent(shareTitle);
+
+      const links = {
+        x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+        email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+      };
+ 
+      document.querySelectorAll('[data-share]').forEach((el) => {
+        const platform = el.getAttribute('data-share');
+        if (links[platform]) el.href = links[platform];
+      });
+
+      /*if (navigator.share) {
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }*/
+
+      const isTouchMobile = window.matchMedia('(pointer: coarse)').matches
+        && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isTouchMobile && navigator.share) {
+        document.querySelectorAll('[data-share="native"]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-copy-link]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            btn.setAttribute('data-copied', 'true');
+            setTimeout(() => btn.removeAttribute('data-copied'), 2000);
+          } catch {
+            
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
