@@ -104,18 +104,32 @@
           <div class="wordmark">konihaus blog</div>
         </a>
         <ul class="nav__links">
+            <li><button type="button" class="nav__search" data-blog-search-open aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search</span></button></li>
+            <li><a href="/en/insights/" class="active" aria-current="page">Latest</a></li>
             <li class="has-sub">
-              <a href="https://konihaus.ch/#about" class="nav__parent" aria-haspopup="true"><span data-i18n="nav.about_us">Über uns</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <a href="/en/insights/" class="nav__parent" aria-haspopup="true"><span>Topics</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
               <ul class="nav__sub">
+                <li data-live-from="2026-09-10T10:00"><a href="/en/insights/?topic=technology">Technology</a></li>
+                <li data-live-from="2026-09-15T10:00"><a href="/en/insights/?topic=guide">Guides</a></li>
+                <li data-live-from="2026-10-28T10:00"><a href="/en/insights/?topic=safety">Safety</a></li>
+                <li data-live-from="2026-09-02T10:00"><a href="/en/insights/?topic=energy">Energy</a></li>
+                <li data-live-from="2026-10-05T10:00"><a href="/en/insights/?topic=privacy">Privacy</a></li>
+                <li data-live-from="2026-10-01T18:00"><a href="/en/insights/?topic=konihaus">Konihaus</a></li>
+                <li data-live-from="2026-10-26T10:00"><a href="/en/insights/?topic=news">News</a></li>
+                <li class="nav__sub-all"><a href="/en/insights/">All articles →</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="https://konihaus.ch/" class="nav__parent" aria-haspopup="true"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub nav__sub--wide">
+                <li><a href="https://konihaus.ch/" data-i18n="nav.website">Website</a></li>
+                <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+                <li class="nav__sub-label">Company</li>
                 <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
                 <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
                 <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
                 <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
-              </ul>
-            </li>
-            <li class="has-sub">
-              <a href="https://konihaus.ch/#packages" class="nav__parent" aria-haspopup="true"><span data-i18n="nav.service">Service</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
-              <ul class="nav__sub">
+                <li class="nav__sub-label">Service</li>
                 <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
                 <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
                 <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
@@ -123,9 +137,7 @@
                 <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
               </ul>
             </li>
-            <li><a href="https://app.konihaus.ch" class="nav__app" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
-            <li><a href="https://blog.konihaus.ch/" class="active" aria-current="page" data-i18n="nav.blog">Blog</a></li>
-          </ul>
+          </ul><button type="button" class="nav__searchbar" data-blog-search-open aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search articles</span></button>
 
         <div class="language-picker">
           <button
@@ -168,18 +180,28 @@
   <!-- MOBILE DRAWER -->
   <div class="nav__drawer" id="drawer">
     <ul>
+      <li><a href="/en/insights/" class="drawer-link active" aria-current="page">Latest</a></li>
       <li class="drawer-group">
-        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-about"><span data-i18n="nav.about_us">Über uns</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
-        <ul class="drawer-sub" id="dg-about" hidden>
-          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
-          <li><a href="https://konihaus.ch/#process" class="drawer-link" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
-          <li><a href="https://konihaus.ch/#why" class="drawer-link" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
-          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-topics"><span>Topics</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-topics" hidden>
+          <li data-live-from="2026-09-10T10:00"><a href="/en/insights/?topic=technology" class="drawer-link">Technology</a></li>
+          <li data-live-from="2026-09-15T10:00"><a href="/en/insights/?topic=guide" class="drawer-link">Guides</a></li>
+          <li data-live-from="2026-10-28T10:00"><a href="/en/insights/?topic=safety" class="drawer-link">Safety</a></li>
+          <li data-live-from="2026-09-02T10:00"><a href="/en/insights/?topic=energy" class="drawer-link">Energy</a></li>
+          <li data-live-from="2026-10-05T10:00"><a href="/en/insights/?topic=privacy" class="drawer-link">Privacy</a></li>
+          <li data-live-from="2026-10-01T18:00"><a href="/en/insights/?topic=konihaus" class="drawer-link">Konihaus</a></li>
+          <li data-live-from="2026-10-26T10:00"><a href="/en/insights/?topic=news" class="drawer-link">News</a></li>
+          <li><a href="/en/insights/" class="drawer-link">All articles</a></li>
         </ul>
       </li>
+      <li><button type="button" class="drawer-link drawer-search" data-blog-search-open>Search</button></li>
       <li class="drawer-group">
-        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-service"><span data-i18n="nav.service">Service</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
-        <ul class="drawer-sub" id="dg-service" hidden>
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-konihaus"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-konihaus" hidden>
+          <li><a href="https://konihaus.ch/" class="drawer-link" data-i18n="nav.website">Website</a></li>
+          <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
           <li><a href="https://konihaus.ch/#devices" class="drawer-link" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
           <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link class="drawer-link" data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
           <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
@@ -187,514 +209,538 @@
           <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="footer.col1_l4">Kontakt</a></li>
         </ul>
       </li>
-      <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
-      <li><a href="https://blog.konihaus.ch/" class="drawer-link active" aria-current="page" data-i18n="nav.blog">Blog</a></li>
     </ul>
 
     <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
   </div>
 
-
-
-  <main class="insights-container">
+<main class="insights-container insights-container--browse" data-lang="en" data-insights-browser data-base="/en/insights/">
     <header class="insights__header">
       <p class="insights__eyebrow">Konihaus Journal</p>
       <h1 class="insights__title">Smart home <em>made personal</em>.</h1>
       <p class="insights__intro">Notes on privacy, quality and everyday life with a smart home that stays personal, private and open.</p>
     </header>
-
+    <script type="application/json" id="insights-ui">{"searchPlaceholder":"Search articles","searchAria":"Search articles","sort":"Sort","newest":"Newest first","oldest":"Oldest first","shortest":"Shortest read","dateRange":"Date range","from":"From","to":"To","last7":"Last 7 days","last30":"Last 30 days","thisYear":"This year","series":"Series","readingTime":"Reading time","under5":"Under 5 min","mid":"5 to 8 min","over8":"8 min or more","tags":"Tags","topic":"Topic","filterSort":"Filter and sort","clearAll":"Clear all","clear":"Clear filters","show":"Show {n} articles","count1":"1 article","countN":"{n} articles","filteredBy":"Filtered by","loading":"Loading more articles…","showing":"Showing {a} of {b}","empty":"No articles match. Try fewer filters or another word.","noResultsTitle":"Nothing here <em>yet.</em>","noResultsText":"No articles on this topic yet, but no problem: I will write about it in the future. Sign up to get an email when it is published. Is there a topic you would like me to cover?","noResultsCta":"Get in touch","searchLabel":"Search","close":"Close","seeAll":"See all results for \"{q}\"","articles":"Articles","topicsLabel":"Topics","noResults":"No results for \"{q}\".","hint":"↑ ↓ to move · Enter to open · Esc to close","typeToSearch":"Type to search all articles.","minRead":"min read"}</script>
     
     
-
-    
-    <div class="insights-featured-slot" data-scheduled-label="Scheduled">
-      
-      <template data-post-url="/en/insights/what-is-a-smart-home-hub/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/smart-home-hub/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/what-is-a-smart-home-hub/">What a Smart Home Hub Actually Is</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-11-13">November 13, 2026</time>&nbsp;·&nbsp;4 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Today Apple&#39;s HomeView goes on sale in the US, and it can act as a home hub. But what is a hub, and why does it matter more than the screen?</p>
-            <a href="/en/insights/what-is-a-smart-home-hub/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/voice-control-swiss-german/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/swiss-german-voice/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/voice-control-swiss-german/">Voice Control in Swiss German: An Honest Progress Report</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-11-11">November 11, 2026</time>&nbsp;·&nbsp;5 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">&#39;Mach s Liecht im Wohnzimmer aa.&#39; Can a smart home understand that, without sending your voice to the cloud? Where things stand today.</p>
-            <a href="/en/insights/voice-control-swiss-german/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/prevent-mould-at-home/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/mould-airing/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/prevent-mould-at-home/">Airing, Heating and Mould</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-11-09">November 9, 2026</time>&nbsp;·&nbsp;4 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Every winter the same question: how often should you air, and how warm should it be? A few sensors take the guessing out of it.</p>
-            <a href="/en/insights/prevent-mould-at-home/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/adhd-at-home/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/adhd-at-home/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/adhd-at-home/">A Home That Remembers for You</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-11-07">November 7, 2026</time>&nbsp;·&nbsp;5 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Keys, the stove, the appointment at three: with ADHD, the hard part is often remembering at the right moment. A home can help by putting the reminder where it&#39;s needed.</p>
-            <a href="/en/insights/adhd-at-home/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/dementia-at-home/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/dementia-at-home/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/dementia-at-home/">Living at Home With Dementia: Help Without Surveillance</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-11-05">November 5, 2026</time>&nbsp;·&nbsp;5 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Most people with dementia in Switzerland live at home, cared for by family. A few quiet helpers can make that safer, if they respect the person they&#39;re meant to protect.</p>
-            <a href="/en/insights/dementia-at-home/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/electricity-prices-2027/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/electricity-prices-2027/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/electricity-prices-2027/">Electricity Gets a Little Cheaper in 2027. It&#39;s Still Expensive.</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-11-03">November 3, 2026</time>&nbsp;·&nbsp;4 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">A typical Swiss household pays about CHF 53 less for electricity in 2027. Where the real savings are, and why I won&#39;t promise you a percentage.</p>
-            <a href="/en/insights/electricity-prices-2027/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/smart-home-for-renters/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/smart-home-renters/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/smart-home-for-renters/">Smart Home as a Renter: What You Can Do Without Asking</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-11-01">November 1, 2026</time>&nbsp;·&nbsp;5 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Most Swiss households rent. A smart home is still possible, if it plugs in, screws in or sticks on, and comes out again when you move.</p>
-            <a href="/en/insights/smart-home-for-renters/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/safer-hallways-at-night/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/safer-hallways/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/safer-hallways-at-night/">Darker Evenings, Safer Hallways</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-30">October 30, 2026</time>&nbsp;·&nbsp;4 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Most falls at home don&#39;t happen on a mountain path, they happen on the way to the bathroom. Soft light that switches on by itself is one of the simplest things a home can do.</p>
-            <a href="/en/insights/safer-hallways-at-night/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/holiday-home-frost-watch/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/holiday-home-frost/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/holiday-home-frost-watch/">Frost Watch for the Holiday Home</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-28">October 28, 2026</time>&nbsp;·&nbsp;4 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">A frozen pipe in an empty holiday home is often only noticed when the ice melts. A few sensors let you know while there&#39;s still time to act.</p>
-            <a href="/en/insights/holiday-home-frost-watch/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/apple-homeview-switzerland/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/apple-homeview/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/apple-homeview-switzerland/">Apple HomeView: Why It Isn&#39;t Coming Here, and What That Tells Us</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-26">October 26, 2026</time>&nbsp;·&nbsp;5 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Apple&#39;s new smart display goes on sale in the US and the UK in November, but not in the EU, and there&#39;s no date for Switzerland. A calm look at why, and what it means for your home.</p>
-            <a href="/en/insights/apple-homeview-switzerland/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/clocks-go-back/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/clocks-go-back/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/clocks-go-back/">The Clocks Go Back Tonight. Your Home Won&#39;t Notice.</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-24">October 24, 2026</time>&nbsp;·&nbsp;3 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">On Sunday the clocks go back an hour. Timers fall behind, but a home that follows the sun just carries on.</p>
-            <a href="/en/insights/clocks-go-back/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/smart-home-cost-switzerland/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/smart-home-cost/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/smart-home-cost-switzerland/">What does a smart home cost in Switzerland? The honest answer</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-22">October 22, 2026</time>&nbsp;·&nbsp;6 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">What does a smart home cost in Switzerland? What providers publish, what is missing, and what it costs if you only know you&#39;d like your home to be easier.</p>
-            <a href="/en/insights/smart-home-cost-switzerland/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/konihaus-app/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/app/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/konihaus-app/">The Konihaus App: Your Home at a Glance</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-20">October 20, 2026</time>&nbsp;·&nbsp;6 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">A calm app for smartphone, tablet and computer: lights, blinds, heating, security and energy, local in your own system. What it does, and what it deliberately does not.</p>
-            <a href="/en/insights/konihaus-app/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/pain-points-we-stopped-noticing/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/pain-points/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/pain-points-we-stopped-noticing/">The Pain Points We Stopped Noticing</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-17">October 17, 2026</time>&nbsp;·&nbsp;3 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Some chores are so familiar that we no longer see them as chores. A smart home starts with noticing them again.</p>
-            <a href="/en/insights/pain-points-we-stopped-noticing/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/konihaus-is-live/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/launch/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/konihaus-is-live/">Konihaus Is Live</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-15">October 15, 2026</time>&nbsp;·&nbsp;4 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">A personally supported smart home for Switzerland, starting today: what Konihaus is, who it is for, how it works, and what the packages cost.</p>
-            <a href="/en/insights/konihaus-is-live/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/swiss-quality/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/swiss-quality/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/swiss-quality/">Swiss Quality: Built in Switzerland, Made to Last</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-13">October 13, 2026</time>&nbsp;·&nbsp;4 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">From the fuse box to cantonal regulations: we know Swiss homes and stand behind our work for the long run.</p>
-            <a href="/en/insights/swiss-quality/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/who-is-konihaus-for/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/who-is-konihaus-for/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/who-is-konihaus-for/">Who Is Konihaus For? Four Homes, One Principle</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-08">October 8, 2026</time>&nbsp;·&nbsp;6 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">A retiree living alone, a renter who can&#39;t drill, a holiday-home owner far away, and an ordinary family home. Four situations, one approach - personal, local, private.</p>
-            <a href="/en/insights/who-is-konihaus-for/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/privacy-by-default/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/privacy/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/privacy-by-default/">Your Home, Your Data: Privacy by Default</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-05">October 5, 2026</time>&nbsp;·&nbsp;4 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">How Konihaus keeps smart-home data local, limits dependence on vendor clouds, and gives you control over remote access and connected services.</p>
-            <a href="/en/insights/privacy-by-default/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/personal-service/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/personal-service/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/personal-service/">Smart Home, Human Support</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-10-01">October 1, 2026</time>&nbsp;·&nbsp;5 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Smart home advice usually ends at the checkout. Personal service means one person stays with you afterwards.</p>
-            <a href="/en/insights/personal-service/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/no-vendor-lock-in/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/vendor-lock-in/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/no-vendor-lock-in/">No Vendor Lock-In</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-09-29">September 29, 2026</time>&nbsp;·&nbsp;5 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Combine devices from different manufacturers without handing your entire smart home to a single ecosystem.</p>
-            <a href="/en/insights/no-vendor-lock-in/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/smart-home-fine-dining/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/fine-dining/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/smart-home-fine-dining/">Smart Home Is Today&#39;s Fine Dining</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-09-15">September 15, 2026</time>&nbsp;·&nbsp;3 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Obsession or pointless? With smart homes, the truth is in the middle.</p>
-            <a href="/en/insights/smart-home-fine-dining/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/future-proof/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/future-proof/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/future-proof/">Will It Still Work in Ten Years?</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-09-10">September 10, 2026</time>&nbsp;·&nbsp;7 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">A smart home does not have to age like a gadget. The platform keeps developing, and your system grows with new standards.</p>
-            <a href="/en/insights/future-proof/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
-      <template data-post-url="/en/insights/energy-efficiency/">
-        <article class="insights-featured">
-          <div class="insights-featured__media">
-            <div class="insights-featured__clip">
-                <img src="/images/insights/energy-efficiency/og.jpg" alt="" width="1200" height="800" fetchpriority="high" />
-            </div>
-            <span class="insights-badge">New on the blog</span>
-          </div>
-          <div class="insights-featured__content">
-            <h2 class="insights-featured__title">
-              <a href="/en/insights/energy-efficiency/">Warm When You Arrive, Quiet When You Leave</a>
-            </h2>
-            <p class="insights-featured__meta">
-              <time datetime="2026-09-02">September 2, 2026</time>&nbsp;·&nbsp;6 min read&nbsp;·&nbsp;By Koni
-            </p>
-            <p class="insights-featured__excerpt">Automatic heating and shading only help if they actually run — without anyone remembering.</p>
-            <a href="/en/insights/energy-efficiency/" class="insights-featured__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      </template>
-      
+    <div class="insights-topics" role="group" aria-label="Topic">
+      <button type="button" class="insights-chip is-on" data-topic="" aria-pressed="true">All <b data-count></b></button>
+      <button type="button" class="insights-chip" data-topic="technology" aria-pressed="false">Technology <b data-count></b></button>
+      <button type="button" class="insights-chip" data-topic="guide" aria-pressed="false">Guides <b data-count></b></button>
+      <button type="button" class="insights-chip" data-topic="safety" aria-pressed="false">Safety <b data-count></b></button>
+      <button type="button" class="insights-chip" data-topic="energy" aria-pressed="false">Energy <b data-count></b></button>
+      <button type="button" class="insights-chip" data-topic="privacy" aria-pressed="false">Privacy <b data-count></b></button>
+      <button type="button" class="insights-chip" data-topic="konihaus" aria-pressed="false">Konihaus <b data-count></b></button>
+      <button type="button" class="insights-chip" data-topic="news" aria-pressed="false">News <b data-count></b></button>
     </div>
 
-    
+    <div class="insights-layout">
+      <section class="insights-main" aria-label="Konihaus Journal">
+        <div class="insights-status">
+          <p class="insights-count" aria-live="polite"></p>
+          <button type="button" class="insights-filter-btn" aria-controls="insights-aside" aria-expanded="false">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filter and sort<b class="insights-filter-n" hidden></b>
+          </button>
+        </div>
+        <div class="insights-active" aria-label="Filtered by"></div>
+
+        <div class="insights__grid" id="insights-grid">
+          <article class="insights-card" data-post-url="/en/insights/what-is-a-smart-home-hub/" data-post-date="2026-11-13" data-post-time="10:00" data-topic="technology" data-tags="hub,home-assistant,matter" data-reading="4 min read" data-search="what a smart home hub actually is today apple&#39;s homeview goes on sale in the us, and it can act as a home hub. but what is a hub, and why does it matter more than the screen? hub home-assistant matter smart home hub">
+            <div class="insights-card__media">
+              <img src="/images/insights/smart-home-hub/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Technology</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/what-is-a-smart-home-hub/">What a Smart Home Hub Actually Is</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-11-13">November 13, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Today Apple&#39;s HomeView goes on sale in the US, and it can act as a home hub. But what is a hub, and why does it matter more than the screen?</p>
+              </div>
+              <a href="/en/insights/what-is-a-smart-home-hub/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/voice-control-swiss-german/" data-post-date="2026-11-11" data-post-time="10:00" data-topic="technology" data-tags="voice-control,swiss-german,local-first" data-reading="5 min read" data-search="voice control in swiss german: an honest progress report &#39;mach s liecht im wohnzimmer aa.&#39; can a smart home understand that, without sending your voice to the cloud? where things stand today. voice-control swiss-german local-first voice control swiss german">
+            <div class="insights-card__media">
+              <img src="/images/insights/swiss-german-voice/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Technology</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/voice-control-swiss-german/">Voice Control in Swiss German: An Honest Progress Report</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-11-11">November 11, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">&#39;Mach s Liecht im Wohnzimmer aa.&#39; Can a smart home understand that, without sending your voice to the cloud? Where things stand today.</p>
+              </div>
+              <a href="/en/insights/voice-control-swiss-german/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/prevent-mould-at-home/" data-post-date="2026-11-09" data-post-time="10:00" data-topic="guide" data-tags="mould,humidity,ventilation" data-reading="4 min read" data-search="airing, heating and mould every winter the same question: how often should you air, and how warm should it be? a few sensors take the guessing out of it. mould humidity ventilation prevent mould at home">
+            <div class="insights-card__media">
+              <img src="/images/insights/mould-airing/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Guides</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/prevent-mould-at-home/">Airing, Heating and Mould</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-11-09">November 9, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Every winter the same question: how often should you air, and how warm should it be? A few sensors take the guessing out of it.</p>
+              </div>
+              <a href="/en/insights/prevent-mould-at-home/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/adhd-at-home/" data-post-date="2026-11-07" data-post-time="10:00" data-topic="guide" data-tags="adhd,reminders,routines" data-reading="5 min read" data-search="a home that remembers for you keys, the stove, the appointment at three: with adhd, the hard part is often remembering at the right moment. a home can help by putting the reminder where it&#39;s needed. adhd reminders routines adhd at home">
+            <div class="insights-card__media">
+              <img src="/images/insights/adhd-at-home/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Guides</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/adhd-at-home/">A Home That Remembers for You</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-11-07">November 7, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Keys, the stove, the appointment at three: with ADHD, the hard part is often remembering at the right moment. A home can help by putting the reminder where it&#39;s needed.</p>
+              </div>
+              <a href="/en/insights/adhd-at-home/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/dementia-at-home/" data-post-date="2026-11-05" data-post-time="10:00" data-topic="safety" data-tags="dementia,ageing-in-place,safety" data-reading="5 min read" data-search="living at home with dementia: help without surveillance most people with dementia in switzerland live at home, cared for by family. a few quiet helpers can make that safer, if they respect the person they&#39;re meant to protect. dementia ageing-in-place safety dementia at home">
+            <div class="insights-card__media">
+              <img src="/images/insights/dementia-at-home/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Safety</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/dementia-at-home/">Living at Home With Dementia: Help Without Surveillance</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-11-05">November 5, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Most people with dementia in Switzerland live at home, cared for by family. A few quiet helpers can make that safer, if they respect the person they&#39;re meant to protect.</p>
+              </div>
+              <a href="/en/insights/dementia-at-home/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/electricity-prices-2027/" data-post-date="2026-11-03" data-post-time="10:00" data-topic="energy" data-tags="electricity-prices,standby,energy-saving" data-reading="4 min read" data-search="electricity gets a little cheaper in 2027. it&#39;s still expensive. a typical swiss household pays about chf 53 less for electricity in 2027. where the real savings are, and why i won&#39;t promise you a percentage. electricity-prices standby energy-saving electricity prices 2027 switzerland">
+            <div class="insights-card__media">
+              <img src="/images/insights/electricity-prices-2027/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Energy</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/electricity-prices-2027/">Electricity Gets a Little Cheaper in 2027. It&#39;s Still Expensive.</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-11-03">November 3, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">A typical Swiss household pays about CHF 53 less for electricity in 2027. Where the real savings are, and why I won&#39;t promise you a percentage.</p>
+              </div>
+              <a href="/en/insights/electricity-prices-2027/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/smart-home-for-renters/" data-post-date="2026-11-01" data-post-time="10:00" data-topic="guide" data-tags="renters,tenancy-law,retrofit" data-reading="5 min read" data-search="smart home as a renter: what you can do without asking most swiss households rent. a smart home is still possible, if it plugs in, screws in or sticks on, and comes out again when you move. renters tenancy-law retrofit smart home for renters">
+            <div class="insights-card__media">
+              <img src="/images/insights/smart-home-renters/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Guides</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/smart-home-for-renters/">Smart Home as a Renter: What You Can Do Without Asking</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-11-01">November 1, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Most Swiss households rent. A smart home is still possible, if it plugs in, screws in or sticks on, and comes out again when you move.</p>
+              </div>
+              <a href="/en/insights/smart-home-for-renters/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/safer-hallways-at-night/" data-post-date="2026-10-30" data-post-time="10:00" data-topic="safety" data-tags="seniors,fall-prevention,lighting" data-reading="4 min read" data-search="darker evenings, safer hallways most falls at home don&#39;t happen on a mountain path, they happen on the way to the bathroom. soft light that switches on by itself is one of the simplest things a home can do. seniors fall-prevention lighting night light for seniors">
+            <div class="insights-card__media">
+              <img src="/images/insights/safer-hallways/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Safety</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/safer-hallways-at-night/">Darker Evenings, Safer Hallways</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-30">October 30, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Most falls at home don&#39;t happen on a mountain path, they happen on the way to the bathroom. Soft light that switches on by itself is one of the simplest things a home can do.</p>
+              </div>
+              <a href="/en/insights/safer-hallways-at-night/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/holiday-home-frost-watch/" data-post-date="2026-10-28" data-post-time="10:00" data-topic="safety" data-tags="holiday-home,frost-protection,water-damage" data-reading="4 min read" data-search="frost watch for the holiday home a frozen pipe in an empty holiday home is often only noticed when the ice melts. a few sensors let you know while there&#39;s still time to act. holiday-home frost-protection water-damage holiday home frost protection">
+            <div class="insights-card__media">
+              <img src="/images/insights/holiday-home-frost/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Safety</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/holiday-home-frost-watch/">Frost Watch for the Holiday Home</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-28">October 28, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">A frozen pipe in an empty holiday home is often only noticed when the ice melts. A few sensors let you know while there&#39;s still time to act.</p>
+              </div>
+              <a href="/en/insights/holiday-home-frost-watch/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/apple-homeview-switzerland/" data-post-date="2026-10-26" data-post-time="10:00" data-topic="news" data-tags="apple,smart-display,privacy" data-reading="5 min read" data-search="apple homeview: why it isn&#39;t coming here, and what that tells us apple&#39;s new smart display goes on sale in the us and the uk in november, but not in the eu, and there&#39;s no date for switzerland. a calm look at why, and what it means for your home. apple smart-display privacy apple homeview switzerland">
+            <div class="insights-card__media">
+              <img src="/images/insights/apple-homeview/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">News</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/apple-homeview-switzerland/">Apple HomeView: Why It Isn&#39;t Coming Here, and What That Tells Us</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-26">October 26, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Apple&#39;s new smart display goes on sale in the US and the UK in November, but not in the EU, and there&#39;s no date for Switzerland. A calm look at why, and what it means for your home.</p>
+              </div>
+              <a href="/en/insights/apple-homeview-switzerland/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/clocks-go-back/" data-post-date="2026-10-24" data-post-time="10:00" data-topic="energy" data-tags="lighting,automation,seasons" data-reading="3 min read" data-search="the clocks go back tonight. your home won&#39;t notice. on sunday the clocks go back an hour. timers fall behind, but a home that follows the sun just carries on. lighting automation seasons clock change smart home">
+            <div class="insights-card__media">
+              <img src="/images/insights/clocks-go-back/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Energy</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/clocks-go-back/">The Clocks Go Back Tonight. Your Home Won&#39;t Notice.</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-24">October 24, 2026</time>&nbsp;·&nbsp;3 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">On Sunday the clocks go back an hour. Timers fall behind, but a home that follows the sun just carries on.</p>
+              </div>
+              <a href="/en/insights/clocks-go-back/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/smart-home-cost-switzerland/" data-post-date="2026-10-22" data-post-time="10:00" data-topic="guide" data-tags="prices,comparison,switzerland" data-reading="6 min read" data-search="what does a smart home cost in switzerland? the honest answer what does a smart home cost in switzerland? what providers publish, what is missing, and what it costs if you only know you&#39;d like your home to be easier. prices comparison switzerland smart home cost switzerland">
+            <div class="insights-card__media">
+              <img src="/images/insights/smart-home-cost/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Guides</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/smart-home-cost-switzerland/">What does a smart home cost in Switzerland? The honest answer</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-22">October 22, 2026</time>&nbsp;·&nbsp;6 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">What does a smart home cost in Switzerland? What providers publish, what is missing, and what it costs if you only know you&#39;d like your home to be easier.</p>
+              </div>
+              <a href="/en/insights/smart-home-cost-switzerland/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/konihaus-app/" data-post-date="2026-10-20" data-post-time="10:00" data-topic="technology" data-tags="app,dashboard,home-assistant" data-reading="6 min read" data-search="the konihaus app: your home at a glance a calm app for smartphone, tablet and computer: lights, blinds, heating, security and energy, local in your own system. what it does, and what it deliberately does not. app dashboard home-assistant smart home app">
+            <div class="insights-card__media">
+              <img src="/images/insights/app/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Technology</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/konihaus-app/">The Konihaus App: Your Home at a Glance</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-20">October 20, 2026</time>&nbsp;·&nbsp;6 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">A calm app for smartphone, tablet and computer: lights, blinds, heating, security and energy, local in your own system. What it does, and what it deliberately does not.</p>
+              </div>
+              <a href="/en/insights/konihaus-app/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/pain-points-we-stopped-noticing/" data-post-date="2026-10-17" data-post-time="10:00" data-topic="guide" data-tags="everyday-life,automation-ideas" data-reading="3 min read" data-search="the pain points we stopped noticing some chores are so familiar that we no longer see them as chores. a smart home starts with noticing them again. everyday-life automation-ideas smart home ideas">
+            <div class="insights-card__media">
+              <img src="/images/insights/pain-points/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Guides</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/pain-points-we-stopped-noticing/">The Pain Points We Stopped Noticing</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-17">October 17, 2026</time>&nbsp;·&nbsp;3 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Some chores are so familiar that we no longer see them as chores. A smart home starts with noticing them again.</p>
+              </div>
+              <a href="/en/insights/pain-points-we-stopped-noticing/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/konihaus-is-live/" data-post-date="2026-10-15" data-post-time="09:00" data-topic="konihaus" data-tags="launch,service,prices" data-reading="4 min read" data-search="konihaus is live a personally supported smart home for switzerland, starting today: what konihaus is, who it is for, how it works, and what the packages cost. launch service prices smart home service switzerland">
+            <div class="insights-card__media">
+              <img src="/images/insights/launch/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Konihaus</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/konihaus-is-live/">Konihaus Is Live</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-15">October 15, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">A personally supported smart home for Switzerland, starting today: what Konihaus is, who it is for, how it works, and what the packages cost.</p>
+              </div>
+              <a href="/en/insights/konihaus-is-live/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/swiss-quality/" data-post-date="2026-10-13" data-post-time="10:00" data-topic="konihaus" data-tags="switzerland,quality,regulations" data-reading="4 min read" data-search="swiss quality: built in switzerland, made to last from the fuse box to cantonal regulations: we know swiss homes and stand behind our work for the long run. switzerland quality regulations smart home switzerland">
+            <div class="insights-card__media">
+              <img src="/images/insights/swiss-quality/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Konihaus</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/swiss-quality/">Swiss Quality: Built in Switzerland, Made to Last</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-13">October 13, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">From the fuse box to cantonal regulations: we know Swiss homes and stand behind our work for the long run.</p>
+              </div>
+              <a href="/en/insights/swiss-quality/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/who-is-konihaus-for/" data-post-date="2026-10-08" data-post-time="18:00" data-topic="guide" data-tags="seniors,renters,holiday-home,zurich" data-reading="6 min read" data-search="who is konihaus for? four homes, one principle a retiree living alone, a renter who can&#39;t drill, a holiday-home owner far away, and an ordinary family home. four situations, one approach - personal, local, private. seniors renters holiday-home zurich smart home zurich">
+            <div class="insights-card__media">
+              <img src="/images/insights/who-is-konihaus-for/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Guides</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/who-is-konihaus-for/">Who Is Konihaus For? Four Homes, One Principle</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-08">October 8, 2026</time>&nbsp;·&nbsp;6 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">A retiree living alone, a renter who can&#39;t drill, a holiday-home owner far away, and an ordinary family home. Four situations, one approach - personal, local, private.</p>
+              </div>
+              <a href="/en/insights/who-is-konihaus-for/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/privacy-by-default/" data-post-date="2026-10-05" data-post-time="10:00" data-topic="privacy" data-tags="privacy,local-first,voice-control" data-reading="4 min read" data-search="your home, your data: privacy by default how konihaus keeps smart-home data local, limits dependence on vendor clouds, and gives you control over remote access and connected services. privacy local-first voice-control smart home privacy">
+            <div class="insights-card__media">
+              <img src="/images/insights/privacy/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Privacy</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/privacy-by-default/">Your Home, Your Data: Privacy by Default</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-05">October 5, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">How Konihaus keeps smart-home data local, limits dependence on vendor clouds, and gives you control over remote access and connected services.</p>
+              </div>
+              <a href="/en/insights/privacy-by-default/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/personal-service/" data-post-date="2026-10-01" data-post-time="18:00" data-topic="konihaus" data-tags="support,advice" data-reading="5 min read" data-search="smart home, human support smart home advice usually ends at the checkout. personal service means one person stays with you afterwards. support advice smart home support">
+            <div class="insights-card__media">
+              <img src="/images/insights/personal-service/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Konihaus</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/personal-service/">Smart Home, Human Support</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-10-01">October 1, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Smart home advice usually ends at the checkout. Personal service means one person stays with you afterwards.</p>
+              </div>
+              <a href="/en/insights/personal-service/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/no-vendor-lock-in/" data-post-date="2026-09-29" data-post-time="10:00" data-topic="technology" data-tags="interoperability,zigbee,matter" data-reading="5 min read" data-search="no vendor lock-in combine devices from different manufacturers without handing your entire smart home to a single ecosystem. interoperability zigbee matter smart home without vendor lock-in">
+            <div class="insights-card__media">
+              <img src="/images/insights/vendor-lock-in/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Technology</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/no-vendor-lock-in/">No Vendor Lock-In</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-09-29">September 29, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Combine devices from different manufacturers without handing your entire smart home to a single ecosystem.</p>
+              </div>
+              <a href="/en/insights/no-vendor-lock-in/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/smart-home-fine-dining/" data-post-date="2026-09-15" data-post-time="10:00" data-topic="guide" data-tags="smart-home-benefits,everyday-life" data-reading="3 min read" data-search="smart home is today&#39;s fine dining obsession or pointless? with smart homes, the truth is in the middle. smart-home-benefits everyday-life is a smart home worth it">
+            <div class="insights-card__media">
+              <img src="/images/insights/fine-dining/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Guides</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/smart-home-fine-dining/">Smart Home Is Today&#39;s Fine Dining</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-09-15">September 15, 2026</time>&nbsp;·&nbsp;3 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Obsession or pointless? With smart homes, the truth is in the middle.</p>
+              </div>
+              <a href="/en/insights/smart-home-fine-dining/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/future-proof/" data-post-date="2026-09-10" data-post-time="10:00" data-topic="technology" data-tags="open-standards,home-assistant,matter" data-reading="7 min read" data-search="will it still work in ten years? a smart home does not have to age like a gadget. the platform keeps developing, and your system grows with new standards. open-standards home-assistant matter future-proof smart home">
+            <div class="insights-card__media">
+              <img src="/images/insights/future-proof/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Technology</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/future-proof/">Will It Still Work in Ten Years?</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-09-10">September 10, 2026</time>&nbsp;·&nbsp;7 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">A smart home does not have to age like a gadget. The platform keeps developing, and your system grows with new standards.</p>
+              </div>
+              <a href="/en/insights/future-proof/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+          <article class="insights-card" data-post-url="/en/insights/energy-efficiency/" data-post-date="2026-09-02" data-post-time="10:00" data-topic="energy" data-tags="energy-saving,heating,holiday-home" data-reading="6 min read" data-search="warm when you arrive, quiet when you leave automatic heating and shading only help if they actually run — without anyone remembering. energy-saving heating holiday-home save energy with a smart home">
+            <div class="insights-card__media">
+              <img src="/images/insights/energy-efficiency/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+              <span class="insights-badge">New on the blog</span>
+            </div>
+            <div class="insights-card__body">
+              <p class="insights-card__category">Energy</p>
+              <h3 class="insights-card__title">
+                <a href="/en/insights/energy-efficiency/">Warm When You Arrive, Quiet When You Leave</a>
+              </h3>
+              <p class="insights-card__meta">
+                <time datetime="2026-09-02">September 2, 2026</time>&nbsp;·&nbsp;6 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
+              </p>
+              <div class="insights-card__excerpt-container">
+                <p class="insights-card__excerpt">Automatic heating and shading only help if they actually run — without anyone remembering.</p>
+              </div>
+              <a href="/en/insights/energy-efficiency/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
+            </div>
+          </article>
+        </div>
+
+        <p class="insights-empty" hidden>No articles match. Try fewer filters or another word. <button type="button" class="insights-linkbtn" data-clear>Clear filters</button></p>
+        <div class="insights-sentinel" aria-live="polite" hidden>
+          <span class="insights-sentinel__spin" aria-hidden="true"></span>
+          <span class="insights-sentinel__text"></span>
+        </div>
+      </section>
+
+      <aside class="insights-aside" id="insights-aside" aria-label="Filter and sort">
+        <div class="insights-sheet-head">
+          <b>Filter and sort</b>
+          <button type="button" class="insights-linkbtn" data-clear>Clear all</button>
+          <button type="button" class="insights-sheet-close" aria-label="Close">×</button>
+        </div>
+        <div class="insights-aside__body">
+          <div class="insights-facet">
+            <h4>Sort</h4>
+            <select class="insights-select" data-f="sort" aria-label="Sort">
+              <option value="new">Newest first</option>
+              <option value="old">Oldest first</option>
+              <option value="short">Shortest read</option>
+            </select>
+          </div>
+          <div class="insights-facet">
+            <h4>Date range</h4>
+            <div class="insights-dates">
+              <label class="insights-date"><small>From</small><input type="date" data-f="from"></label>
+              <label class="insights-date"><small>To</small><input type="date" data-f="to"></label>
+            </div>
+            <div class="insights-presets">
+              <button type="button" class="insights-chip insights-chip--sm" data-preset="7">Last 7 days</button>
+              <button type="button" class="insights-chip insights-chip--sm" data-preset="30">Last 30 days</button>
+              <button type="button" class="insights-chip insights-chip--sm" data-preset="year">This year</button>
+            </div>
+          </div>
+          <div class="insights-facet" data-facet="series" hidden>
+            <h4>Series</h4>
+            <div class="insights-checks"></div>
+          </div>
+          <div class="insights-facet">
+            <h4>Reading time</h4>
+            <div class="insights-checks" data-facet="reading">
+              <label class="insights-check"><input type="checkbox" data-rt="u5"><i></i>Under 5 min<span data-rtcount="u5"></span></label>
+              <label class="insights-check"><input type="checkbox" data-rt="mid"><i></i>5 to 8 min<span data-rtcount="mid"></span></label>
+              <label class="insights-check"><input type="checkbox" data-rt="o8"><i></i>8 min or more<span data-rtcount="o8"></span></label>
+            </div>
+          </div>
+          <div class="insights-facet" data-facet="tags" hidden>
+            <h4>Tags</h4>
+            <div class="insights-tags"></div>
+          </div>
+        </div>
+        <div class="insights-sheet-foot">
+          <button type="button" class="insights-showbtn" data-sheet-apply></button>
+        </div>
+      </aside>
+    </div>
+    <div class="insights-subscribe-slot">
 <aside class="subscribe subscribe--card" aria-label="Newsletter">
   <div class="subscribe__intro">
     <p class="subscribe__eyebrow">Newsletter</p>
@@ -720,473 +766,11 @@
     <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
   </form>
 </aside>
-
-
-    <div class="insights__grid">
-      
-        <article class="insights-card" data-post-url="/en/insights/what-is-a-smart-home-hub/" data-post-date="2026-11-13" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/smart-home-hub/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">technology</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/what-is-a-smart-home-hub/">What a Smart Home Hub Actually Is</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-11-13">November 13, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Today Apple&#39;s HomeView goes on sale in the US, and it can act as a home hub. But what is a hub, and why does it matter more than the screen?</p>
-            </div>
-            <a href="/en/insights/what-is-a-smart-home-hub/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/voice-control-swiss-german/" data-post-date="2026-11-11" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/swiss-german-voice/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">technology</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/voice-control-swiss-german/">Voice Control in Swiss German: An Honest Progress Report</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-11-11">November 11, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">&#39;Mach s Liecht im Wohnzimmer aa.&#39; Can a smart home understand that, without sending your voice to the cloud? Where things stand today.</p>
-            </div>
-            <a href="/en/insights/voice-control-swiss-german/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/prevent-mould-at-home/" data-post-date="2026-11-09" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/mould-airing/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">guide</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/prevent-mould-at-home/">Airing, Heating and Mould</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-11-09">November 9, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Every winter the same question: how often should you air, and how warm should it be? A few sensors take the guessing out of it.</p>
-            </div>
-            <a href="/en/insights/prevent-mould-at-home/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/adhd-at-home/" data-post-date="2026-11-07" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/adhd-at-home/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">guide</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/adhd-at-home/">A Home That Remembers for You</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-11-07">November 7, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Keys, the stove, the appointment at three: with ADHD, the hard part is often remembering at the right moment. A home can help by putting the reminder where it&#39;s needed.</p>
-            </div>
-            <a href="/en/insights/adhd-at-home/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/dementia-at-home/" data-post-date="2026-11-05" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/dementia-at-home/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">safety</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/dementia-at-home/">Living at Home With Dementia: Help Without Surveillance</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-11-05">November 5, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Most people with dementia in Switzerland live at home, cared for by family. A few quiet helpers can make that safer, if they respect the person they&#39;re meant to protect.</p>
-            </div>
-            <a href="/en/insights/dementia-at-home/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/electricity-prices-2027/" data-post-date="2026-11-03" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/electricity-prices-2027/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">energy</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/electricity-prices-2027/">Electricity Gets a Little Cheaper in 2027. It&#39;s Still Expensive.</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-11-03">November 3, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">A typical Swiss household pays about CHF 53 less for electricity in 2027. Where the real savings are, and why I won&#39;t promise you a percentage.</p>
-            </div>
-            <a href="/en/insights/electricity-prices-2027/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/smart-home-for-renters/" data-post-date="2026-11-01" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/smart-home-renters/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">guide</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/smart-home-for-renters/">Smart Home as a Renter: What You Can Do Without Asking</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-11-01">November 1, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Most Swiss households rent. A smart home is still possible, if it plugs in, screws in or sticks on, and comes out again when you move.</p>
-            </div>
-            <a href="/en/insights/smart-home-for-renters/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/safer-hallways-at-night/" data-post-date="2026-10-30" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/safer-hallways/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">safety</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/safer-hallways-at-night/">Darker Evenings, Safer Hallways</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-30">October 30, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Most falls at home don&#39;t happen on a mountain path, they happen on the way to the bathroom. Soft light that switches on by itself is one of the simplest things a home can do.</p>
-            </div>
-            <a href="/en/insights/safer-hallways-at-night/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/holiday-home-frost-watch/" data-post-date="2026-10-28" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/holiday-home-frost/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">safety</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/holiday-home-frost-watch/">Frost Watch for the Holiday Home</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-28">October 28, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">A frozen pipe in an empty holiday home is often only noticed when the ice melts. A few sensors let you know while there&#39;s still time to act.</p>
-            </div>
-            <a href="/en/insights/holiday-home-frost-watch/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/apple-homeview-switzerland/" data-post-date="2026-10-26" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/apple-homeview/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">news</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/apple-homeview-switzerland/">Apple HomeView: Why It Isn&#39;t Coming Here, and What That Tells Us</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-26">October 26, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Apple&#39;s new smart display goes on sale in the US and the UK in November, but not in the EU, and there&#39;s no date for Switzerland. A calm look at why, and what it means for your home.</p>
-            </div>
-            <a href="/en/insights/apple-homeview-switzerland/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/clocks-go-back/" data-post-date="2026-10-24" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/clocks-go-back/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">energy</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/clocks-go-back/">The Clocks Go Back Tonight. Your Home Won&#39;t Notice.</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-24">October 24, 2026</time>&nbsp;·&nbsp;3 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">On Sunday the clocks go back an hour. Timers fall behind, but a home that follows the sun just carries on.</p>
-            </div>
-            <a href="/en/insights/clocks-go-back/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/smart-home-cost-switzerland/" data-post-date="2026-10-22" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/smart-home-cost/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">guide</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/smart-home-cost-switzerland/">What does a smart home cost in Switzerland? The honest answer</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-22">October 22, 2026</time>&nbsp;·&nbsp;6 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">What does a smart home cost in Switzerland? What providers publish, what is missing, and what it costs if you only know you&#39;d like your home to be easier.</p>
-            </div>
-            <a href="/en/insights/smart-home-cost-switzerland/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/konihaus-app/" data-post-date="2026-10-20" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/app/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">technology</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/konihaus-app/">The Konihaus App: Your Home at a Glance</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-20">October 20, 2026</time>&nbsp;·&nbsp;6 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">A calm app for smartphone, tablet and computer: lights, blinds, heating, security and energy, local in your own system. What it does, and what it deliberately does not.</p>
-            </div>
-            <a href="/en/insights/konihaus-app/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/pain-points-we-stopped-noticing/" data-post-date="2026-10-17" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/pain-points/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">guide</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/pain-points-we-stopped-noticing/">The Pain Points We Stopped Noticing</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-17">October 17, 2026</time>&nbsp;·&nbsp;3 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Some chores are so familiar that we no longer see them as chores. A smart home starts with noticing them again.</p>
-            </div>
-            <a href="/en/insights/pain-points-we-stopped-noticing/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/konihaus-is-live/" data-post-date="2026-10-15" data-post-time="09:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/launch/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">konihaus</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/konihaus-is-live/">Konihaus Is Live</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-15">October 15, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">A personally supported smart home for Switzerland, starting today: what Konihaus is, who it is for, how it works, and what the packages cost.</p>
-            </div>
-            <a href="/en/insights/konihaus-is-live/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/swiss-quality/" data-post-date="2026-10-13" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/swiss-quality/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">konihaus</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/swiss-quality/">Swiss Quality: Built in Switzerland, Made to Last</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-13">October 13, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">From the fuse box to cantonal regulations: we know Swiss homes and stand behind our work for the long run.</p>
-            </div>
-            <a href="/en/insights/swiss-quality/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/who-is-konihaus-for/" data-post-date="2026-10-08" data-post-time="18:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/who-is-konihaus-for/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">guide</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/who-is-konihaus-for/">Who Is Konihaus For? Four Homes, One Principle</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-08">October 8, 2026</time>&nbsp;·&nbsp;6 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">A retiree living alone, a renter who can&#39;t drill, a holiday-home owner far away, and an ordinary family home. Four situations, one approach - personal, local, private.</p>
-            </div>
-            <a href="/en/insights/who-is-konihaus-for/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/privacy-by-default/" data-post-date="2026-10-05" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/privacy/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">privacy</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/privacy-by-default/">Your Home, Your Data: Privacy by Default</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-05">October 5, 2026</time>&nbsp;·&nbsp;4 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">How Konihaus keeps smart-home data local, limits dependence on vendor clouds, and gives you control over remote access and connected services.</p>
-            </div>
-            <a href="/en/insights/privacy-by-default/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/personal-service/" data-post-date="2026-10-01" data-post-time="18:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/personal-service/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">konihaus</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/personal-service/">Smart Home, Human Support</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-10-01">October 1, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Smart home advice usually ends at the checkout. Personal service means one person stays with you afterwards.</p>
-            </div>
-            <a href="/en/insights/personal-service/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/no-vendor-lock-in/" data-post-date="2026-09-29" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/vendor-lock-in/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">technology</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/no-vendor-lock-in/">No Vendor Lock-In</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-09-29">September 29, 2026</time>&nbsp;·&nbsp;5 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Combine devices from different manufacturers without handing your entire smart home to a single ecosystem.</p>
-            </div>
-            <a href="/en/insights/no-vendor-lock-in/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/smart-home-fine-dining/" data-post-date="2026-09-15" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/fine-dining/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">guide</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/smart-home-fine-dining/">Smart Home Is Today&#39;s Fine Dining</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-09-15">September 15, 2026</time>&nbsp;·&nbsp;3 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Obsession or pointless? With smart homes, the truth is in the middle.</p>
-            </div>
-            <a href="/en/insights/smart-home-fine-dining/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/future-proof/" data-post-date="2026-09-10" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/future-proof/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">technology</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/future-proof/">Will It Still Work in Ten Years?</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-09-10">September 10, 2026</time>&nbsp;·&nbsp;7 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">A smart home does not have to age like a gadget. The platform keeps developing, and your system grows with new standards.</p>
-            </div>
-            <a href="/en/insights/future-proof/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-        <article class="insights-card" data-post-url="/en/insights/energy-efficiency/" data-post-date="2026-09-02" data-post-time="10:00">
-          <div class="insights-card__media">
-            <img src="/images/insights/energy-efficiency/og.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async" />
-          </div>
-          <div class="insights-card__body">
-            
-            <p class="insights-card__category">energy</p>
-            <h3 class="insights-card__title">
-              <a href="/en/insights/energy-efficiency/">Warm When You Arrive, Quiet When You Leave</a>
-            </h3>
-            <p class="insights-card__meta">
-              <time datetime="2026-09-02">September 2, 2026</time>&nbsp;·&nbsp;6 min read<span class="insights-card__author">&nbsp;·&nbsp;By Koni</span>
-            </p>
-            <div class="insights-card__excerpt-container">
-              <p class="insights-card__excerpt">Automatic heating and shading only help if they actually run — without anyone remembering.</p>
-            </div>
-            <a href="/en/insights/energy-efficiency/" class="insights-card__link" aria-hidden="true" tabindex="-1">Read article <span>→</span></a>
-          </div>
-        </article>
-      
-    </div>
+</div>
+    <div class="insights-sheet-backdrop" hidden></div>
     
   </main>
+
 
     <footer class="footer">
     <div class="container">
@@ -1263,6 +847,7 @@
   </footer>
 
   <script src="/assets/scripts.js"></script>
+  <script src="/assets/insights-browse.js"></script>
   <script src="/assets/cookie-consent.js"></script>
 </body>
 </html>

@@ -186,18 +186,32 @@
           <div class="wordmark">konihaus blog</div>
         </a>
         <ul class="nav__links">
+            <li><button type="button" class="nav__search" data-blog-search-open aria-label="Suche"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Suche</span></button></li>
+            <li><a href="/de/insights/">Neueste</a></li>
             <li class="has-sub">
-              <a href="https://konihaus.ch/#about" class="nav__parent" aria-haspopup="true"><span data-i18n="nav.about_us">Über uns</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <a href="/de/insights/" class="nav__parent" aria-haspopup="true"><span>Themen</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
               <ul class="nav__sub">
+                <li data-live-from="2026-09-10T10:00"><a href="/de/insights/?topic=technik">Technik</a></li>
+                <li data-live-from="2026-09-15T10:00"><a href="/de/insights/?topic=ratgeber">Ratgeber</a></li>
+                <li data-live-from="2026-10-28T10:00"><a href="/de/insights/?topic=sicherheit">Sicherheit</a></li>
+                <li data-live-from="2026-09-02T10:00"><a href="/de/insights/?topic=energie">Energie</a></li>
+                <li data-live-from="2026-10-05T10:00"><a href="/de/insights/?topic=datenschutz">Datenschutz</a></li>
+                <li data-live-from="2026-10-01T18:00"><a href="/de/insights/?topic=konihaus">Konihaus</a></li>
+                <li data-live-from="2026-10-26T10:00"><a href="/de/insights/?topic=news">News</a></li>
+                <li class="nav__sub-all"><a href="/de/insights/">Alle Beiträge →</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="https://konihaus.ch/" class="nav__parent" aria-haspopup="true"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub nav__sub--wide">
+                <li><a href="https://konihaus.ch/" data-i18n="nav.website">Website</a></li>
+                <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+                <li class="nav__sub-label">Unternehmen</li>
                 <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
                 <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
                 <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
                 <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
-              </ul>
-            </li>
-            <li class="has-sub">
-              <a href="https://konihaus.ch/#packages" class="nav__parent" aria-haspopup="true"><span data-i18n="nav.service">Service</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
-              <ul class="nav__sub">
+                <li class="nav__sub-label">Service</li>
                 <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
                 <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
                 <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
@@ -205,9 +219,7 @@
                 <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
               </ul>
             </li>
-            <li><a href="https://app.konihaus.ch" class="nav__app" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
-            <li><a href="https://blog.konihaus.ch/" class="active" aria-current="page" data-i18n="nav.blog">Blog</a></li>
-          </ul>
+          </ul><button type="button" class="nav__searchbar" data-blog-search-open aria-label="Suche"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Beiträge durchsuchen</span></button>
 
         <div class="language-picker">
           <button
@@ -250,18 +262,28 @@
   <!-- MOBILE DRAWER -->
   <div class="nav__drawer" id="drawer">
     <ul>
+      <li><a href="/de/insights/" class="drawer-link">Neueste</a></li>
       <li class="drawer-group">
-        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-about"><span data-i18n="nav.about_us">Über uns</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
-        <ul class="drawer-sub" id="dg-about" hidden>
-          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
-          <li><a href="https://konihaus.ch/#process" class="drawer-link" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
-          <li><a href="https://konihaus.ch/#why" class="drawer-link" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
-          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-topics"><span>Themen</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-topics" hidden>
+          <li data-live-from="2026-09-10T10:00"><a href="/de/insights/?topic=technik" class="drawer-link">Technik</a></li>
+          <li data-live-from="2026-09-15T10:00"><a href="/de/insights/?topic=ratgeber" class="drawer-link">Ratgeber</a></li>
+          <li data-live-from="2026-10-28T10:00"><a href="/de/insights/?topic=sicherheit" class="drawer-link">Sicherheit</a></li>
+          <li data-live-from="2026-09-02T10:00"><a href="/de/insights/?topic=energie" class="drawer-link">Energie</a></li>
+          <li data-live-from="2026-10-05T10:00"><a href="/de/insights/?topic=datenschutz" class="drawer-link">Datenschutz</a></li>
+          <li data-live-from="2026-10-01T18:00"><a href="/de/insights/?topic=konihaus" class="drawer-link">Konihaus</a></li>
+          <li data-live-from="2026-10-26T10:00"><a href="/de/insights/?topic=news" class="drawer-link">News</a></li>
+          <li><a href="/de/insights/" class="drawer-link">Alle Beiträge</a></li>
         </ul>
       </li>
+      <li><button type="button" class="drawer-link drawer-search" data-blog-search-open>Suche</button></li>
       <li class="drawer-group">
-        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-service"><span data-i18n="nav.service">Service</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
-        <ul class="drawer-sub" id="dg-service" hidden>
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-konihaus"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-konihaus" hidden>
+          <li><a href="https://konihaus.ch/" class="drawer-link" data-i18n="nav.website">Website</a></li>
+          <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
           <li><a href="https://konihaus.ch/#devices" class="drawer-link" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
           <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link class="drawer-link" data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
           <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
@@ -269,8 +291,6 @@
           <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="footer.col1_l4">Kontakt</a></li>
         </ul>
       </li>
-      <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
-      <li><a href="https://blog.konihaus.ch/" class="drawer-link active" aria-current="page" data-i18n="nav.blog">Blog</a></li>
     </ul>
 
     <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
