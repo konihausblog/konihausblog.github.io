@@ -46,6 +46,12 @@
     <lastmod>2026-09-15</lastmod>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/smarte-beleuchtung-schweiz/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-beleuchtung-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-lights-switzerland/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/unbemerkte-alltagsaergernisse/</loc>
     <lastmod>2026-10-17</lastmod>
   </url>
@@ -121,6 +127,12 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/smart-home-fine-dining/</loc>
     <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/smart-lights-switzerland/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-beleuchtung-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-lights-switzerland/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/swiss-quality/</loc>
