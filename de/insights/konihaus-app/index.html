@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
-       default 07:00, Swiss time) the page behaves like a 404 and is marked noindex, nofollow,
+       default 09:00, Swiss time) the page behaves like a 404 and is marked noindex, nofollow,
        unless the URL has ?devmode=super (then it shows, but still noindex, nofollow).
        Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
   <script>
@@ -19,8 +19,8 @@
       }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
       var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
       var published = '2026-10-20';
-      var m = /^(\d{1,2}):(\d{2})/.exec('10:00');
-      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '07:00';
+      var m = /^(\d{1,2}):(\d{2})/.exec('09:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '09:00';
       window.__scheduledPost = (published + 'T' + at) > now ? published : null;
       window.__scheduledPostTime = at;
       // Not released yet (or a dev preview): tell search engines not to index or follow.
@@ -192,13 +192,13 @@
             <li class="has-sub">
               <a href="/de/insights/" class="nav__parent" aria-haspopup="true"><span>Themen</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
               <ul class="nav__sub">
-                <li data-live-from="2026-09-10T10:00"><a href="/de/insights/?topic=technik">Technik</a></li>
-                <li data-live-from="2026-09-15T10:00"><a href="/de/insights/?topic=ratgeber">Ratgeber</a></li>
-                <li data-live-from="2026-10-28T10:00"><a href="/de/insights/?topic=sicherheit">Sicherheit</a></li>
-                <li data-live-from="2026-09-02T10:00"><a href="/de/insights/?topic=energie">Energie</a></li>
-                <li data-live-from="2026-10-05T10:00"><a href="/de/insights/?topic=datenschutz">Datenschutz</a></li>
+                <li data-live-from="2026-09-10T09:00"><a href="/de/insights/?topic=technik">Technik</a></li>
+                <li data-live-from="2026-09-15T09:00"><a href="/de/insights/?topic=ratgeber">Ratgeber</a></li>
+                <li data-live-from="2026-10-28T09:00"><a href="/de/insights/?topic=sicherheit">Sicherheit</a></li>
+                <li data-live-from="2026-09-02T09:00"><a href="/de/insights/?topic=energie">Energie</a></li>
+                <li data-live-from="2026-10-05T09:00"><a href="/de/insights/?topic=datenschutz">Datenschutz</a></li>
                 <li data-live-from="2026-10-01T18:00"><a href="/de/insights/?topic=konihaus">Konihaus</a></li>
-                <li data-live-from="2026-10-26T10:00"><a href="/de/insights/?topic=news">News</a></li>
+                <li data-live-from="2026-10-26T09:00"><a href="/de/insights/?topic=news">News</a></li>
                 <li class="nav__sub-all"><a href="/de/insights/">Alle Beiträge →</a></li>
               </ul>
             </li>
@@ -267,13 +267,13 @@
       <li class="drawer-group">
         <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-topics"><span>Themen</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
         <ul class="drawer-sub" id="dg-topics" hidden>
-          <li data-live-from="2026-09-10T10:00"><a href="/de/insights/?topic=technik" class="drawer-link">Technik</a></li>
-          <li data-live-from="2026-09-15T10:00"><a href="/de/insights/?topic=ratgeber" class="drawer-link">Ratgeber</a></li>
-          <li data-live-from="2026-10-28T10:00"><a href="/de/insights/?topic=sicherheit" class="drawer-link">Sicherheit</a></li>
-          <li data-live-from="2026-09-02T10:00"><a href="/de/insights/?topic=energie" class="drawer-link">Energie</a></li>
-          <li data-live-from="2026-10-05T10:00"><a href="/de/insights/?topic=datenschutz" class="drawer-link">Datenschutz</a></li>
+          <li data-live-from="2026-09-10T09:00"><a href="/de/insights/?topic=technik" class="drawer-link">Technik</a></li>
+          <li data-live-from="2026-09-15T09:00"><a href="/de/insights/?topic=ratgeber" class="drawer-link">Ratgeber</a></li>
+          <li data-live-from="2026-10-28T09:00"><a href="/de/insights/?topic=sicherheit" class="drawer-link">Sicherheit</a></li>
+          <li data-live-from="2026-09-02T09:00"><a href="/de/insights/?topic=energie" class="drawer-link">Energie</a></li>
+          <li data-live-from="2026-10-05T09:00"><a href="/de/insights/?topic=datenschutz" class="drawer-link">Datenschutz</a></li>
           <li data-live-from="2026-10-01T18:00"><a href="/de/insights/?topic=konihaus" class="drawer-link">Konihaus</a></li>
-          <li data-live-from="2026-10-26T10:00"><a href="/de/insights/?topic=news" class="drawer-link">News</a></li>
+          <li data-live-from="2026-10-26T09:00"><a href="/de/insights/?topic=news" class="drawer-link">News</a></li>
           <li><a href="/de/insights/" class="drawer-link">Alle Beiträge</a></li>
         </ul>
       </li>
@@ -466,11 +466,11 @@
           <section class="blog-post__related" aria-label="Weiterlesen">
             <h2 class="blog-post__related-title">Weiterlesen</h2>
             <div class="blog-post__related-grid">
-                    <a class="blog-post__related-card" href="/de/insights/datenschutz-by-default/" data-post-date="2026-10-05" data-post-time="10:00">
+                    <a class="blog-post__related-card" href="/de/insights/datenschutz-by-default/" data-post-date="2026-10-05" data-post-time="09:00">
                       <span class="blog-post__related-card-title">Ihr Zuhause, Ihre Daten: Datenschutz by Default</span>
                         <span class="blog-post__related-card-meta">4 Min. Lesezeit</span>
                     </a>
-                    <a class="blog-post__related-card" href="/de/insights/energieeffizienz/" data-post-date="2026-09-02" data-post-time="10:00">
+                    <a class="blog-post__related-card" href="/de/insights/energieeffizienz/" data-post-date="2026-09-02" data-post-time="09:00">
                       <span class="blog-post__related-card-title">Warm bei Ankunft, sparsam bei Abwesenheit</span>
                         <span class="blog-post__related-card-meta">5 Min. Lesezeit</span>
                     </a>
