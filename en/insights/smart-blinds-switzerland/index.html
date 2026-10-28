@@ -1,0 +1,677 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
+       default 09:00, Swiss time) the page behaves like a 404 and is marked noindex, nofollow,
+       unless the URL has ?devmode=super (then it shows, but still noindex, nofollow).
+       Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super';
+      var parts = {};
+      new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Zurich',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+      var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
+      var published = '2026-10-29';
+      var m = /^(\d{1,2}):(\d{2})/.exec('09:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '09:00';
+      window.__scheduledPost = (published + 'T' + at) > now ? published : null;
+      window.__scheduledPostTime = at;
+      // Not released yet (or a dev preview): tell search engines not to index or follow.
+      // The static robots tag below stays "index"; when two robots tags conflict,
+      // search engines apply the stricter one. After release this tag is no longer added.
+      if (window.__scheduledPost || dev) {
+        var robots = document.createElement('meta');
+        robots.name = 'robots';
+        robots.content = 'noindex, nofollow';
+        document.head.appendChild(robots);
+      }
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- Hide content until JS loads and sets language -->
+  <script>
+    document.documentElement.classList.add('no-js');
+    document.documentElement.classList.add("fonts-loading");
+  </script>
+  <style>
+    html.no-js body {
+      display: none;
+    }
+    html.fonts-loading body {
+      visibility: hidden;
+    }
+  </style>
+  <meta name="theme-color" content="#2a4a35">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
+  <link rel="apple-touch-icon" href="/assets/favicon.svg">
+  <title>Smart Blinds in Switzerland: Options and Limits - Konihaus</title>
+  <meta name="description" content="Smart blinds in Switzerland: Somfy TaHoma, Sonoff and Aqara for roller and slat blinds (Lamellenstoren), plus rules for sun, wind and frost.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Konrad Hefelle">
+
+  <!-- Canonical + language alternates -->
+  <link rel="canonical" href="https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/">
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-storen-schweiz/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Konihaus">
+  <meta property="og:title" content="Smart Blinds: Motors, Retrofits and the Rules That Make Them Useful">
+  <meta property="og:description" content="Smart blinds in Switzerland: Somfy TaHoma, Sonoff and Aqara for roller and slat blinds (Lamellenstoren), plus rules for sun, wind and frost.">
+  <meta property="og:url" content="https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/">
+  <meta property="fb:app_id" content="2188289105366537" />
+  <meta property="fb:pages" content="1067591876443915">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/smart-blinds/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Smart Blinds: Motors, Retrofits and the Rules That Make Them Useful">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="de_CH">
+  <meta property="article:published_time" content="2026-10-29">
+  
+  <meta property="article:author" content="Konrad Hefelle">
+  <meta property="article:publisher" content="https://www.facebook.com/konihaus.ch">
+  <meta property="article:section" content="technology">
+  <meta property="article:tag" content="blinds">
+  <meta property="article:tag" content="shades">
+  <meta property="article:tag" content="somfy">
+  <meta property="article:tag" content="sonoff">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Smart Blinds: Motors, Retrofits and the Rules That Make Them Useful">
+  <meta name="twitter:description" content="Smart blinds in Switzerland: Somfy TaHoma, Sonoff and Aqara for roller and slat blinds (Lamellenstoren), plus rules for sun, wind and frost.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/smart-blinds/og.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Smart Blinds: Motors, Retrofits and the Rules That Make Them Useful",
+    "description": "Smart blinds in Switzerland: Somfy TaHoma, Sonoff and Aqara for roller and slat blinds (Lamellenstoren), plus rules for sun, wind and frost.",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.konihaus.ch/images/insights/smart-blinds/og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "articleSection": "technology",
+    "keywords": "smart blinds Switzerland, blinds, shades, somfy, sonoff",
+    "datePublished": "2026-10-29",
+    "dateModified": "2026-10-29",
+    "inLanguage": "en",
+    "mainEntityOfPage": "https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/",
+    "author": {
+      "@type": "Person",
+      "name": "Konrad Hefelle",
+      "url": "https://konihaus.ch"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Konihaus",
+      "url": "https://konihaus.ch",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blog.konihaus.ch/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Insights",
+        "item": "https://blog.konihaus.ch/en/insights/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Smart Blinds: Motors, Retrofits and the Rules That Make Them Useful",
+        "item": "https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/"
+      }
+    ]
+  }
+  </script>
+
+  <link
+    rel="preload"
+    href="/fonts/outfit-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-italic.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/post.css">
+  <link rel="stylesheet" href="/assets/subscribe.css">
+</head>
+<body>
+
+ <nav class="nav  nav--solid" id="nav">
+    <div class="container">
+      <div class="nav__inner ">
+        <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+          <div class="logo-image"></div>
+          <div class="wordmark">konihaus blog</div>
+        </a>
+        <ul class="nav__links">
+            <li><button type="button" class="nav__search" data-blog-search-open aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search</span></button></li>
+            <li><a href="/en/insights/">Latest</a></li>
+            <li class="has-sub">
+              <a href="/en/insights/" class="nav__parent" aria-haspopup="true"><span>Topics</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li data-live-from="2026-09-10T09:00"><a href="/en/insights/?topic=technology">Technology</a></li>
+                <li data-live-from="2026-09-15T09:00"><a href="/en/insights/?topic=guide">Guides</a></li>
+                <li data-live-from="2026-10-28T09:00"><a href="/en/insights/?topic=safety">Safety</a></li>
+                <li data-live-from="2026-09-02T09:00"><a href="/en/insights/?topic=energy">Energy</a></li>
+                <li data-live-from="2026-10-05T09:00"><a href="/en/insights/?topic=privacy">Privacy</a></li>
+                <li data-live-from="2026-10-01T18:00"><a href="/en/insights/?topic=konihaus">Konihaus</a></li>
+                <li data-live-from="2026-10-26T09:00"><a href="/en/insights/?topic=news">News</a></li>
+                <li class="nav__sub-all"><a href="/en/insights/">All articles →</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="https://konihaus.ch/" class="nav__parent" aria-haspopup="true"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub nav__sub--wide">
+                <li><a href="https://konihaus.ch/" data-i18n="nav.website">Website</a></li>
+                <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+                <li class="nav__sub-label">Company</li>
+                <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+                <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+                <li class="nav__sub-label">Service</li>
+                <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+                <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+                <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+                <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+                <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+              </ul>
+            </li>
+          </ul><button type="button" class="nav__searchbar" data-blog-search-open aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search articles</span></button>
+
+        <div class="language-picker">
+          <button
+            type="button"
+            class="language-trigger"
+            aria-expanded="false"
+            aria-controls="language-options"
+            aria-label="Language: Deutsch"
+          >
+            <span class="language-current">DE</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          <div id="language-options" class="language-options" hidden>
+            <button type="button" class="language-option" data-lang="de" onclick="switchToDe()">
+              <span>Deutsch</span>
+              <span class="language-code">DE</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en" onclick="switchToEn()">
+              <span>English</span>
+              <span class="language-code">EN</span>
+            </button>
+          </div>
+
+          <select id="lang-selector" hidden>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="https://konihaus.ch/#contact" class="btn nav__cta" data-i18n="nav.cta">Kostenlose Beratung</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav__drawer" id="drawer">
+    <ul>
+      <li><a href="/en/insights/" class="drawer-link">Latest</a></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-topics"><span>Topics</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-topics" hidden>
+          <li data-live-from="2026-09-10T09:00"><a href="/en/insights/?topic=technology" class="drawer-link">Technology</a></li>
+          <li data-live-from="2026-09-15T09:00"><a href="/en/insights/?topic=guide" class="drawer-link">Guides</a></li>
+          <li data-live-from="2026-10-28T09:00"><a href="/en/insights/?topic=safety" class="drawer-link">Safety</a></li>
+          <li data-live-from="2026-09-02T09:00"><a href="/en/insights/?topic=energy" class="drawer-link">Energy</a></li>
+          <li data-live-from="2026-10-05T09:00"><a href="/en/insights/?topic=privacy" class="drawer-link">Privacy</a></li>
+          <li data-live-from="2026-10-01T18:00"><a href="/en/insights/?topic=konihaus" class="drawer-link">Konihaus</a></li>
+          <li data-live-from="2026-10-26T09:00"><a href="/en/insights/?topic=news" class="drawer-link">News</a></li>
+          <li><a href="/en/insights/" class="drawer-link">All articles</a></li>
+        </ul>
+      </li>
+      <li><button type="button" class="drawer-link drawer-search" data-blog-search-open>Search</button></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-konihaus"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-konihaus" hidden>
+          <li><a href="https://konihaus.ch/" class="drawer-link" data-i18n="nav.website">Website</a></li>
+          <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
+          <li><a href="https://konihaus.ch/#devices" class="drawer-link" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+          <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link class="drawer-link" data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+          <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+          <li><a href="https://konihaus.ch/#faq" class="drawer-link" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+          <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="footer.col1_l4">Kontakt</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+  </div>
+
+
+  <main class="blog-post__container">
+
+    <header class="blog-post__link">
+        <a href="/en/insights/" class="blog-post__back-link">← Back to Insights</a>
+    </header>
+
+    <article>
+      <header class="blog-post__header">
+        <p class="blog-post__category">technology</p>
+        <h1 class="blog-post__title"><span>Smart Blinds: Motors, Retrofits and the Rules That Make Them Useful</span></h1>
+        <time class="blog-post__meta" datetime="Thu Oct 29 2026 01:00:00 GMT+0100 (Central European Standard Time)">
+            October 29, 2026
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;7 min read</span>
+          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">by</span> Koni
+
+        <div class="blog-post__share">
+          <span class="blog-post__share-label">Share</span>
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4.5A9.6 9.6 0 0 0 4.4 15.9L3.5 20.5l4.7-1.2A9.6 9.6 0 1 0 20 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M8.8 9.4c.2 3 3.1 5.8 6 6 1 .1 1.4-.6 1.4-1.2l-.2-1.2-1.9-.8c-.3-.1-.6 0-.8.2l-.5.6a5.9 5.9 0 0 1-2.6-2.6l.6-.5c.2-.2.3-.5.2-.8L10.2 7l-1.2-.2c-.6 0-1.3.4-1.2 1.4Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="email" href="#" aria-label="Share by email" title="Share by email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m4 6.5 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+
+      <div class="blog-post__content">
+        <p>Blinds are the device that saves the most daily effort. Nobody enjoys going round the house at dusk, turning crank handles and pulling cords. They are also the device that fails most quietly: a blind that stays shut all day or opens at the wrong moment annoys you for weeks before you work out why.</p>
+<p>This is the second post in the series on the parts of a smart home, after <a target="_blank" rel="noopener noreferrer" href="/en/insights/smart-lights-switzerland/">smart lights</a>. Same questions as before: what does it do for you, what should you check before buying, and where are the honest limits.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-blinds/01-dusk-blinds.webp" alt="A woman reads on a sofa in a warm living room at dusk while the blinds in the window are closing." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Three ways to make a blind smart</h2>
+<p>Which route you take depends on what hangs in your window today.</p>
+<p><strong>1. Buy a blind that is already smart.</strong> A blind with a battery motor inside the roll, usually a standard blind plus a motor made for it. Nothing to wire, nothing to drill into a wall box. The catch is that you replace the blind, and the motor has to fit it.</p>
+<p><strong>2. Add a motor to the blind you have.</strong> A small drive that clips onto the chain of an ordinary roller blind and pulls it for you. Nothing is removed, so it suits renters.</p>
+<p><strong>3. Automate the motor that is already there.</strong> Many homes already have electric blinds or shutters, with a wall switch for up and down. They only need to be reachable from your smart home, either through a small relay behind the switch or through the motor's own radio system.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-blinds/02-three-retrofit-routes-en.webp" alt="Three routes to smart blinds: a new battery blind, a chain drive retrofitted to an existing roller blind, and a relay or radio gateway for an existing motor." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>What you can buy in Switzerland</h2>
+<p>Prices as of 28 October 2026. They change, so treat them as a guide.</p>
+<div class="blog-post__buy">
+<figure class="blog-post__figure blog-post__figure--aside">
+  <img src="/images/insights/smart-blinds/somfy-tahoma-switch.webp" alt="The Somfy TaHoma Switch hub next to a phone showing the TaHoma app with shutters, a gate and lamps." width="861" height="900" loading="lazy" decoding="async">
+</figure>
+<p><strong>Somfy</strong> is the first name to look at if you have slat blinds (Lamellenstoren or Raffstoren), which many Swiss homes do. They don't only go up and down, they also tilt, and the TaHoma app handles both in a simple way. The TaHoma Switch hub costs CHF 143 at Digitec, with a few offers slightly lower. It controls Somfy's io and RTS motors, plus Zigbee 3.0 devices, up to 200 products in all. Check that your motor is a Somfy io motor and ask a dealer whether tilt works for your model. Stock comes and goes, so ask about availability too.</p>
+<figure class="blog-post__figure blog-post__figure--aside">
+  <img src="/images/insights/smart-blinds/sonoff-mini-zbrbs.webp" alt="The Sonoff MINI-ZBRBS Zigbee shutter switch next to its retail box." width="900" height="776" loading="lazy" decoding="async">
+</figure>
+<p><strong>Sonoff</strong> is the cheap Zigbee option for an existing wired motor. Its Zigbee Mini Switch for shutters costs CHF 15.50 at Digitec, with more than ten in stock. It sits behind your wall switch, reports to any Zigbee system such as Home Assistant, and knows the position in percent after a short calibration run. It also acts as a Zigbee router, which strengthens your mesh. It has three limits: it needs a neutral wire, it handles motors up to 1 A (a standard 4- or 5-wire AC motor), and it offers open, close and position only, with no slat angle. On slat blinds it raises and lowers them, but it does not set the tilt. Wiring a 230 V motor is a job for a licensed electrician, not a weekend project.</p>
+<figure class="blog-post__figure blog-post__figure--aside">
+  <img src="/images/insights/smart-blinds/aqara-e1-chain-drive.webp" alt="The Aqara chain drive mounted next to a window, holding the bead chain of a blind." width="900" height="900" loading="lazy" decoding="async">
+</figure>
+<p><strong>Aqara</strong> makes the Roller Shade Driver E1, a retrofit drive for roller blinds with a bead chain (3 to 6 mm, plastic or metal beads). It speaks Zigbee 3.0. The built-in battery lasts up to two months, or you power it over USB-C. It is meant for roller blinds, not slat blinds. Aqara says you need one of its hubs for its app and automations, though Zigbee2MQTT users pair it directly, so look at that before you buy.</p>
+<figure class="blog-post__figure blog-post__figure--aside">
+  <img src="/images/insights/smart-blinds/motionblinds-cmd-01-bridge.webp" alt="The MotionBlinds CMD-01 Wi-Fi bridge in its retail box." width="500" height="400" loading="lazy" decoding="async">
+</figure>
+<p>On <strong>hornbach.ch</strong> you get the closest thing to a ready-made smart blind. SOLUNA roller blinds made to measure start at CHF 49, and MotionBlinds sells battery motors for them: the CMD-03 with Bluetooth at CHF 119 and the CMD-02 Pull at CHF 99.90, plus the CMD-01 Wi-Fi bridge at CHF 64.90. Home Assistant has a <a target="_blank" rel="noopener noreferrer" href="https://www.home-assistant.io/integrations/motion_blinds/">local integration for MotionBlinds</a> that works with Wi-Fi bridges talking 433 MHz to the blinds, and the CMD-01 is on its supported list. It needs a key from the MotionBlinds app. Check on hornbach.ch whether the motor can be ordered fitted to the blind. The same shop sells the Aeotec Pico Shutter (Zigbee retrofit module, CHF 50.40) and the Fibaro Roller Shutter 4 (Z-Wave, CHF 55.90).</p>
+<p><strong>Other makers</strong> sell similar actuators too. Shelly is the best known: the Shelly 2PM Gen3 has a cover mode, knows the position in percent, has obstacle detection and costs CHF 16.50 at Digitec, but it talks Wi-Fi and Bluetooth rather than Zigbee. Fibaro and Aeotec, above, offer modules of the same kind. Elsewhere there are ready-made battery blinds with Matter over Thread, Eve's for example, but they are not shipped to Switzerland at the moment. Which radio is the better bet is a bigger question than blinds: Matter over Wi-Fi now competes hard with Zigbee. I'll explain my own choices, and where I think the industry is heading, in a separate post.</p>
+<p><strong>A word on Lamellenstoren.</strong> For slat blinds, up and down is only half of the job. The tilt is what lets daylight in while the sun stays out, so ask whether a product controls the slat angle before you buy. Somfy is built for it. Among the Zigbee relays, Aeotec says its Pico Shutter controls the blind angle, and Zigbee2MQTT exposes a tilt value for it, while the Sonoff only moves the blind up and down. Whether the angle works with your slat motor, ask Aeotec or an installer.</p>
+</div>
+<h2>One thing to check before anything else: where the commands go</h2>
+<p>As with lights, the brand matters less than the path. Ask whether the blind answers a command from your home, or whether the command first goes to a server and back.</p>
+<ul>
+<li><strong>Local</strong> options work with the internet down. Sonoff and other Zigbee devices such as Aqara's are in this group.</li>
+<li><strong>Somfy</strong> is mixed. Home Assistant can talk to the TaHoma Switch locally, once you switch on developer mode in the Somfy app and create a token. That makes it faster, about every five seconds instead of every thirty for the cloud route, and it works without the internet. Home Assistant lists some limits: local mode does not cover Somfy's scenarios, and older RTS motors can't report their position, so the system only knows what it last told them to do.</li>
+<li><strong>The hub has a queue.</strong> Home Assistant notes that a Somfy gateway holds about ten commands at a time, so moving twenty blinds at once can fail unless the commands are spread out.</li>
+</ul>
+<p>None of this is a reason to avoid Somfy; it is a reason to plan the system so a missed command doesn't matter. I wrote about the bigger picture in <a target="_blank" rel="noopener noreferrer" href="/en/insights/no-vendor-lock-in/">no vendor lock-in</a>.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-blinds/03-tahoma-control-en.webp" alt="The TaHoma Switch hub with two control paths: locally through a compatible API such as Home Assistant, or through the vendor cloud." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>The rules that make blinds worth having</h2>
+<p>A blind that opens at seven every morning is a timer. The value comes from rules that look at the day:</p>
+<ul>
+<li><strong>Sun.</strong> Close the south-facing blinds when the sun is high and the room is heating up, and open them again when it moves on. In winter it works the other way round: open them on a sunny day so the low sun warms the room, then close them at dusk to keep the heat in. I wrote about the dusk part in <a target="_blank" rel="noopener noreferrer" href="/en/insights/clocks-go-back/">the clocks go back</a>.</li>
+<li><strong>Brightness.</strong> A small light sensor is more honest than the calendar. A grey afternoon in November needs no shading.</li>
+<li><strong>Wind.</strong> For awnings and outdoor blinds, a wind sensor should always win over every other rule. Somfy's Soliris is one example of a combined sun and wind sensor.</li>
+<li><strong>Frost.</strong> Many manufacturers advise against driving outdoor blinds and awnings when they are frozen. A rule that blocks movement below zero costs nothing and can save a motor. Check the manual for your model.</li>
+<li><strong>A cooldown.</strong> Clouds pass quickly. Without a minimum time between moves, say twenty minutes, blinds flap up and down all afternoon, and that is the fastest way to make a family switch the automation off.</li>
+<li><strong>Manual wins.</strong> If somebody presses the button, the automation steps back until the next day.</li>
+</ul>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-blinds/04-weather-priorities-en.webp" alt="The rules matter more than the app: sun and brightness, wind protection first, frost, a cooldown between moves, and respect for manual control. Plan weather response, protection and physical controls together." width="1536" height="1024" loading="lazy" decoding="async">
+  <figcaption>The rules matter more than the app. Plan weather response, protection and physical controls together.</figcaption>
+</figure>
+<h2>Honest limits</h2>
+<p><strong>Blinds that matter for safety must not depend on the cloud.</strong> In a fire, the blinds on an escape route should open. The Home Assistant notes on Somfy are clear that busy servers can delay commands on the cloud route, so a rule like that needs a local path, and a crank or chain as a last resort. Treat &quot;open on smoke alarm&quot; as an extra, not as the safety measure. The smoke detector itself has to work on its own, which I'll come back to in this series.</p>
+<p><strong>Battery blinds need charging.</strong> Aqara quotes up to two months per charge for its chain drive. That sounds long, until the day a blind refuses to move. A calendar reminder every few months is part of the system. Check too whether the blind can still be moved by hand when the battery is flat.</p>
+<p><strong>Motor and blind must match.</strong> A battery motor is made for certain blinds and tube sizes, so check that the two fit before you order. For odd windows, option two or three is often easier.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smart-blinds/05-manual-control-battery.webp" alt="Keep everyday control simple: a wall button for control without an app, and a battery with a charging cable. Batteries are part of the system." width="1536" height="1024" loading="lazy" decoding="async">
+  <figcaption>Keep everyday control simple. Plan physical controls and battery charging reminders.</figcaption>
+</figure>
+<h2>How I'd start</h2>
+<ol>
+<li><strong>One window that annoys you most.</strong> Often the south-facing living-room window or the bedroom.</li>
+<li><strong>Pick the route from what hangs there.</strong> New blind, a chain drive, or a relay for an existing motor.</li>
+<li><strong>Add a wall button.</strong> So nobody needs an app to lower a blind.</li>
+<li><strong>Start with two rules.</strong> Close at dusk, and shade when it gets hot. Add wind and frost for anything outdoors.</li>
+</ol>
+<p>In a Konihaus home, blinds are driven through the Greenhub wherever the motor allows a local connection, so the rules keep running when the internet is down. Where a motor insists on the cloud, I tell you that before you buy.</p>
+<p>The next post covers sensors: the small devices that tell your home what is going on, and the two or three worth placing first. If you don't want to miss it, sign up for the Konihaus Blog newsletter below.</p>
+<hr>
+<p><strong>Thinking about smart blinds for your home?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Talk to Koni</a>. The first conversation is free, with no obligation.</p>
+
+      </div>
+
+      
+<aside class="subscribe subscribe--card" aria-label="Newsletter">
+  <div class="subscribe__intro">
+    <p class="subscribe__eyebrow">Newsletter</p>
+    <h2 class="subscribe__title">New articles straight to <em>your inbox.</em></h2>
+    <p class="subscribe__text">I write about smart homes, privacy and what really works in everyday life. You get an email as soon as a new article is published.</p>
+  </div>
+  <form class="subscribe__form" data-blog-subscribe novalidate
+        data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
+        data-lang="en"
+        data-msg-ok="Thank you! You will get an email as soon as a new article is published."
+        data-msg-duplicate="This address is already subscribed. Thank you!"
+        data-msg-invalid="Please enter a valid email address."
+        data-msg-limit="Too many signups from this address. Please try again later."
+        data-msg-error="Something went wrong. Please try again later.">
+    <div class="subscribe__row">
+      <label class="subscribe__sr" for="subscribe-email">Email address</label>
+      <input class="subscribe__input" id="subscribe-email" type="email" name="email"
+             autocomplete="email" inputmode="email" placeholder="Your email address" required>
+      <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="subscribe__button" type="submit">Subscribe</button>
+    </div>
+    <p class="subscribe__note">Unsubscribe any time. More in the <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
+    <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+
+          <section class="blog-post__related" aria-label="Related reading">
+            <h2 class="blog-post__related-title">Related reading</h2>
+            <div class="blog-post__related-grid">
+                    <a class="blog-post__related-card" href="/en/insights/smart-lights-switzerland/" data-post-date="2026-10-27" data-post-time="10:00">
+                      <span class="blog-post__related-card-title">Smart Lights: Bulbs, Strips and Lamps, and What You Can Buy in Switzerland</span>
+                        <span class="blog-post__related-card-meta">7 min read</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/en/insights/clocks-go-back/" data-post-date="2026-10-24" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">The Clocks Go Back Tonight. Your Home Won&#39;t Notice.</span>
+                        <span class="blog-post__related-card-meta">3 min read</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/en/insights/no-vendor-lock-in/" data-post-date="2026-09-29" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">No Vendor Lock-In</span>
+                        <span class="blog-post__related-card-meta">5 min read</span>
+                    </a>
+            </div>
+          </section>
+
+      <footer class="blog-post__footer">
+          <a href="/en/insights/" class="blog-post__back-link">← Back to Insights</a>
+
+        <div class="blog-post__share blog-post__share--footer">
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+            <div class="logo-image"></div>
+            <div class="wordmark">konihaus blog</div>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
+            Ferienhausbesitzer in der
+            Schweiz.</p>
+          <div class="footer__social" aria-label="Social Media">
+            <a href="https://www.instagram.com/ch.konihaus/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/konihaus.ch" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://x.com/konihaus" class="social-icon social-icon--x" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/konihaus" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+                <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@Konihaus/shorts" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2.5" y="5.5" width="19" height="13" rx="4" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M10 9.3v5.4l4.6-2.7z" fill="currentColor"/>
+            </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col1_title">Service</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+            <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+            <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+            <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+            <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col2_title">Unternehmen</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+            <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col3_title">Rechtliches</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/impressum" data-i18n="footer.col3_l1">Impressum</a></li>
+            <li><a href="https://konihaus.ch/datenschutz" data-legal="privacy" data-i18n="footer.col3_l2">Datenschutz</a></li>
+            <li><a href="https://konihaus.ch/#cookie-declaration" data-cc-open data-i18n="footer.col3_l3">Cookie-Erklärung</a></li>
+            <li><a href="https://konihaus.ch/agb" data-i18n="footer.col3_l4">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Konihaus · Affoltern am Albis, Schweiz
+        </p>
+        <p class="fch" data-i18n="footer.ch">🇨🇭 Made in Switzerland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/scripts.js"></script>
+  <script src="/assets/cookie-consent.js"></script>
+  <script>
+    const lang = "en";
+
+    function switchToDe() {
+      if (lang === 'de') return;
+      location.href = devHref('/de/insights/smarte-storen-schweiz/');
+    }
+
+    function switchToEn() {
+      if (lang === 'en') return;
+      location.href = devHref('/de/insights/smarte-storen-schweiz/');
+    }
+
+    (function () {
+      const shareUrl = "https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/";
+      const shareTitle = "Blinds save the most daily effort, and they fail the most quietly. Three ways to make them smart, what you can buy in Switzerland, and the sun, wind and frost rules that decide whether you keep using them.";
+      const encodedUrl = encodeURIComponent(shareUrl);
+      const encodedTitle = encodeURIComponent(shareTitle);
+
+      const links = {
+        x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+        email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+      };
+ 
+      document.querySelectorAll('[data-share]').forEach((el) => {
+        const platform = el.getAttribute('data-share');
+        if (links[platform]) el.href = links[platform];
+      });
+
+      /*if (navigator.share) {
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }*/
+
+      const isTouchMobile = window.matchMedia('(pointer: coarse)').matches
+        && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isTouchMobile && navigator.share) {
+        document.querySelectorAll('[data-share="native"]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-copy-link]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            btn.setAttribute('data-copied', 'true');
+            setTimeout(() => btn.removeAttribute('data-copied'), 2000);
+          } catch {
+            
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

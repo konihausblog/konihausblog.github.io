@@ -1,0 +1,640 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
+       default 09:00, Swiss time) the page behaves like a 404 and is marked noindex, nofollow,
+       unless the URL has ?devmode=super (then it shows, but still noindex, nofollow).
+       Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super';
+      var parts = {};
+      new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Zurich',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+      var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
+      var published = '2026-10-31';
+      var m = /^(\d{1,2}):(\d{2})/.exec('09:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '09:00';
+      window.__scheduledPost = (published + 'T' + at) > now ? published : null;
+      window.__scheduledPostTime = at;
+      // Not released yet (or a dev preview): tell search engines not to index or follow.
+      // The static robots tag below stays "index"; when two robots tags conflict,
+      // search engines apply the stricter one. After release this tag is no longer added.
+      if (window.__scheduledPost || dev) {
+        var robots = document.createElement('meta');
+        robots.name = 'robots';
+        robots.content = 'noindex, nofollow';
+        document.head.appendChild(robots);
+      }
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- Hide content until JS loads and sets language -->
+  <script>
+    document.documentElement.classList.add('no-js');
+    document.documentElement.classList.add("fonts-loading");
+  </script>
+  <style>
+    html.no-js body {
+      display: none;
+    }
+    html.fonts-loading body {
+      visibility: hidden;
+    }
+  </style>
+  <meta name="theme-color" content="#2a4a35">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
+  <link rel="apple-touch-icon" href="/assets/favicon.svg">
+  <title>Smart Home Sensors: Which Ones to Place First - Konihaus</title>
+  <meta name="description" content="Smart home sensors explained: motion, presence, door and window contacts, temperature, CO2 and water leaks, with Swiss prices and where to start.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Konrad Hefelle">
+
+  <!-- Canonical + language alternates -->
+  <link rel="canonical" href="https://blog.konihaus.ch/en/insights/smart-home-sensors/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-sensors/">
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smart-home-sensoren/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/en/insights/smart-home-sensors/">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Konihaus">
+  <meta property="og:title" content="Smart Home Sensors: The Five Families That Tell Your Home What Is Going On">
+  <meta property="og:description" content="Smart home sensors explained: motion, presence, door and window contacts, temperature, CO2 and water leaks, with Swiss prices and where to start.">
+  <meta property="og:url" content="https://blog.konihaus.ch/en/insights/smart-home-sensors/">
+  <meta property="fb:app_id" content="2188289105366537" />
+  <meta property="fb:pages" content="1067591876443915">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/smart-sensors/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Smart Home Sensors: The Five Families That Tell Your Home What Is Going On">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="de_CH">
+  <meta property="article:published_time" content="2026-10-31">
+  
+  <meta property="article:author" content="Konrad Hefelle">
+  <meta property="article:publisher" content="https://www.facebook.com/konihaus.ch">
+  <meta property="article:section" content="technology">
+  <meta property="article:tag" content="sensors">
+  <meta property="article:tag" content="presence">
+  <meta property="article:tag" content="zigbee">
+  <meta property="article:tag" content="thread">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Smart Home Sensors: The Five Families That Tell Your Home What Is Going On">
+  <meta name="twitter:description" content="Smart home sensors explained: motion, presence, door and window contacts, temperature, CO2 and water leaks, with Swiss prices and where to start.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/smart-sensors/og.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Smart Home Sensors: The Five Families That Tell Your Home What Is Going On",
+    "description": "Smart home sensors explained: motion, presence, door and window contacts, temperature, CO2 and water leaks, with Swiss prices and where to start.",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.konihaus.ch/images/insights/smart-sensors/og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "articleSection": "technology",
+    "keywords": "smart home sensors, sensors, presence, zigbee, thread",
+    "datePublished": "2026-10-31",
+    "dateModified": "2026-10-31",
+    "inLanguage": "en",
+    "mainEntityOfPage": "https://blog.konihaus.ch/en/insights/smart-home-sensors/",
+    "author": {
+      "@type": "Person",
+      "name": "Konrad Hefelle",
+      "url": "https://konihaus.ch"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Konihaus",
+      "url": "https://konihaus.ch",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blog.konihaus.ch/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Insights",
+        "item": "https://blog.konihaus.ch/en/insights/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Smart Home Sensors: The Five Families That Tell Your Home What Is Going On",
+        "item": "https://blog.konihaus.ch/en/insights/smart-home-sensors/"
+      }
+    ]
+  }
+  </script>
+
+  <link
+    rel="preload"
+    href="/fonts/outfit-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-italic.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/post.css">
+  <link rel="stylesheet" href="/assets/subscribe.css">
+</head>
+<body>
+
+ <nav class="nav  nav--solid" id="nav">
+    <div class="container">
+      <div class="nav__inner ">
+        <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+          <div class="logo-image"></div>
+          <div class="wordmark">konihaus blog</div>
+        </a>
+        <ul class="nav__links">
+            <li><button type="button" class="nav__search" data-blog-search-open aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search</span></button></li>
+            <li><a href="/en/insights/">Latest</a></li>
+            <li class="has-sub">
+              <a href="/en/insights/" class="nav__parent" aria-haspopup="true"><span>Topics</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li data-live-from="2026-09-10T09:00"><a href="/en/insights/?topic=technology">Technology</a></li>
+                <li data-live-from="2026-09-15T09:00"><a href="/en/insights/?topic=guide">Guides</a></li>
+                <li data-live-from="2026-10-28T09:00"><a href="/en/insights/?topic=safety">Safety</a></li>
+                <li data-live-from="2026-09-02T09:00"><a href="/en/insights/?topic=energy">Energy</a></li>
+                <li data-live-from="2026-10-05T09:00"><a href="/en/insights/?topic=privacy">Privacy</a></li>
+                <li data-live-from="2026-10-01T18:00"><a href="/en/insights/?topic=konihaus">Konihaus</a></li>
+                <li data-live-from="2026-10-26T09:00"><a href="/en/insights/?topic=news">News</a></li>
+                <li class="nav__sub-all"><a href="/en/insights/">All articles →</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="https://konihaus.ch/" class="nav__parent" aria-haspopup="true"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub nav__sub--wide">
+                <li><a href="https://konihaus.ch/" data-i18n="nav.website">Website</a></li>
+                <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+                <li class="nav__sub-label">Company</li>
+                <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+                <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+                <li class="nav__sub-label">Service</li>
+                <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+                <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+                <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+                <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+                <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+              </ul>
+            </li>
+          </ul><button type="button" class="nav__searchbar" data-blog-search-open aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search articles</span></button>
+
+        <div class="language-picker">
+          <button
+            type="button"
+            class="language-trigger"
+            aria-expanded="false"
+            aria-controls="language-options"
+            aria-label="Language: Deutsch"
+          >
+            <span class="language-current">DE</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          <div id="language-options" class="language-options" hidden>
+            <button type="button" class="language-option" data-lang="de" onclick="switchToDe()">
+              <span>Deutsch</span>
+              <span class="language-code">DE</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en" onclick="switchToEn()">
+              <span>English</span>
+              <span class="language-code">EN</span>
+            </button>
+          </div>
+
+          <select id="lang-selector" hidden>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="https://konihaus.ch/#contact" class="btn nav__cta" data-i18n="nav.cta">Kostenlose Beratung</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav__drawer" id="drawer">
+    <ul>
+      <li><a href="/en/insights/" class="drawer-link">Latest</a></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-topics"><span>Topics</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-topics" hidden>
+          <li data-live-from="2026-09-10T09:00"><a href="/en/insights/?topic=technology" class="drawer-link">Technology</a></li>
+          <li data-live-from="2026-09-15T09:00"><a href="/en/insights/?topic=guide" class="drawer-link">Guides</a></li>
+          <li data-live-from="2026-10-28T09:00"><a href="/en/insights/?topic=safety" class="drawer-link">Safety</a></li>
+          <li data-live-from="2026-09-02T09:00"><a href="/en/insights/?topic=energy" class="drawer-link">Energy</a></li>
+          <li data-live-from="2026-10-05T09:00"><a href="/en/insights/?topic=privacy" class="drawer-link">Privacy</a></li>
+          <li data-live-from="2026-10-01T18:00"><a href="/en/insights/?topic=konihaus" class="drawer-link">Konihaus</a></li>
+          <li data-live-from="2026-10-26T09:00"><a href="/en/insights/?topic=news" class="drawer-link">News</a></li>
+          <li><a href="/en/insights/" class="drawer-link">All articles</a></li>
+        </ul>
+      </li>
+      <li><button type="button" class="drawer-link drawer-search" data-blog-search-open>Search</button></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-konihaus"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-konihaus" hidden>
+          <li><a href="https://konihaus.ch/" class="drawer-link" data-i18n="nav.website">Website</a></li>
+          <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
+          <li><a href="https://konihaus.ch/#devices" class="drawer-link" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+          <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link class="drawer-link" data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+          <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+          <li><a href="https://konihaus.ch/#faq" class="drawer-link" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+          <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="footer.col1_l4">Kontakt</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+  </div>
+
+
+  <main class="blog-post__container">
+
+    <header class="blog-post__link">
+        <a href="/en/insights/" class="blog-post__back-link">← Back to Insights</a>
+    </header>
+
+    <article>
+      <header class="blog-post__header">
+        <p class="blog-post__category">technology</p>
+        <h1 class="blog-post__title"><span>Smart Home Sensors: The Five Families That Tell Your Home What Is Going On</span></h1>
+        <time class="blog-post__meta" datetime="Sat Oct 31 2026 01:00:00 GMT+0100 (Central European Standard Time)">
+            October 31, 2026
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;7 min read</span>
+          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">by</span> Koni
+
+        <div class="blog-post__share">
+          <span class="blog-post__share-label">Share</span>
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4.5A9.6 9.6 0 0 0 4.4 15.9L3.5 20.5l4.7-1.2A9.6 9.6 0 1 0 20 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M8.8 9.4c.2 3 3.1 5.8 6 6 1 .1 1.4-.6 1.4-1.2l-.2-1.2-1.9-.8c-.3-.1-.6 0-.8.2l-.5.6a5.9 5.9 0 0 1-2.6-2.6l.6-.5c.2-.2.3-.5.2-.8L10.2 7l-1.2-.2c-.6 0-1.3.4-1.2 1.4Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="email" href="#" aria-label="Share by email" title="Share by email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m4 6.5 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+
+      <div class="blog-post__content">
+        <p>A smart home is only as smart as what it can sense. Lights and blinds are the visible part. Sensors are the quiet part: small devices that tell your home whether a door is open, whether the room is damp, or whether somebody is in the hallway. Without them, automation is just a timer.</p>
+<p>This is the third post in the series on the parts of a smart home, after <a target="_blank" rel="noopener noreferrer" href="/en/insights/smart-lights-switzerland/">smart lights</a> and <a target="_blank" rel="noopener noreferrer" href="/en/insights/smart-blinds-switzerland/">smart blinds</a>. Same questions as before: what does it do for you, what should you check before buying, and where are the honest limits.</p>
+<h2>The five families</h2>
+<p><strong>1. Motion and presence.</strong> A motion sensor notices movement. That is all it knows. Its weakness is simple: if you sit still on the sofa reading, the light goes off, because from the sensor's point of view nothing is happening. A presence sensor adds a small radar (mmWave) to the usual infrared eye, so it can also tell that somebody is in the room even when they hardly move. There is no camera and no picture, just a yes or no.</p>
+<p><strong>2. Door and window contacts.</strong> Two small pieces, one on the frame and one on the door or window. They answer one question: open or closed? That is the basis for &quot;is the window still open?&quot;, for heating that pauses while you air the room, and for a message when the holiday home's cellar door stays open.</p>
+<p><strong>3. Temperature and humidity.</strong> The quietest and often the most useful. It tells you the real temperature in the rooms that matter, and it shows damp before you see mould.</p>
+<p><strong>4. CO2 and air quality.</strong> CO2 is a good proxy for &quot;this room needs fresh air&quot;. A bedroom with the door closed gets stuffy overnight, and a CO2 sensor shows it in numbers.</p>
+<p><strong>5. Water leak.</strong> A small puck on the floor under the washing machine, the dishwasher or the water heater. It does nothing until the day it matters.</p>
+<h2>What you can buy in Switzerland</h2>
+<p>Prices as of 29 October 2026. They change and stock varies, so treat them as a guide.</p>
+<p><strong>Aqara</strong> has the broadest range of small sensors. The Presence Multi-Sensor FP300 combines infrared and mmWave radar (6 m range, 120° angle) and also measures light, temperature and humidity. It costs CHF 37.50 at Digitec when in stock, and CHF 64.93 from other sellers. It speaks Thread, Zigbee and Bluetooth and runs on two CR2450 coin cells. Aqara's Temperature and Humidity Sensor T1 uses Zigbee 3.0 and starts at CHF 16.90 on Digitec, with a stated tolerance of 0.6 °C. The Door and Window Sensor is Zigbee as well, with a button cell that Aqara says lasts over two years. Availability varies, so check the price before you plan around it. Aqara states that its sensors need one of its hubs to connect to its own app.</p>
+<p><strong>IKEA</strong> sells three small sensors for its DIRIGERA hub: VALLHORN (motion), PARASOLL (door and window) and BADRING (water leak). They launched at CHF 12.95, CHF 14.95 and CHF 12.95, so check the current price. IKEA's ALPSTUGA air quality sensor (CHF 34.95) measures CO2, particles and temperature and uses Matter over Thread, so it needs a Thread border router such as the DIRIGERA. Two honest notes: the USB power adapter is sold separately, and reviewers say its display can't be switched off and can be bright in a bedroom.</p>
+<h2>One thing to check before anything else: how it reports</h2>
+<p>As with lights and blinds, the brand matters less than the language the sensor speaks.</p>
+<ul>
+<li><strong>Zigbee</strong> and <strong>Thread</strong> are the ones I look for. They are low-power radios that work locally, without the internet, and they run for years on a small battery.</li>
+<li><strong>Wi-Fi</strong> sensors drain batteries faster and usually need the manufacturer's cloud.</li>
+<li><strong>A sensor that needs its own hub</strong> is fine, as long as that hub can also pass the data to your home system. Otherwise you end up with one app per sensor brand.</li>
+</ul>
+<p>Two basics of Zigbee are worth knowing. Sensors on batteries only talk and sleep, so they don't relay other devices' messages. Mains-powered devices, like many smart plugs and bulbs, do relay. That is why a mix of the two makes the mesh reliable: sensors far from the hub depend on powered devices nearby. I wrote about why an open standard matters in <a target="_blank" rel="noopener noreferrer" href="/en/insights/no-vendor-lock-in/">no vendor lock-in</a>.</p>
+<h2>Where I would place the first sensors</h2>
+<p>Don't buy one of each. Start with the two or three that answer a question you already have.</p>
+<ol>
+<li><strong>Water leak sensor under the washing machine or dishwasher.</strong> Cheap, and the day it matters it is worth more than anything else on this list.</li>
+<li><strong>A temperature and humidity sensor in the room that worries you.</strong> A cellar, a holiday home, a bathroom, a bedroom with a damp corner. In the <a target="_blank" rel="noopener noreferrer" href="/en/insights/holiday-home-frost-watch/">holiday home frost watch</a>, this is the sensor that does the work.</li>
+<li><strong>A presence sensor in the hallway.</strong> It switches the night light on the way to the bathroom, as in <a target="_blank" rel="noopener noreferrer" href="/en/insights/safer-hallways-at-night/">safer hallways at night</a>, and it can switch off the lights in an empty room, where a plain motion sensor would turn them off on you while you read.</li>
+</ol>
+<p>Door and window contacts come next, once you know which doors and windows you really care about.</p>
+<h2>Honest limits</h2>
+<p><strong>Batteries die quietly.</strong> A sensor that has stopped reporting looks the same as a sensor that sees nothing. A good system watches for &quot;last seen&quot; and low-battery warnings and tells you before a sensor goes silent. A door contact that Aqara rates at over two years is not a promise. Mark the date you fitted each battery.</p>
+<p><strong>One sensor, one view.</strong> A motion sensor can't see a person sitting still. A door contact doesn't know a door is ajar, not open. A temperature sensor on a sunny window sill reads high. Good rules combine two signals instead of trusting one.</p>
+<p><strong>Not a safety device.</strong> A leak sensor tells you about water. It does not stop it. And none of these replaces a smoke or CO detector, which has to work on its own. I'll come back to that in this series.</p>
+<h2>How I'd start</h2>
+<ol>
+<li><strong>Write down the question first.</strong> &quot;Did I leave the window open?&quot; &quot;Is the cellar damp?&quot; &quot;Is there water under the machine?&quot;</li>
+<li><strong>Pick sensors that speak Zigbee or Thread.</strong></li>
+<li><strong>Place them, then watch the numbers for a week</strong> before you build any rules on them.</li>
+<li><strong>Add the battery check.</strong> Every sensor, from day one.</li>
+</ol>
+<p>In a Konihaus home, sensors report to the Greenhub, locally, and the system tells you when a battery runs low. The next post covers heating and climate: thermostats, radiator valves and the heat pump as one system. If you don't want to miss it, sign up for the Konihaus Blog newsletter below.</p>
+<hr>
+<p><strong>Not sure which sensors would help in your home?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Talk to Koni</a>. The first conversation is free, with no obligation.</p>
+
+      </div>
+
+      
+<aside class="subscribe subscribe--card" aria-label="Newsletter">
+  <div class="subscribe__intro">
+    <p class="subscribe__eyebrow">Newsletter</p>
+    <h2 class="subscribe__title">New articles straight to <em>your inbox.</em></h2>
+    <p class="subscribe__text">I write about smart homes, privacy and what really works in everyday life. You get an email as soon as a new article is published.</p>
+  </div>
+  <form class="subscribe__form" data-blog-subscribe novalidate
+        data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
+        data-lang="en"
+        data-msg-ok="Thank you! You will get an email as soon as a new article is published."
+        data-msg-duplicate="This address is already subscribed. Thank you!"
+        data-msg-invalid="Please enter a valid email address."
+        data-msg-limit="Too many signups from this address. Please try again later."
+        data-msg-error="Something went wrong. Please try again later.">
+    <div class="subscribe__row">
+      <label class="subscribe__sr" for="subscribe-email">Email address</label>
+      <input class="subscribe__input" id="subscribe-email" type="email" name="email"
+             autocomplete="email" inputmode="email" placeholder="Your email address" required>
+      <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="subscribe__button" type="submit">Subscribe</button>
+    </div>
+    <p class="subscribe__note">Unsubscribe any time. More in the <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
+    <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+
+          <section class="blog-post__related" aria-label="Related reading">
+            <h2 class="blog-post__related-title">Related reading</h2>
+            <div class="blog-post__related-grid">
+                    <a class="blog-post__related-card" href="/en/insights/smart-lights-switzerland/" data-post-date="2026-10-27" data-post-time="10:00">
+                      <span class="blog-post__related-card-title">Smart Lights: Bulbs, Strips and Lamps, and What You Can Buy in Switzerland</span>
+                        <span class="blog-post__related-card-meta">7 min read</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/en/insights/safer-hallways-at-night/" data-post-date="2026-10-30" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">Darker Evenings, Safer Hallways</span>
+                        <span class="blog-post__related-card-meta">4 min read</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/en/insights/holiday-home-frost-watch/" data-post-date="2026-10-28" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">Frost Watch for the Holiday Home</span>
+                        <span class="blog-post__related-card-meta">4 min read</span>
+                    </a>
+            </div>
+          </section>
+
+      <footer class="blog-post__footer">
+          <a href="/en/insights/" class="blog-post__back-link">← Back to Insights</a>
+
+        <div class="blog-post__share blog-post__share--footer">
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+            <div class="logo-image"></div>
+            <div class="wordmark">konihaus blog</div>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
+            Ferienhausbesitzer in der
+            Schweiz.</p>
+          <div class="footer__social" aria-label="Social Media">
+            <a href="https://www.instagram.com/ch.konihaus/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/konihaus.ch" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://x.com/konihaus" class="social-icon social-icon--x" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/konihaus" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+                <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@Konihaus/shorts" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2.5" y="5.5" width="19" height="13" rx="4" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M10 9.3v5.4l4.6-2.7z" fill="currentColor"/>
+            </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col1_title">Service</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+            <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+            <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+            <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+            <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col2_title">Unternehmen</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+            <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col3_title">Rechtliches</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/impressum" data-i18n="footer.col3_l1">Impressum</a></li>
+            <li><a href="https://konihaus.ch/datenschutz" data-legal="privacy" data-i18n="footer.col3_l2">Datenschutz</a></li>
+            <li><a href="https://konihaus.ch/#cookie-declaration" data-cc-open data-i18n="footer.col3_l3">Cookie-Erklärung</a></li>
+            <li><a href="https://konihaus.ch/agb" data-i18n="footer.col3_l4">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Konihaus · Affoltern am Albis, Schweiz
+        </p>
+        <p class="fch" data-i18n="footer.ch">🇨🇭 Made in Switzerland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/scripts.js"></script>
+  <script src="/assets/cookie-consent.js"></script>
+  <script>
+    const lang = "en";
+
+    function switchToDe() {
+      if (lang === 'de') return;
+      location.href = devHref('/de/insights/smart-home-sensoren/');
+    }
+
+    function switchToEn() {
+      if (lang === 'en') return;
+      location.href = devHref('/de/insights/smart-home-sensoren/');
+    }
+
+    (function () {
+      const shareUrl = "https://blog.konihaus.ch/en/insights/smart-home-sensors/";
+      const shareTitle = "A smart home is only as smart as what it can sense. The five kinds of sensor worth knowing, what they cost in Switzerland, and the two or three to place first.";
+      const encodedUrl = encodeURIComponent(shareUrl);
+      const encodedTitle = encodeURIComponent(shareTitle);
+
+      const links = {
+        x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+        email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+      };
+ 
+      document.querySelectorAll('[data-share]').forEach((el) => {
+        const platform = el.getAttribute('data-share');
+        if (links[platform]) el.href = links[platform];
+      });
+
+      /*if (navigator.share) {
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }*/
+
+      const isTouchMobile = window.matchMedia('(pointer: coarse)').matches
+        && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isTouchMobile && navigator.share) {
+        document.querySelectorAll('[data-share="native"]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-copy-link]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            btn.setAttribute('data-copied', 'true');
+            setTimeout(() => btn.removeAttribute('data-copied'), 2000);
+          } catch {
+            
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -18,6 +18,12 @@
     <lastmod>2026-09-02</lastmod>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/ferienwohnung-frostschutz/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/ferienwohnung-frostschutz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/holiday-home-frost-watch/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/fuer-wen-ist-konihaus/</loc>
     <lastmod>2026-10-08</lastmod>
   </url>
@@ -93,6 +99,12 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/future-proof/</loc>
     <lastmod>2026-09-10</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/holiday-home-frost-watch/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/ferienwohnung-frostschutz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/holiday-home-frost-watch/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/konihaus-app/</loc>

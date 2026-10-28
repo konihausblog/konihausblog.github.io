@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
+       default 09:00, Swiss time) the page behaves like a 404 and is marked noindex, nofollow,
+       unless the URL has ?devmode=super (then it shows, but still noindex, nofollow).
+       Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super';
+      var parts = {};
+      new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Zurich',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+      var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
+      var published = '2026-11-04';
+      var m = /^(\d{1,2}):(\d{2})/.exec('09:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '09:00';
+      window.__scheduledPost = (published + 'T' + at) > now ? published : null;
+      window.__scheduledPostTime = at;
+      // Not released yet (or a dev preview): tell search engines not to index or follow.
+      // The static robots tag below stays "index"; when two robots tags conflict,
+      // search engines apply the stricter one. After release this tag is no longer added.
+      if (window.__scheduledPost || dev) {
+        var robots = document.createElement('meta');
+        robots.name = 'robots';
+        robots.content = 'noindex, nofollow';
+        document.head.appendChild(robots);
+      }
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- Hide content until JS loads and sets language -->
+  <script>
+    document.documentElement.classList.add('no-js');
+    document.documentElement.classList.add("fonts-loading");
+  </script>
+  <style>
+    html.no-js body {
+      display: none;
+    }
+    html.fonts-loading body {
+      visibility: hidden;
+    }
+  </style>
+  <meta name="theme-color" content="#2a4a35">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
+  <link rel="apple-touch-icon" href="/assets/favicon.svg">
+  <title>Smartes Türschloss Schweiz: Codes und Grenzen - Konihaus</title>
+  <meta name="description" content="Smartes Türschloss in der Schweiz: Nuki und Aqara, Matter over Thread, Codes mit Zeitfenster für Reinigung oder Pflege und was noch die Cloud braucht.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Konrad Hefelle">
+
+  <!-- Canonical + language alternates -->
+  <link rel="canonical" href="https://blog.konihaus.ch/de/insights/smarte-tuerschloesser-schweiz/">
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-tuerschloesser-schweiz/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-locks-switzerland/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/en/insights/smart-locks-switzerland/">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Konihaus">
+  <meta property="og:title" content="Smarte Türschlösser: Die drei Aufgaben der Haustür">
+  <meta property="og:description" content="Smartes Türschloss in der Schweiz: Nuki und Aqara, Matter over Thread, Codes mit Zeitfenster für Reinigung oder Pflege und was noch die Cloud braucht.">
+  <meta property="og:url" content="https://blog.konihaus.ch/de/insights/smarte-tuerschloesser-schweiz/">
+  <meta property="fb:app_id" content="2188289105366537" />
+  <meta property="fb:pages" content="1067591876443915">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/smart-locks/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Smarte Türschlösser: Die drei Aufgaben der Haustür">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="article:published_time" content="2026-11-04">
+  
+  <meta property="article:author" content="Konrad Hefelle">
+  <meta property="article:publisher" content="https://www.facebook.com/konihaus.ch">
+  <meta property="article:section" content="sicherheit">
+  <meta property="article:tag" content="schloss">
+  <meta property="article:tag" content="tuer">
+  <meta property="article:tag" content="nuki">
+  <meta property="article:tag" content="matter">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Smarte Türschlösser: Die drei Aufgaben der Haustür">
+  <meta name="twitter:description" content="Smartes Türschloss in der Schweiz: Nuki und Aqara, Matter over Thread, Codes mit Zeitfenster für Reinigung oder Pflege und was noch die Cloud braucht.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/smart-locks/og.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Smarte Türschlösser: Die drei Aufgaben der Haustür",
+    "description": "Smartes Türschloss in der Schweiz: Nuki und Aqara, Matter over Thread, Codes mit Zeitfenster für Reinigung oder Pflege und was noch die Cloud braucht.",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.konihaus.ch/images/insights/smart-locks/og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "articleSection": "sicherheit",
+    "keywords": "smartes Türschloss Schweiz, schloss, tuer, nuki, matter",
+    "datePublished": "2026-11-04",
+    "dateModified": "2026-11-04",
+    "inLanguage": "de",
+    "mainEntityOfPage": "https://blog.konihaus.ch/de/insights/smarte-tuerschloesser-schweiz/",
+    "author": {
+      "@type": "Person",
+      "name": "Konrad Hefelle",
+      "url": "https://konihaus.ch"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Konihaus",
+      "url": "https://konihaus.ch",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blog.konihaus.ch/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Insights",
+        "item": "https://blog.konihaus.ch/de/insights/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Smarte Türschlösser: Die drei Aufgaben der Haustür",
+        "item": "https://blog.konihaus.ch/de/insights/smarte-tuerschloesser-schweiz/"
+      }
+    ]
+  }
+  </script>
+
+  <link
+    rel="preload"
+    href="/fonts/outfit-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-italic.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/post.css">
+  <link rel="stylesheet" href="/assets/subscribe.css">
+</head>
+<body>
+
+ <nav class="nav  nav--solid" id="nav">
+    <div class="container">
+      <div class="nav__inner ">
+        <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+          <div class="logo-image"></div>
+          <div class="wordmark">konihaus blog</div>
+        </a>
+        <ul class="nav__links">
+            <li><button type="button" class="nav__search" data-blog-search-open aria-label="Suche"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Suche</span></button></li>
+            <li><a href="/de/insights/">Neueste</a></li>
+            <li class="has-sub">
+              <a href="/de/insights/" class="nav__parent" aria-haspopup="true"><span>Themen</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li data-live-from="2026-09-10T09:00"><a href="/de/insights/?topic=technik">Technik</a></li>
+                <li data-live-from="2026-09-15T09:00"><a href="/de/insights/?topic=ratgeber">Ratgeber</a></li>
+                <li data-live-from="2026-10-28T09:00"><a href="/de/insights/?topic=sicherheit">Sicherheit</a></li>
+                <li data-live-from="2026-09-02T09:00"><a href="/de/insights/?topic=energie">Energie</a></li>
+                <li data-live-from="2026-10-05T09:00"><a href="/de/insights/?topic=datenschutz">Datenschutz</a></li>
+                <li data-live-from="2026-10-01T18:00"><a href="/de/insights/?topic=konihaus">Konihaus</a></li>
+                <li data-live-from="2026-10-26T09:00"><a href="/de/insights/?topic=news">News</a></li>
+                <li class="nav__sub-all"><a href="/de/insights/">Alle Beiträge →</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="https://konihaus.ch/" class="nav__parent" aria-haspopup="true"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub nav__sub--wide">
+                <li><a href="https://konihaus.ch/" data-i18n="nav.website">Website</a></li>
+                <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+                <li class="nav__sub-label">Unternehmen</li>
+                <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+                <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+                <li class="nav__sub-label">Service</li>
+                <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+                <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+                <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+                <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+                <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+              </ul>
+            </li>
+          </ul><button type="button" class="nav__searchbar" data-blog-search-open aria-label="Suche"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Beiträge durchsuchen</span></button>
+
+        <div class="language-picker">
+          <button
+            type="button"
+            class="language-trigger"
+            aria-expanded="false"
+            aria-controls="language-options"
+            aria-label="Language: Deutsch"
+          >
+            <span class="language-current">DE</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          <div id="language-options" class="language-options" hidden>
+            <button type="button" class="language-option" data-lang="de" onclick="switchToDe()">
+              <span>Deutsch</span>
+              <span class="language-code">DE</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en" onclick="switchToEn()">
+              <span>English</span>
+              <span class="language-code">EN</span>
+            </button>
+          </div>
+
+          <select id="lang-selector" hidden>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="https://konihaus.ch/#contact" class="btn nav__cta" data-i18n="nav.cta">Kostenlose Beratung</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav__drawer" id="drawer">
+    <ul>
+      <li><a href="/de/insights/" class="drawer-link">Neueste</a></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-topics"><span>Themen</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-topics" hidden>
+          <li data-live-from="2026-09-10T09:00"><a href="/de/insights/?topic=technik" class="drawer-link">Technik</a></li>
+          <li data-live-from="2026-09-15T09:00"><a href="/de/insights/?topic=ratgeber" class="drawer-link">Ratgeber</a></li>
+          <li data-live-from="2026-10-28T09:00"><a href="/de/insights/?topic=sicherheit" class="drawer-link">Sicherheit</a></li>
+          <li data-live-from="2026-09-02T09:00"><a href="/de/insights/?topic=energie" class="drawer-link">Energie</a></li>
+          <li data-live-from="2026-10-05T09:00"><a href="/de/insights/?topic=datenschutz" class="drawer-link">Datenschutz</a></li>
+          <li data-live-from="2026-10-01T18:00"><a href="/de/insights/?topic=konihaus" class="drawer-link">Konihaus</a></li>
+          <li data-live-from="2026-10-26T09:00"><a href="/de/insights/?topic=news" class="drawer-link">News</a></li>
+          <li><a href="/de/insights/" class="drawer-link">Alle Beiträge</a></li>
+        </ul>
+      </li>
+      <li><button type="button" class="drawer-link drawer-search" data-blog-search-open>Suche</button></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-konihaus"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-konihaus" hidden>
+          <li><a href="https://konihaus.ch/" class="drawer-link" data-i18n="nav.website">Website</a></li>
+          <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
+          <li><a href="https://konihaus.ch/#devices" class="drawer-link" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+          <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link class="drawer-link" data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+          <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+          <li><a href="https://konihaus.ch/#faq" class="drawer-link" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+          <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="footer.col1_l4">Kontakt</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+  </div>
+
+
+  <main class="blog-post__container">
+
+    <header class="blog-post__link">
+        <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+    </header>
+
+    <article>
+      <header class="blog-post__header">
+        <p class="blog-post__category">sicherheit</p>
+        <h1 class="blog-post__title"><span>Smarte Türschlösser: Die drei Aufgaben der Haustür</span></h1>
+        <time class="blog-post__meta" datetime="Wed Nov 04 2026 01:00:00 GMT+0100 (Central European Standard Time)">
+            4. November 2026
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;7 Min. Lesezeit</span>
+          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">von</span> Koni
+
+        <div class="blog-post__share">
+          <span class="blog-post__share-label">Teilen</span>
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4.5A9.6 9.6 0 0 0 4.4 15.9L3.5 20.5l4.7-1.2A9.6 9.6 0 1 0 20 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M8.8 9.4c.2 3 3.1 5.8 6 6 1 .1 1.4-.6 1.4-1.2l-.2-1.2-1.9-.8c-.3-.1-.6 0-.8.2l-.5.6a5.9 5.9 0 0 1-2.6-2.6l.6-.5c.2-.2.3-.5.2-.8L10.2 7l-1.2-.2c-.6 0-1.3.4-1.2 1.4Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="email" href="#" aria-label="Share by email" title="Share by email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m4 6.5 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+
+      <div class="blog-post__content">
+        <p>Die Haustür hat drei Aufgaben. Sie lässt die richtigen Leute herein, sie sagt Ihnen, ob sie zu ist, und sie sagt Ihnen, wer davorsteht. Ein Smart Home kann bei allen dreien helfen, und jede ist ein anderes Gerät: ein Schloss, ein Türkontakt und eine Türklingel.</p>
+<p>Das ist der fünfte Beitrag der Serie über die Teile eines Smart Homes, nach <a target="_blank" rel="noopener noreferrer" href="/de/insights/smarte-beleuchtung-schweiz/">smartem Licht</a>, <a target="_blank" rel="noopener noreferrer" href="/de/insights/smarte-storen-schweiz/">Storen</a>, <a target="_blank" rel="noopener noreferrer" href="/de/insights/smart-home-sensoren/">Sensoren</a> und <a target="_blank" rel="noopener noreferrer" href="/de/insights/smarte-heizung-schweiz/">Heizung</a>. Es sind dieselben Fragen wie zuvor: Was bringt es Ihnen, was sollten Sie vor dem Kauf prüfen, und wo liegen die ehrlichen Grenzen? Dieser Beitrag behandelt das Schloss und den Kontakt. Die Türklingel und die Frage, wer draussen steht, verdienen später in diesem Monat einen eigenen Beitrag.</p>
+<h2>Aufgabe eins: die richtigen Leute hereinlassen</h2>
+<p>Das Beste an einem smarten Schloss ist nicht, dass Sie die Tür mit dem Handy öffnen. Es ist, dass Sie jemandem Zugang geben können, ohne einen Schlüssel auszuhändigen.</p>
+<ul>
+<li><strong>Ein Code mit Zeitfenster für die Reinigung</strong>, nur donnerstags am Vormittag gültig.</li>
+<li><strong>Ein Code für die Nachbarin,</strong> die die Pflanzen giesst, während Sie weg sind, und den Sie ausschalten, wenn Sie zurück sind.</li>
+<li><strong>Zugang für einen Pflegebesuch,</strong> etwa von der Spitex, den Sie im Protokoll sehen und beenden, wenn er nicht mehr nötig ist.</li>
+<li><strong>Familie ohne Schlüssel.</strong> Kinder und Gäste verlieren einen Code nicht so wie einen Schlüssel.</li>
+<li><strong>Automatisches Öffnen</strong> bei Ihrer Ankunft, wenn Sie es wollen, und wieder abschliessen, wenn Sie gehen.</li>
+</ul>
+<p>Dafür brauchen Sie keinen Schlüsseldienst, und nirgends bleibt ein kopierter Schlüssel in einer fremden Schublade liegen.</p>
+<h2>Aufgabe zwei: Ist sie zu?</h2>
+<p>Ein Schloss weiss, ob der Riegel vorgeschoben ist. Es weiss nicht, ob die Tür geschlossen ist. Ein Türkontakt, der kleine Sensor aus dem <a target="_blank" rel="noopener noreferrer" href="/de/insights/smart-home-sensoren/">Beitrag über Sensoren</a>, schliesst diese Lücke. Zusammen beantworten sie die Frage, die wir uns alle im Auto stellen: Habe ich die Tür abgeschlossen? Ein guter Abendcheck lautet dann: «Die Haustür ist zu, aber nicht abgeschlossen» oder «noch offen», und schickt eine Nachricht oder schliesst für Sie ab.</p>
+<h2>Was es in der Schweiz zu kaufen gibt</h2>
+<p>Preise Stand 29. Oktober 2026. Sie ändern sich und die Verfügbarkeit schwankt, nehmen Sie die Angaben also als Richtwert.</p>
+<p><strong>Nuki</strong> ist ein hier bekannter Name. Digitec führt das Smart Lock Pro (4. Generation) in einer Version für den CH-Zylinder. Preis und Verfügbarkeit schwanken, prüfen Sie also vor der Bestellung. Es unterstützt Matter, hat ein eingebautes WLAN-Modul, automatisches Öffnen, bis zu 200 einzelne Zugangsrechte und ein Protokoll der Zutritte und wird ohne Schrauben und Bohren montiert. Das Home-Assistant-Team hat im Juli 2025 selbst drei Nuki-Schlösser getestet und zertifiziert: das Smart Lock Go, das Pro und das Ultra. Sie verbinden sich über Matter over Thread, arbeiten lokal und brauchen kein Cloud-Konto. Die Nuki-App ist für die Einrichtung nötig, und der Fernzugriff später braucht entweder die Nuki-App oder Home Assistant Cloud.</p>
+<p><strong>Aqara</strong> verkauft das Smart Lock U200 für EUR 189.99 im EU-Shop. Es hat Fingerabdruck, PIN (auch temporäre Gästepasswörter), NFC-Karten und Apple Home Key und spricht Thread, Bluetooth und Matter over Thread. Aqara gibt an, dass das Schloss den eigenen M3-Hub braucht. Es ist für Euro-Profilzylinder ausgelegt, nicht für Schweizer, prüfen Sie die Kompatibilität mit Ihrem Zylinder also vor dem Kauf.</p>
+<h2>Eines vorab prüfen: Passt Ihr Zylinder?</h2>
+<p>Schweizer Zylinder sind nicht immer dieselben wie die europäischen. Prüfen Sie vor dem Kauf eines Schlosses den Zylindertyp, ob er eine Notfunktion hat (er lässt sich von aussen mit dem Schlüssel öffnen, auch wenn innen ein Schlüssel steckt) und, wenn Sie mieten, ob Sie ihn überhaupt wechseln dürfen. Fragen Sie zuerst Ihre Vermieterschaft oder die Verwaltung.</p>
+<h2>Ehrliche Grenzen</h2>
+<p><strong>Das Schloss darf Sie nie einsperren.</strong> Die Tür muss sich von innen immer öffnen lassen, mit einer Klinke oder einer Drehung, ganz gleich, was Strom, Netz oder App tun. Und für den Fluchtweg gilt: Kein smartes Schloss ist ein Grund, das Hinausgehen zu erschweren.</p>
+<p><strong>Tastatur-Codes und die Cloud.</strong> Das ist eine echte Lücke. Es ist noch nicht möglich, die Codes einer Nuki-Tastatur lokal aus Home Assistant zu verwalten. Eine Anfrage im Entwicklerforum von Nuki vom März 2026 verlangt genau das, über die lokale Schnittstelle oder MQTT. Bis es so weit ist, läuft das Anlegen oder Löschen eines Codes mit Zeitfenster über Nukis eigene App oder die Cloud. Das Schloss selbst arbeitet lokal. Die Codeverwaltung nicht. Wenn Codes mit Zeitfenster Ihr Hauptgrund für den Kauf sind, fragen Sie, wie sie verwaltet werden, bevor Sie entscheiden.</p>
+<p><strong>Wieder Batterien.</strong> Aqara nennt bis zu sechs Monate beim Akkupack bei etwa acht Entriegelungen am Tag. Nukis Go nutzt vier AA-Batterien. Was immer Sie wählen: Planen Sie eine Warnung bei schwacher Batterie ein und bewahren Sie einen mechanischen Schlüssel an einem sicheren Ort auf.</p>
+<p><strong>Verlassen Sie sich nicht nur aufs Handy.</strong> Ein leeres Handy sollte keine ausgesperrte Familie bedeuten. Ein Code, ein Fingerabdruck oder ein Schlüssel sollte immer auch funktionieren.</p>
+<p><strong>Es ist keine Alarmanlage.</strong> Ein smartes Schloss ist so stark wie die Tür und der Zylinder, an dem es sitzt. Es bringt Komfort und ein Protokoll, keine stärkere Tür.</p>
+<h2>So würde ich beginnen</h2>
+<ol>
+<li><strong>Mit dem Türkontakt beginnen.</strong> Er kostet wenig, und «Ist die Haustür zu?» ist die Frage, die Sie schon stellen.</li>
+<li><strong>Das Schloss dazunehmen,</strong> sobald Sie wissen, dass Ihr Zylinder passt und, wenn Sie mieten, Ihre Vermieterschaft zustimmt.</li>
+<li><strong>Einen Code mit Zeitfenster anlegen</strong> für einen echten Fall, etwa die Reinigung, und ausprobieren, wie es sich anfühlt.</li>
+<li><strong>Die schlechten Fälle testen.</strong> Leere Batterie, kein Internet, kein Handy. Es muss immer einen Weg hinein geben.</li>
+</ol>
+<p>In einem Konihaus-Zuhause melden das Schloss und der Türkontakt lokal an die Greenhub, und der Abendcheck «Ist die Tür noch offen?» läuft ohne Internet. Wo die Codeverwaltung noch die Cloud des Schlossherstellers braucht, sage ich es Ihnen vor dem Kauf. Wenn Sie die nächsten Beiträge der Serie nicht verpassen wollen, melden Sie sich unten für den Konihaus-Blog-Newsletter an.</p>
+<hr>
+<p><strong>Ein smartes Schloss für Ihr Zuhause?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Sprechen Sie mit Koni</a>. Das erste Gespräch ist kostenlos und unverbindlich.</p>
+
+      </div>
+
+      
+<aside class="subscribe subscribe--card" aria-label="Newsletter">
+  <div class="subscribe__intro">
+    <p class="subscribe__eyebrow">Newsletter</p>
+    <h2 class="subscribe__title">Neue Artikel direkt <em>ins Postfach.</em></h2>
+    <p class="subscribe__text">Ich schreibe über Smart Home, Datenschutz und das, was im Alltag wirklich funktioniert. Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint.</p>
+  </div>
+  <form class="subscribe__form" data-blog-subscribe novalidate
+        data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
+        data-lang="de"
+        data-msg-ok="Danke! Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint."
+        data-msg-duplicate="Diese Adresse ist bereits angemeldet. Danke!"
+        data-msg-invalid="Bitte geben Sie eine gültige E-Mail-Adresse ein."
+        data-msg-limit="Zu viele Anmeldungen von dieser Adresse. Bitte versuchen Sie es später erneut."
+        data-msg-error="Das hat leider nicht geklappt. Bitte versuchen Sie es später erneut.">
+    <div class="subscribe__row">
+      <label class="subscribe__sr" for="subscribe-email">E-Mail-Adresse</label>
+      <input class="subscribe__input" id="subscribe-email" type="email" name="email"
+             autocomplete="email" inputmode="email" placeholder="Ihre E-Mail-Adresse" required>
+      <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="subscribe__button" type="submit">Abonnieren</button>
+    </div>
+    <p class="subscribe__note">Abmeldung jederzeit möglich. Mehr dazu in der <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.</p>
+    <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+
+          <section class="blog-post__related" aria-label="Weiterlesen">
+            <h2 class="blog-post__related-title">Weiterlesen</h2>
+            <div class="blog-post__related-grid">
+                    <a class="blog-post__related-card" href="/de/insights/smart-home-sensoren/" data-post-date="2026-10-31" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">Sensoren im Smart Home: Die fünf Familien, die Ihrem Zuhause sagen, was los ist</span>
+                        <span class="blog-post__related-card-meta">7 Min. Lesezeit</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/de/insights/smart-home-fuer-mieter/" data-post-date="2026-11-01" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">Smart Home zur Miete: Was ohne Nachfrage geht</span>
+                        <span class="blog-post__related-card-meta">5 Min. Lesezeit</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/de/insights/kein-vendor-lock-in/" data-post-date="2026-09-29" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">Kein Vendor Lock-In</span>
+                        <span class="blog-post__related-card-meta">5 Min. Lesezeit</span>
+                    </a>
+            </div>
+          </section>
+
+      <footer class="blog-post__footer">
+          <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+
+        <div class="blog-post__share blog-post__share--footer">
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+            <div class="logo-image"></div>
+            <div class="wordmark">konihaus blog</div>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
+            Ferienhausbesitzer in der
+            Schweiz.</p>
+          <div class="footer__social" aria-label="Social Media">
+            <a href="https://www.instagram.com/ch.konihaus/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/konihaus.ch" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://x.com/konihaus" class="social-icon social-icon--x" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/konihaus" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+                <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@Konihaus/shorts" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2.5" y="5.5" width="19" height="13" rx="4" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M10 9.3v5.4l4.6-2.7z" fill="currentColor"/>
+            </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col1_title">Service</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+            <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+            <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+            <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+            <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col2_title">Unternehmen</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+            <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col3_title">Rechtliches</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/impressum" data-i18n="footer.col3_l1">Impressum</a></li>
+            <li><a href="https://konihaus.ch/datenschutz" data-legal="privacy" data-i18n="footer.col3_l2">Datenschutz</a></li>
+            <li><a href="https://konihaus.ch/#cookie-declaration" data-cc-open data-i18n="footer.col3_l3">Cookie-Erklärung</a></li>
+            <li><a href="https://konihaus.ch/agb" data-i18n="footer.col3_l4">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Konihaus · Affoltern am Albis, Schweiz
+        </p>
+        <p class="fch" data-i18n="footer.ch">🇨🇭 Made in Switzerland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/scripts.js"></script>
+  <script src="/assets/cookie-consent.js"></script>
+  <script>
+    const lang = "de";
+
+    function switchToDe() {
+      if (lang === 'de') return;
+      location.href = devHref('/en/insights/smart-locks-switzerland/');
+    }
+
+    function switchToEn() {
+      if (lang === 'en') return;
+      location.href = devHref('/en/insights/smart-locks-switzerland/');
+    }
+
+    (function () {
+      const shareUrl = "https://blog.konihaus.ch/de/insights/smarte-tuerschloesser-schweiz/";
+      const shareTitle = "Die Haustür hat drei Aufgaben: die richtigen Leute hereinlassen, Ihnen sagen, ob sie zu ist, und Ihnen sagen, wer davorsteht. Was smarte Schlösser in der Schweiz gut können, was es zu kaufen gibt und wo die ehrlichen Lücken liegen.";
+      const encodedUrl = encodeURIComponent(shareUrl);
+      const encodedTitle = encodeURIComponent(shareTitle);
+
+      const links = {
+        x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+        email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+      };
+ 
+      document.querySelectorAll('[data-share]').forEach((el) => {
+        const platform = el.getAttribute('data-share');
+        if (links[platform]) el.href = links[platform];
+      });
+
+      /*if (navigator.share) {
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }*/
+
+      const isTouchMobile = window.matchMedia('(pointer: coarse)').matches
+        && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isTouchMobile && navigator.share) {
+        document.querySelectorAll('[data-share="native"]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-copy-link]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            btn.setAttribute('data-copied', 'true');
+            setTimeout(() => btn.removeAttribute('data-copied'), 2000);
+          } catch {
+            
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
