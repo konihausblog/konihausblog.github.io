@@ -58,6 +58,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-lights-switzerland/"/>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/smarte-storen-schweiz/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-storen-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/unbemerkte-alltagsaergernisse/</loc>
     <lastmod>2026-10-17</lastmod>
   </url>
@@ -129,6 +135,12 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/privacy-by-default/</loc>
     <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-storen-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/smart-home-cost-switzerland/</loc>
