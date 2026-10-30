@@ -48,6 +48,12 @@
     <lastmod>2026-10-13</lastmod>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/sicher-durch-die-nacht/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/sicher-durch-die-nacht/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/safer-hallways-at-night/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/smart-home-wie-fine-dining/</loc>
     <lastmod>2026-09-15</lastmod>
   </url>
@@ -135,6 +141,12 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/privacy-by-default/</loc>
     <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/safer-hallways-at-night/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/sicher-durch-die-nacht/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/safer-hallways-at-night/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/</loc>
