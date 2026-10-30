@@ -18,7 +18,7 @@
         hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
       }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
       var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
-      var published = '2026-11-01';
+      var published = '2026-11-03';
       var m = /^(\d{1,2}):(\d{2})/.exec('09:00');
       var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '09:00';
       window.__scheduledPost = (published + 'T' + at) > now ? published : null;
@@ -80,7 +80,7 @@
   <meta property="og:image:alt" content="Smart Home zur Miete: Was ohne Nachfrage geht">
   <meta property="og:locale" content="de_CH">
   <meta property="og:locale:alternate" content="en_US">
-  <meta property="article:published_time" content="2026-11-01">
+  <meta property="article:published_time" content="2026-11-03">
   
   <meta property="article:author" content="Konrad Hefelle">
   <meta property="article:publisher" content="https://www.facebook.com/konihaus.ch">
@@ -110,8 +110,8 @@
     },
     "articleSection": "ratgeber",
     "keywords": "Smart Home Mietwohnung, mieter, mietrecht, nachruesten",
-    "datePublished": "2026-11-01",
-    "dateModified": "2026-11-01",
+    "datePublished": "2026-11-03",
+    "dateModified": "2026-11-03",
     "inLanguage": "de",
     "mainEntityOfPage": "https://blog.konihaus.ch/de/insights/smart-home-fuer-mieter/",
     "author": {
@@ -308,8 +308,8 @@
       <header class="blog-post__header">
         <p class="blog-post__category">ratgeber</p>
         <h1 class="blog-post__title"><span>Smart Home zur Miete: Was ohne Nachfrage geht</span></h1>
-        <time class="blog-post__meta" datetime="Sun Nov 01 2026 01:00:00 GMT+0100 (Central European Standard Time)">
-            1. November 2026
+        <time class="blog-post__meta" datetime="Tue Nov 03 2026 01:00:00 GMT+0100 (Central European Standard Time)">
+            3. November 2026
         </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;5 Min. Lesezeit</span>
           &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">von</span> Koni
 

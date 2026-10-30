@@ -18,7 +18,7 @@
         hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
       }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
       var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
-      var published = '2026-10-31';
+      var published = '2026-11-02';
       var m = /^(\d{1,2}):(\d{2})/.exec('09:00');
       var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '09:00';
       window.__scheduledPost = (published + 'T' + at) > now ? published : null;
@@ -80,7 +80,7 @@
   <meta property="og:image:alt" content="Smart Home Sensors: The Five Types That Tell Your Home What Is Going On">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="de_CH">
-  <meta property="article:published_time" content="2026-10-31">
+  <meta property="article:published_time" content="2026-11-02">
   
   <meta property="article:author" content="Konrad Hefelle">
   <meta property="article:publisher" content="https://www.facebook.com/konihaus.ch">
@@ -111,8 +111,8 @@
     },
     "articleSection": "technology",
     "keywords": "smart home sensors, sensors, presence, zigbee, thread",
-    "datePublished": "2026-10-31",
-    "dateModified": "2026-10-31",
+    "datePublished": "2026-11-02",
+    "dateModified": "2026-11-02",
     "inLanguage": "en",
     "mainEntityOfPage": "https://blog.konihaus.ch/en/insights/smart-home-sensors/",
     "author": {
@@ -309,8 +309,8 @@
       <header class="blog-post__header">
         <p class="blog-post__category">technology</p>
         <h1 class="blog-post__title"><span>Smart Home Sensors: The Five Types That Tell Your Home What Is Going On</span></h1>
-        <time class="blog-post__meta" datetime="Sat Oct 31 2026 01:00:00 GMT+0100 (Central European Standard Time)">
-            October 31, 2026
+        <time class="blog-post__meta" datetime="Mon Nov 02 2026 01:00:00 GMT+0100 (Central European Standard Time)">
+            November 2, 2026
         </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;8 min read</span>
           &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">by</span> Koni
 
@@ -414,7 +414,7 @@
 <li><strong>Place them, then watch the numbers for a week</strong> before you build any rules on them.</li>
 <li><strong>Add the battery check.</strong> Every sensor, from day one.</li>
 </ol>
-<p>In a Konihaus home, sensors report to the Greenhub, locally, and the system tells you when a battery runs low. The next post covers heating and climate: thermostats, radiator valves and the heat pump as one system. If you don't want to miss it, sign up for the Konihaus Blog newsletter below.</p>
+<p>In a Konihaus home, sensors report to the Greenhub, locally, and the system tells you when a battery runs low. The next post in this series covers heating and climate: thermostats, radiator valves and the heat pump as one system. If you don't want to miss it, sign up for the Konihaus Blog newsletter below.</p>
 <hr>
 <p><strong>Not sure which sensors would help in your home?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Talk to Koni</a>. The first conversation is free, with no obligation.</p>
 
