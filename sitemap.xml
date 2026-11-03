@@ -54,6 +54,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/safer-hallways-at-night/"/>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/smart-home-fuer-mieter/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smart-home-fuer-mieter/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-for-renters/"/>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/de/insights/smart-home-sensoren/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smart-home-sensoren/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-sensors/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/smart-home-wie-fine-dining/</loc>
     <lastmod>2026-09-15</lastmod>
   </url>
@@ -163,6 +175,18 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/smart-home-fine-dining/</loc>
     <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/smart-home-for-renters/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smart-home-fuer-mieter/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-for-renters/"/>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/smart-home-sensors/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smart-home-sensoren/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-sensors/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/smart-lights-switzerland/</loc>
