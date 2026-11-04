@@ -76,6 +76,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-lights-switzerland/"/>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/smarte-heizung-schweiz/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-heizung-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-heating-switzerland/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/smarte-storen-schweiz/</loc>
     <lastmod>2026-10-29</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-storen-schweiz/"/>
@@ -165,6 +171,12 @@
     <lastmod>2026-10-29</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-storen-schweiz/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-blinds-switzerland/"/>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/smart-heating-switzerland/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-heizung-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-heating-switzerland/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/smart-home-cost-switzerland/</loc>
