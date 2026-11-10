@@ -100,6 +100,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-locks-switzerland/"/>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/solaranlage-lohnt-sich-schweiz/</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/solaranlage-lohnt-sich-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/solar-worth-it-switzerland/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/strompreise-2027/</loc>
     <lastmod>2026-11-05</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/strompreise-2027/"/>
@@ -241,6 +247,12 @@
     <lastmod>2026-11-06</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-tuerschloesser-schweiz/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-locks-switzerland/"/>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/solar-worth-it-switzerland/</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/solaranlage-lohnt-sich-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/solar-worth-it-switzerland/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/swiss-quality/</loc>
