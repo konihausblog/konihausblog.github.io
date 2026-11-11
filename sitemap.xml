@@ -4,6 +4,12 @@
     <loc>https://blog.konihaus.ch/de/insights/</loc>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/adhs-im-alltag/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/adhs-im-alltag/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/adhd-at-home/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/apple-homeview-schweiz/</loc>
     <lastmod>2026-10-26</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/apple-homeview-schweiz/"/>
@@ -133,6 +139,12 @@
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/</loc>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/adhd-at-home/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/adhs-im-alltag/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/adhd-at-home/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/apple-homeview-switzerland/</loc>
