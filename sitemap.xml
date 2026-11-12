@@ -40,6 +40,12 @@
     <lastmod>2026-10-08</lastmod>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/hersteller-schaltet-server-ab/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/hersteller-schaltet-server-ab/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/manufacturer-switches-off-server/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/kein-vendor-lock-in/</loc>
     <lastmod>2026-09-29</lastmod>
   </url>
@@ -191,6 +197,12 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/konihaus-is-live/</loc>
     <lastmod>2026-10-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/manufacturer-switches-off-server/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/hersteller-schaltet-server-ab/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/manufacturer-switches-off-server/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/no-vendor-lock-in/</loc>

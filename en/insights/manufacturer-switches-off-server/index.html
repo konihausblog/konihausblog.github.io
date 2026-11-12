@@ -1,0 +1,636 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
+       default 09:00, Swiss time) the page behaves like a 404 and is marked noindex, nofollow,
+       unless the URL has ?devmode=super (then it shows, but still noindex, nofollow).
+       Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+      var parts = {};
+      new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Zurich',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+      var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
+      var published = '2026-11-12';
+      var m = /^(\d{1,2}):(\d{2})/.exec('09:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '09:00';
+      window.__scheduledPost = (published + 'T' + at) > now ? published : null;
+      window.__scheduledPostTime = at;
+      // Not released yet (or a dev preview): tell search engines not to index or follow.
+      // The static robots tag below stays "index"; when two robots tags conflict,
+      // search engines apply the stricter one. After release this tag is no longer added.
+      if (window.__scheduledPost || dev) {
+        var robots = document.createElement('meta');
+        robots.name = 'robots';
+        robots.content = 'noindex, nofollow';
+        document.head.appendChild(robots);
+      }
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2a4a35">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <title>Smart Home Cloud Shutdown: What Keeps Working - Konihaus</title>
+  <meta name="description" content="A smart home cloud shutdown can turn working devices into bricks. Real cases from 2024 to 2026, what kept working and how to pick devices that last.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Konrad Hefelle">
+
+  <!-- Canonical + language alternates -->
+  <link rel="canonical" href="https://blog.konihaus.ch/en/insights/manufacturer-switches-off-server/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/manufacturer-switches-off-server/">
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/hersteller-schaltet-server-ab/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/en/insights/manufacturer-switches-off-server/">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Konihaus">
+  <meta property="og:title" content="When the Manufacturer Switches Off the Server">
+  <meta property="og:description" content="A smart home cloud shutdown can turn working devices into bricks. Real cases from 2024 to 2026, what kept working and how to pick devices that last.">
+  <meta property="og:url" content="https://blog.konihaus.ch/en/insights/manufacturer-switches-off-server/">
+  <meta property="fb:app_id" content="2188289105366537" />
+  <meta property="fb:pages" content="1067591876443915">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/server-switch-off/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="When the Manufacturer Switches Off the Server">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="de_CH">
+  <meta property="article:published_time" content="2026-11-12">
+  
+  <meta property="article:author" content="Konrad Hefelle">
+  <meta property="article:publisher" content="https://www.facebook.com/konihaus.ch">
+  <meta property="article:section" content="technology">
+  <meta property="article:tag" content="cloud">
+  <meta property="article:tag" content="local-first">
+  <meta property="article:tag" content="vendor-lock-in">
+  <meta property="article:tag" content="home-assistant">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="When the Manufacturer Switches Off the Server">
+  <meta name="twitter:description" content="A smart home cloud shutdown can turn working devices into bricks. Real cases from 2024 to 2026, what kept working and how to pick devices that last.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/server-switch-off/og.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "When the Manufacturer Switches Off the Server",
+    "description": "A smart home cloud shutdown can turn working devices into bricks. Real cases from 2024 to 2026, what kept working and how to pick devices that last.",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.konihaus.ch/images/insights/server-switch-off/og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "articleSection": "technology",
+    "keywords": "smart home cloud shutdown, cloud, local-first, vendor-lock-in, home-assistant",
+    "datePublished": "2026-11-12",
+    "dateModified": "2026-11-12",
+    "inLanguage": "en",
+    "mainEntityOfPage": "https://blog.konihaus.ch/en/insights/manufacturer-switches-off-server/",
+    "author": {
+      "@type": "Person",
+      "name": "Konrad Hefelle",
+      "url": "https://konihaus.ch"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Konihaus",
+      "url": "https://konihaus.ch",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blog.konihaus.ch/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Insights",
+        "item": "https://blog.konihaus.ch/en/insights/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "When the Manufacturer Switches Off the Server",
+        "item": "https://blog.konihaus.ch/en/insights/manufacturer-switches-off-server/"
+      }
+    ]
+  }
+  </script>
+
+  <link
+    rel="preload"
+    href="/fonts/outfit-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-italic.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/post.css">
+  <link rel="stylesheet" href="/assets/subscribe.css">
+</head>
+<body>
+
+ <nav class="nav  nav--solid" id="nav">
+    <div class="container">
+      <div class="nav__inner ">
+        <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+          <div class="logo-image"></div>
+          <div class="wordmark">konihaus blog</div>
+        </a>
+        <ul class="nav__links">
+            <li><button type="button" class="nav__search" data-blog-search-open aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search</span></button></li>
+            <li><a href="/en/insights/">Latest</a></li>
+            <li class="has-sub">
+              <a href="/en/insights/" class="nav__parent" aria-haspopup="true"><span>Topics</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li data-live-from="2026-09-10T09:00"><a href="/en/insights/?topic=technology">Technology</a></li>
+                <li data-live-from="2026-09-15T09:00"><a href="/en/insights/?topic=guide">Guides</a></li>
+                <li data-live-from="2026-10-28T09:00"><a href="/en/insights/?topic=safety">Safety</a></li>
+                <li data-live-from="2026-09-02T09:00"><a href="/en/insights/?topic=energy">Energy</a></li>
+                <li data-live-from="2026-10-05T09:00"><a href="/en/insights/?topic=privacy">Privacy</a></li>
+                <li data-live-from="2026-10-01T18:00"><a href="/en/insights/?topic=konihaus">Konihaus</a></li>
+                <li data-live-from="2026-10-26T09:00"><a href="/en/insights/?topic=news">News</a></li>
+                <li class="nav__sub-all"><a href="/en/insights/">All articles →</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="https://konihaus.ch/" class="nav__parent" aria-haspopup="true"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub nav__sub--wide">
+                <li><a href="https://konihaus.ch/" data-i18n="nav.website">Website</a></li>
+                <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+                <li class="nav__sub-label">Company</li>
+                <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+                <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+                <li class="nav__sub-label">Service</li>
+                <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+                <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+                <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+                <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+                <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+              </ul>
+            </li>
+          </ul><button type="button" class="nav__searchbar" data-blog-search-open aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search articles</span></button>
+
+        <div class="language-picker">
+          <button
+            type="button"
+            class="language-trigger"
+            aria-expanded="false"
+            aria-controls="language-options"
+            aria-label="Language: Deutsch"
+          >
+            <span class="language-current">DE</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          <div id="language-options" class="language-options" hidden>
+            <button type="button" class="language-option" data-lang="de" onclick="switchToDe()">
+              <span>Deutsch</span>
+              <span class="language-code">DE</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en" onclick="switchToEn()">
+              <span>English</span>
+              <span class="language-code">EN</span>
+            </button>
+          </div>
+
+          <select id="lang-selector" hidden>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="https://konihaus.ch/#contact" class="btn nav__cta" data-i18n="nav.cta">Kostenlose Beratung</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav__drawer" id="drawer">
+    <ul>
+      <li><a href="/en/insights/" class="drawer-link">Latest</a></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-topics"><span>Topics</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-topics" hidden>
+          <li data-live-from="2026-09-10T09:00"><a href="/en/insights/?topic=technology" class="drawer-link">Technology</a></li>
+          <li data-live-from="2026-09-15T09:00"><a href="/en/insights/?topic=guide" class="drawer-link">Guides</a></li>
+          <li data-live-from="2026-10-28T09:00"><a href="/en/insights/?topic=safety" class="drawer-link">Safety</a></li>
+          <li data-live-from="2026-09-02T09:00"><a href="/en/insights/?topic=energy" class="drawer-link">Energy</a></li>
+          <li data-live-from="2026-10-05T09:00"><a href="/en/insights/?topic=privacy" class="drawer-link">Privacy</a></li>
+          <li data-live-from="2026-10-01T18:00"><a href="/en/insights/?topic=konihaus" class="drawer-link">Konihaus</a></li>
+          <li data-live-from="2026-10-26T09:00"><a href="/en/insights/?topic=news" class="drawer-link">News</a></li>
+          <li><a href="/en/insights/" class="drawer-link">All articles</a></li>
+        </ul>
+      </li>
+      <li><button type="button" class="drawer-link drawer-search" data-blog-search-open>Search</button></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-konihaus"><span>Konihaus</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-konihaus" hidden>
+          <li><a href="https://konihaus.ch/" class="drawer-link" data-i18n="nav.website">Website</a></li>
+          <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
+          <li><a href="https://konihaus.ch/#devices" class="drawer-link" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+          <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link class="drawer-link" data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+          <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+          <li><a href="https://konihaus.ch/#faq" class="drawer-link" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+          <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="footer.col1_l4">Kontakt</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+  </div>
+
+
+  <main class="blog-post__container">
+
+    <header class="blog-post__link">
+        <a href="/en/insights/" class="blog-post__back-link">← Back to Insights</a>
+    </header>
+
+    <article>
+      <header class="blog-post__header">
+        <p class="blog-post__category">technology</p>
+        <h1 class="blog-post__title"><span>When the Manufacturer Switches Off the Server</span></h1>
+        <time class="blog-post__meta" datetime="Thu Nov 12 2026 01:00:00 GMT+0100 (Central European Standard Time)">
+            November 12, 2026
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;6 min read</span>
+          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">by</span> Koni
+
+        <div class="blog-post__share">
+          <span class="blog-post__share-label">Share</span>
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4.5A9.6 9.6 0 0 0 4.4 15.9L3.5 20.5l4.7-1.2A9.6 9.6 0 1 0 20 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M8.8 9.4c.2 3 3.1 5.8 6 6 1 .1 1.4-.6 1.4-1.2l-.2-1.2-1.9-.8c-.3-.1-.6 0-.8.2l-.5.6a5.9 5.9 0 0 1-2.6-2.6l.6-.5c.2-.2.3-.5.2-.8L10.2 7l-1.2-.2c-.6 0-1.3.4-1.2 1.4Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="email" href="#" aria-label="Share by email" title="Share by email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m4 6.5 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+
+      <div class="blog-post__content">
+        <p>One morning the app says: &quot;This service has ended.&quot; The lamps are where they were, the sockets are still in the wall. But what made them smart was never in your house. It was on a server, and the company that ran it has stopped.</p>
+<p>This is not a thought experiment. It has happened often enough that there are clear patterns. Here are three recent cases.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/server-switch-off/01-service-ended.webp" alt="A woman looks at her phone, which shows a grey cloud with a cross, while the lamp beside her stays off." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Three real shutdowns</h2>
+<ul>
+<li><strong>Gigaset, March 2024.</strong> Insolvency proceedings against the German company were opened on 29 January 2024. A buyer took over the telephone business, but nobody took the smart home business, and the company said insolvency law did not allow it to keep the services running (<a target="_blank" rel="noopener noreferrer" href="https://service.gigaset.com/es/support/solutions/articles/75000121662-why-is-the-gigaset-smart-home-system-no-longer-usable-">Gigaset</a>). On 29 March 2024 the cloud was switched off. According to the Swiss trade magazine <a target="_blank" rel="noopener noreferrer" href="https://www.itreseller.ch/Artikel/100542/Gigaset_beendet_Smart-Home-Unterstuetzung.html">IT Reseller</a>, the smoke detector was the only product that kept working.</li>
+<li><strong>Belkin Wemo, January 2026.</strong> Belkin announced in July 2025 (<a target="_blank" rel="noopener noreferrer" href="https://techcrunch.com/2025/07/10/belkin-ends-support-for-most-wemo-devices-and-its-wemo-app">TechCrunch</a>) that it would end the Wemo cloud on 31 January 2026. After that date the app, remote access and the Alexa and Google Assistant connections stopped, and new devices could no longer be set up through the app. Devices that had been set up with Apple HomeKit before the deadline kept working locally, and so did the Thread models (<a target="_blank" rel="noopener noreferrer" href="https://www.belkin.com/support-article/?articleNum=335419">Belkin</a>).</li>
+<li><strong>Bose SoundTouch, May 2026.</strong> Bose announced the end of cloud support in October 2025, postponed the date after complaints, and switched the cloud off on 6 May 2026. Presets and the music-service search in the app stopped, and there are no more security updates. Bluetooth, AirPlay on some models, Spotify Connect and the AUX input keep working, and Bose has published the technical documentation of the interface (<a target="_blank" rel="noopener noreferrer" href="https://www.pcwelt.de/article/3032259/bose-soundtouch-support-ende-tipps.html">PC-WELT</a>).</li>
+</ul>
+<p>One more, in a single sentence, because it is a US brand: in April 2022 the US company Insteon went silent without warning its customers, and the physical switches kept working while the automation did not (<a target="_blank" rel="noopener noreferrer" href="https://www.theregister.com/2022/04/19/insteon_cloud_shutdown/">The Register</a>).</p>
+<h2>Why it happens</h2>
+<p>The three stories end in different ways: a company goes insolvent, a company decides a product line is no longer worth the cost, a product simply gets old. The root is always the same. The device needs the manufacturer's server to do its job, and a server costs money every month. When the money stops, the service stops, and the hardware in your wall is still perfectly fine.</p>
+<h2>What kept working</h2>
+<p>Look at the lists again. What survived was whatever talked locally: the Wemo devices set up with HomeKit, the Thread models, the Bose speakers over Bluetooth or a cable, the Insteon wall switches, the Gigaset smoke detector. The part that depended on the cloud went, the part that could do its job on its own stayed.</p>
+<p>That is the rule I design by.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/server-switch-off/02-local-keeps-working.webp" alt="A home hub on a shelf is connected by a cable to a lit lamp, while a cloud with a cross hangs unconnected above it." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>What I do differently</h2>
+<p>In a Konihaus home, the brain is a small hub in your own house running Home Assistant. Devices talk to it locally, on open standards such as Zigbee, and the automations run there. There is no account with a manufacturer that the home depends on. I wrote about the reasoning in <a target="_blank" rel="noopener noreferrer" href="/en/insights/no-vendor-lock-in/">No Vendor Lock-In</a> and in <a target="_blank" rel="noopener noreferrer" href="/en/insights/future-proof/">Will It Still Work in Ten Years?</a>.</p>
+<p>Home Assistant itself shows how a cloud can be done. Its optional online service, until now called Home Assistant Cloud, is being renamed Home Assistant Link: the rename was announced on 2 October 2026 and is planned for the December release. Link provides remote access, the connection to Alexa and Google Home, online speech recognition, encrypted backups and human support. The project says plainly that the home keeps working without it, and keeps working if you cancel the subscription (<a target="_blank" rel="noopener noreferrer" href="https://www.home-assistant.io/blog/2026/10/02/big-tech-ruined-the-cloud-so-were-renaming-ours/">Home Assistant</a>).</p>
+<p>That's the order I want: cloud as an extra you can switch off, not as the foundation.</p>
+<h2>Honest limits</h2>
+<ul>
+<li><strong>Local doesn't mean forever.</strong> Hardware fails, and a company that disappears also stops sending updates. Bose says it won't provide security updates after May 2026, which is why a device like that belongs on a private network.</li>
+<li><strong>Some things need the internet by nature.</strong> A weather forecast, a music service, a big-tech voice assistant: if that service goes, that function goes. The lights, the heating and the locks should not go with it.</li>
+<li><strong>An optional service is still a service.</strong> If you use remote access through a company's service, it's worth knowing the alternative. In a Konihaus home, remote access runs over an encrypted VPN.</li>
+<li><strong>I can't tell you which company will still exist in ten years.</strong> Nobody can. That's exactly why the question is how much breaks when one doesn't.</li>
+</ul>
+<h2>Five questions before you buy</h2>
+<ol>
+<li><strong>Does it still work without internet,</strong> at least the basics?</li>
+<li><strong>Does it need an account with the manufacturer</strong> to work every day?</li>
+<li><strong>Does it speak an open standard</strong> such as Zigbee, Matter or Thread, so another hub could take over?</li>
+<li><strong>Where does the brain run,</strong> in your house or on the manufacturer's server?</li>
+<li><strong>What happens if the company disappears?</strong> If the honest answer is &quot;it stops&quot;, think twice, especially for locks, smoke alarms and heating.</li>
+</ol>
+<figure class="blog-post__figure">
+  <img src="/images/insights/server-switch-off/03-five-questions.webp" alt="A woman holds a notepad with five empty tick boxes, with a boxed smart plug, a phone and a home hub with a lamp nearby." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>If you already own cloud-only devices</h2>
+<p>No need to throw anything away today. Find out which functions still work without the cloud, use the device as long as it works, and replace things step by step. Start with the ones that matter for safety: door locks, smoke and water alarms, heating. If you want a second opinion on what you have at home, I'm happy to look at it with you.</p>
+<hr>
+<p><strong>Not sure which of your devices depend on a server?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Talk to Koni</a>. The first conversation is free, with no obligation.</p>
+
+      </div>
+
+      
+<aside class="subscribe subscribe--card" aria-label="Newsletter">
+  <div class="subscribe__intro">
+    <p class="subscribe__eyebrow">Newsletter</p>
+    <h2 class="subscribe__title">New articles straight to <em>your inbox.</em></h2>
+    <p class="subscribe__text">I write about smart homes, privacy and what really works in everyday life. You get an email as soon as a new article is published.</p>
+  </div>
+  <form class="subscribe__form" data-blog-subscribe novalidate
+        data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
+        data-lang="en"
+        data-msg-ok="Thank you! You will get an email as soon as a new article is published."
+        data-msg-duplicate="This address is already subscribed. Thank you!"
+        data-msg-invalid="Please enter a valid email address."
+        data-msg-limit="Too many signups from this address. Please try again later."
+        data-msg-error="Something went wrong. Please try again later.">
+    <div class="subscribe__row">
+      <label class="subscribe__sr" for="subscribe-email">Email address</label>
+      <input class="subscribe__input" id="subscribe-email" type="email" name="email"
+             autocomplete="email" inputmode="email" placeholder="Your email address" required>
+      <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="subscribe__button" type="submit">Subscribe</button>
+    </div>
+    <p class="subscribe__note">Unsubscribe any time. More in the <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
+    <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+
+          <section class="blog-post__related" aria-label="Related reading">
+            <h2 class="blog-post__related-title">Related reading</h2>
+            <div class="blog-post__related-grid">
+                    <a class="blog-post__related-card" href="/en/insights/no-vendor-lock-in/" data-post-date="2026-09-29" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">No Vendor Lock-In</span>
+                        <span class="blog-post__related-card-meta">5 min read</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/en/insights/future-proof/" data-post-date="2026-09-10" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">Will It Still Work in Ten Years?</span>
+                        <span class="blog-post__related-card-meta">7 min read</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/en/insights/privacy-by-default/" data-post-date="2026-10-05" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">Your Home, Your Data: Privacy by Default</span>
+                        <span class="blog-post__related-card-meta">4 min read</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/en/insights/konihaus-app/" data-post-date="2026-10-20" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">The Konihaus App: Your Home at a Glance</span>
+                        <span class="blog-post__related-card-meta">6 min read</span>
+                    </a>
+            </div>
+          </section>
+
+      <footer class="blog-post__footer">
+          <a href="/en/insights/" class="blog-post__back-link">← Back to Insights</a>
+
+        <div class="blog-post__share blog-post__share--footer">
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+            <div class="logo-image"></div>
+            <div class="wordmark">konihaus blog</div>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
+            Ferienhausbesitzer in der
+            Schweiz.</p>
+          <div class="footer__social" aria-label="Social Media">
+            <a href="https://www.instagram.com/ch.konihaus/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/konihaus.ch" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://x.com/konihaus" class="social-icon social-icon--x" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/konihaus" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+                <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@Konihaus/shorts" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2.5" y="5.5" width="19" height="13" rx="4" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M10 9.3v5.4l4.6-2.7z" fill="currentColor"/>
+            </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col1_title">Service</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#services" data-i18n="footer.col1_l0">Was ich mache</a></li>
+            <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+            <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+            <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+            <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col2_title">Unternehmen</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+            <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+            <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col3_title">Rechtliches</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/impressum" data-i18n="footer.col3_l1">Impressum</a></li>
+            <li><a href="https://konihaus.ch/datenschutz" data-legal="privacy" data-i18n="footer.col3_l2">Datenschutz</a></li>
+            <li><a href="https://konihaus.ch/#cookie-declaration" data-cc-open data-i18n="footer.col3_l3">Cookie-Erklärung</a></li>
+            <li><a href="https://konihaus.ch/agb" data-i18n="footer.col3_l4">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Konihaus · Affoltern am Albis, Schweiz
+        </p>
+        <p class="fch" data-i18n="footer.ch">🇨🇭 Made in Switzerland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/scripts.js"></script>
+  <script src="/assets/cookie-consent.js"></script>
+  <script>
+    const lang = "en";
+
+    function switchToDe() {
+      if (lang === 'de') return;
+      location.href = devHref('/de/insights/hersteller-schaltet-server-ab/');
+    }
+
+    function switchToEn() {
+      if (lang === 'en') return;
+      location.href = devHref('/de/insights/hersteller-schaltet-server-ab/');
+    }
+
+    (function () {
+      const shareUrl = "https://blog.konihaus.ch/en/insights/manufacturer-switches-off-server/";
+      const shareTitle = "Gigaset, Wemo, Bose SoundTouch: smart devices that stopped working when the company behind them switched off the server. What kept working, and how to choose devices that last.";
+      const encodedUrl = encodeURIComponent(shareUrl);
+      const encodedTitle = encodeURIComponent(shareTitle);
+
+      const links = {
+        x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+        email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+      };
+ 
+      document.querySelectorAll('[data-share]').forEach((el) => {
+        const platform = el.getAttribute('data-share');
+        if (links[platform]) el.href = links[platform];
+      });
+
+      /*if (navigator.share) {
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }*/
+
+      const isTouchMobile = window.matchMedia('(pointer: coarse)').matches
+        && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isTouchMobile && navigator.share) {
+        document.querySelectorAll('[data-share="native"]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-copy-link]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            btn.setAttribute('data-copied', 'true');
+            setTimeout(() => btn.removeAttribute('data-copied'), 2000);
+          } catch {
+            
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
