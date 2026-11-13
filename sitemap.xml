@@ -62,6 +62,12 @@
     <lastmod>2026-10-01</lastmod>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/schimmel-vermeiden/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/schimmel-vermeiden/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/prevent-mould-at-home/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/schweizer-qualitaet/</loc>
     <lastmod>2026-10-13</lastmod>
   </url>
@@ -215,6 +221,12 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/personal-service/</loc>
     <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/prevent-mould-at-home/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/schimmel-vermeiden/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/prevent-mould-at-home/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/privacy-by-default/</loc>
