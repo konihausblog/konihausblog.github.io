@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8">
+  <!-- Scheduled posts: before their publication date + time (front matter `time: "HH:MM"`,
+       default 09:00, Swiss time) the page behaves like a 404 and is marked noindex, nofollow,
+       unless the URL has ?devmode=super (then it shows, but still noindex, nofollow).
+       Runs first so nothing is shown. Same rule as isPostLive() in scripts.js. -->
+  <script>
+    (function () {
+      var dev = new URLSearchParams(location.search).get('devmode') === 'super' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+      var parts = {};
+      new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Zurich',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+      var now = parts.year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute;
+      var published = '2026-11-16';
+      var m = /^(\d{1,2}):(\d{2})/.exec('09:00');
+      var at = (m && +m[1] < 24 && +m[2] < 60) ? (m[1].length < 2 ? '0' : '') + m[1] + ':' + m[2] : '09:00';
+      window.__scheduledPost = (published + 'T' + at) > now ? published : null;
+      window.__scheduledPostTime = at;
+      // Not released yet (or a dev preview): tell search engines not to index or follow.
+      // The static robots tag below stays "index"; when two robots tags conflict,
+      // search engines apply the stricter one. After release this tag is no longer added.
+      if (window.__scheduledPost || dev) {
+        var robots = document.createElement('meta');
+        robots.name = 'robots';
+        robots.content = 'noindex, nofollow';
+        document.head.appendChild(robots);
+      }
+      if (window.__scheduledPost && !dev) {
+        document.documentElement.style.display = 'none';
+        location.replace('/404.html');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2a4a35">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_sm.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <title>Rauchmelder Schweiz: Rauch-, CO- und Gasmelder | Konihaus™ Smarthome</title>
+  <meta name="description" content="Rauchmelder Schweiz: keine Pflicht, aber EN 14604 und eine 10-Jahres-Batterie zählen. Wo Rauch-, CO- und Gasmelder hingehören und was das Smart Home ergänzt. Konihaus™: Smarthome und Smart Home von Koni.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Konrad Hefelle">
+
+  <!-- Canonical + language alternates -->
+  <link rel="canonical" href="https://blog.konihaus.ch/de/insights/rauch-co-gasmelder-schweiz/">
+  <link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/rauch-co-gasmelder-schweiz/">
+  <link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smoke-co-gas-alarms-switzerland/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.konihaus.ch/en/insights/smoke-co-gas-alarms-switzerland/">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Konihaus™">
+  <meta property="og:title" content="Rauchmelder Schweiz: Rauch-, CO- und Gasmelder | Konihaus™ Smarthome">
+  <meta property="og:description" content="Rauchmelder Schweiz: keine Pflicht, aber EN 14604 und eine 10-Jahres-Batterie zählen. Wo Rauch-, CO- und Gasmelder hingehören und was das Smart Home ergänzt. Konihaus™: Smarthome und Smart Home von Koni.">
+  <meta property="og:url" content="https://blog.konihaus.ch/de/insights/rauch-co-gasmelder-schweiz/">
+  <meta property="fb:app_id" content="2188289105366537" />
+  <meta property="fb:pages" content="1067591876443915">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://blog.konihaus.ch/images/insights/smoke-alarms/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Rauch-, CO- und Gasmelder: Was von allein funktionieren muss">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="article:published_time" content="2026-11-16">
+  
+  <meta property="article:author" content="Konrad Hefelle">
+  <meta property="article:publisher" content="https://www.facebook.com/konihaus.ch">
+  <meta property="article:section" content="sicherheit">
+  <meta property="article:tag" content="rauchmelder">
+  <meta property="article:tag" content="co-melder">
+  <meta property="article:tag" content="gas">
+  <meta property="article:tag" content="sicherheit">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rauchmelder Schweiz: Rauch-, CO- und Gasmelder | Konihaus™ Smarthome">
+  <meta name="twitter:description" content="Rauchmelder Schweiz: keine Pflicht, aber EN 14604 und eine 10-Jahres-Batterie zählen. Wo Rauch-, CO- und Gasmelder hingehören und was das Smart Home ergänzt. Konihaus™: Smarthome und Smart Home von Koni.">
+  <meta name="twitter:image" content="https://blog.konihaus.ch/images/insights/smoke-alarms/og.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Rauch-, CO- und Gasmelder: Was von allein funktionieren muss",
+    "description": "Rauchmelder Schweiz: keine Pflicht, aber EN 14604 und eine 10-Jahres-Batterie zählen. Wo Rauch-, CO- und Gasmelder hingehören und was das Smart Home ergänzt. Konihaus™: Smarthome und Smart Home von Koni.",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.konihaus.ch/images/insights/smoke-alarms/og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "articleSection": "sicherheit",
+    "keywords": "Rauchmelder Schweiz, rauchmelder, co-melder, gas, sicherheit",
+    "datePublished": "2026-11-16",
+    "dateModified": "2026-11-16",
+    "inLanguage": "de",
+    "mainEntityOfPage": "https://blog.konihaus.ch/de/insights/rauch-co-gasmelder-schweiz/",
+    "author": {
+      "@type": "Person",
+      "name": "Konrad Hefelle",
+      "url": "https://konihaus.ch"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Konihaus",
+      "url": "https://konihaus.ch",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blog.konihaus.ch/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Insights",
+        "item": "https://blog.konihaus.ch/de/insights/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Rauch-, CO- und Gasmelder: Was von allein funktionieren muss",
+        "item": "https://blog.konihaus.ch/de/insights/rauch-co-gasmelder-schweiz/"
+      }
+    ]
+  }
+  </script>
+
+  <link
+    rel="preload"
+    href="/fonts/outfit-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link
+    rel="preload"
+    href="/fonts/cormorant-garamond-latin-italic.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  >
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/post.css">
+  <link rel="stylesheet" href="/assets/subscribe.css">
+</head>
+<body>
+
+ <nav class="nav  nav--solid" id="nav">
+    <div class="container">
+      <div class="nav__inner ">
+        <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+          <div class="logo-image"></div>
+          <div class="wordmark">konihaus<sup class="tm">™</sup> blog</div>
+        </a>
+        <ul class="nav__links">
+            <li><button type="button" class="nav__search" data-blog-search-open aria-label="Suche"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Suche</span></button></li>
+            <li><a href="/de/insights/">Neueste</a></li>
+            <li class="has-sub">
+              <a href="/de/insights/" class="nav__parent" aria-haspopup="true"><span>Themen</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li data-live-from="2026-09-10T09:00"><a href="/de/insights/?topic=technik">Technik</a></li>
+                <li data-live-from="2026-09-15T09:00"><a href="/de/insights/?topic=ratgeber">Ratgeber</a></li>
+                <li data-live-from="2026-10-28T09:00"><a href="/de/insights/?topic=sicherheit">Sicherheit</a></li>
+                <li data-live-from="2026-09-02T09:00"><a href="/de/insights/?topic=energie">Energie</a></li>
+                <li data-live-from="2026-10-05T09:00"><a href="/de/insights/?topic=datenschutz">Datenschutz</a></li>
+                <li data-live-from="2026-10-01T18:00"><a href="/de/insights/?topic=konihaus">Konihaus™</a></li>
+                <li data-live-from="2026-10-26T09:00"><a href="/de/insights/?topic=news">News</a></li>
+                <li class="nav__sub-all"><a href="/de/insights/">Alle Beiträge →</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="https://konihaus.ch/" class="nav__parent" aria-haspopup="true"><span>Konihaus™</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub nav__sub--wide">
+                <li><a href="https://konihaus.ch/" data-i18n="nav.website">Website</a></li>
+                <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+                <li class="nav__sub-label">Unternehmen</li>
+                <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus™</a></li>
+                <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+                <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus™</a></li>
+                <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+                <li class="nav__sub-label">Service</li>
+                <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+                <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+                <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+                <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+                <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+              </ul>
+            </li>
+          </ul><button type="button" class="nav__searchbar" data-blog-search-open aria-label="Suche"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Beiträge durchsuchen</span></button>
+
+        <div class="language-picker">
+          <button
+            type="button"
+            class="language-trigger"
+            aria-expanded="false"
+            aria-controls="language-options"
+            aria-label="Language: Deutsch"
+          >
+            <span class="language-current">DE</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          <div id="language-options" class="language-options" hidden>
+            <button type="button" class="language-option" data-lang="de" onclick="switchToDe()">
+              <span>Deutsch</span>
+              <span class="language-code">DE</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en" onclick="switchToEn()">
+              <span>English</span>
+              <span class="language-code">EN</span>
+            </button>
+          </div>
+
+          <select id="lang-selector" hidden>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="https://konihaus.ch/#contact" class="btn nav__cta" data-i18n="nav.cta">Kostenlose Beratung</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav__drawer" id="drawer">
+    <ul>
+      <li><a href="/de/insights/" class="drawer-link">Neueste</a></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-topics"><span>Themen</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-topics" hidden>
+          <li data-live-from="2026-09-10T09:00"><a href="/de/insights/?topic=technik" class="drawer-link">Technik</a></li>
+          <li data-live-from="2026-09-15T09:00"><a href="/de/insights/?topic=ratgeber" class="drawer-link">Ratgeber</a></li>
+          <li data-live-from="2026-10-28T09:00"><a href="/de/insights/?topic=sicherheit" class="drawer-link">Sicherheit</a></li>
+          <li data-live-from="2026-09-02T09:00"><a href="/de/insights/?topic=energie" class="drawer-link">Energie</a></li>
+          <li data-live-from="2026-10-05T09:00"><a href="/de/insights/?topic=datenschutz" class="drawer-link">Datenschutz</a></li>
+          <li data-live-from="2026-10-01T18:00"><a href="/de/insights/?topic=konihaus" class="drawer-link">Konihaus™</a></li>
+          <li data-live-from="2026-10-26T09:00"><a href="/de/insights/?topic=news" class="drawer-link">News</a></li>
+          <li><a href="/de/insights/" class="drawer-link">Alle Beiträge</a></li>
+        </ul>
+      </li>
+      <li><button type="button" class="drawer-link drawer-search" data-blog-search-open>Suche</button></li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-konihaus"><span>Konihaus™</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-konihaus" hidden>
+          <li><a href="https://konihaus.ch/" class="drawer-link" data-i18n="nav.website">Website</a></li>
+          <li><a href="https://app.konihaus.ch" class="drawer-link" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus™</a></li>
+          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
+          <li><a href="https://konihaus.ch/#devices" class="drawer-link" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+          <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link class="drawer-link" data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+          <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+          <li><a href="https://konihaus.ch/#faq" class="drawer-link" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+          <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="footer.col1_l4">Kontakt</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+  </div>
+
+
+  <main class="blog-post__container">
+
+    <header class="blog-post__link">
+        <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+    </header>
+
+    <article>
+      <header class="blog-post__header">
+        <p class="blog-post__category">sicherheit</p>
+        <h1 class="blog-post__title"><span>Rauch-, CO- und Gasmelder: Was von allein funktionieren muss</span></h1>
+        <time class="blog-post__meta" datetime="Mon Nov 16 2026 01:00:00 GMT+0100 (Central European Standard Time)">
+            16. November 2026
+        </time><span class="blog-post__meta">&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;7 Min. Lesezeit</span>
+          &nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;<span class="blog-post__meta">von</span> Koni
+
+        <div class="blog-post__share">
+          <span class="blog-post__share-label">Teilen</span>
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4.5A9.6 9.6 0 0 0 4.4 15.9L3.5 20.5l4.7-1.2A9.6 9.6 0 1 0 20 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M8.8 9.4c.2 3 3.1 5.8 6 6 1 .1 1.4-.6 1.4-1.2l-.2-1.2-1.9-.8c-.3-.1-.6 0-.8.2l-.5.6a5.9 5.9 0 0 1-2.6-2.6l.6-.5c.2-.2.3-.5.2-.8L10.2 7l-1.2-.2c-.6 0-1.3.4-1.2 1.4Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="email" href="#" aria-label="Share by email" title="Share by email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m4 6.5 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+
+      <div class="blog-post__content">
+        <p>Fast alles in einem Smart Home dient dem Komfort. Rauch-, CO- und Gasmelder sind etwas anderes, und für sie gilt eine Regel, an die sich sonst nichts in dieser Serie halten muss: <strong>Der Melder hängt nie von der Zentrale, der App, dem Internet oder von mir ab.</strong> Wenn um 3 Uhr nachts das WLAN ausfällt, muss die Sirene Sie trotzdem wecken.</p>
+<p>Dieser Beitrag setzt die Serie über die Teile eines Smart Homes fort, nach <a target="_blank" rel="noopener noreferrer" href="/de/insights/smarte-beleuchtung-schweiz/">smarten Lampen</a>, <a target="_blank" rel="noopener noreferrer" href="/de/insights/smarte-storen-schweiz/">Storen</a>, <a target="_blank" rel="noopener noreferrer" href="/de/insights/smart-home-sensoren/">Sensoren</a>, <a target="_blank" rel="noopener noreferrer" href="/de/insights/smarte-heizung-schweiz/">Heizung</a> und <a target="_blank" rel="noopener noreferrer" href="/de/insights/smarte-tuerschloesser-schweiz/">Türschlössern</a>. Ich hatte ihn im Sensoren-Beitrag versprochen. Dieselben Fragen wie bisher: Was bringt es Ihnen, worauf achten Sie vor dem Kauf, und wo liegen die ehrlichen Grenzen?</p>
+<h2>Die Regel: Die Sirene ist das Produkt</h2>
+<p>Ein Rauchmelder verdient seinen Platz, indem er in Ihrem Zuhause von allein Lärm macht. Alles «Smarte» kommt obendrauf: eine Nachricht aufs Handy, wenn Sie weg sind, Licht, das angeht, eine Warnung bei schwacher Batterie. Das Extra ist willkommen, aber es ist nie der Teil, der Sie schützt.</p>
+<p>Dieselbe Lehre kam bei den <a target="_blank" rel="noopener noreferrer" href="/de/insights/hersteller-schaltet-server-ab/">Server-Abschaltungen</a> heraus: Als die Gigaset-Cloud im März 2024 abgeschaltet wurde, war der Rauchmelder das einzige Produkt, das weiter funktionierte (<a target="_blank" rel="noopener noreferrer" href="https://www.itreseller.ch/Artikel/100542/Gigaset_beendet_Smart-Home-Unterstuetzung.html">IT Reseller</a>). So soll sich ein Sicherheitsgerät verhalten.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smoke-alarms/02-sirens-on-their-own.webp" alt="Ein Rauchmelder mit grüner Leuchte an der Flurdecke, während die Zentrale im Regal darunter ausgesteckt ist und das Netzkabel daneben liegt." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Was in der Schweiz gilt</h2>
+<p>Der Einbau von Rauchmeldern ist in der Schweiz freiwillig. Die VKF, die Vereinigung der kantonalen Feuerversicherungen, die für die schweizweit geltenden Brandschutzvorschriften verantwortlich ist, sieht keinen Bedarf für ein Obligatorium, empfiehlt Melder aber. Laut <a target="_blank" rel="noopener noreferrer" href="https://www.srf.ch/news/schweiz/toedliche-hausbraende-wieso-es-in-der-schweiz-keine-rauchmelderpflicht-gibt">SRF</a> sterben rund 90 Prozent der Brandopfer an einer Rauchvergiftung. Die VKF rät zu einem Melder zentral in der Wohnung und in jedem Schlafzimmer, besonders in älteren Gebäuden. Wichtig sei zudem, dass das Gerät nach <strong>EN 14604</strong> geprüft ist, der Norm für Rauchwarnmelder. Die BFB ergänzt, dass in der Schweiz nur Geräte verkauft werden dürfen, die nach EN 14604 zertifiziert sind (<a target="_blank" rel="noopener noreferrer" href="https://www.bfb-cipi.ch/brandverhuetungs-tipps/detail/rauchwarnmelder">BFB</a>).</p>
+<p>Die BFB, die Beratungsstelle für Brandverhütung, zählt jährlich rund 11 000 Gebäudebrände mit etwa 330 Millionen Franken Schaden und weist darauf hin, dass über 80-Jährige ein deutlich höheres Risiko haben, bei einem Brand zu sterben (<a target="_blank" rel="noopener noreferrer" href="https://www.bfb-cipi.ch/fileadmin/user_upload/bfbcipi/Bilder/Kampagnen/2025-1_Pro_Senectute/Pro_Senectute_Ratgeber_Brandverhuetung.pdf">BFB</a>). Die fehlende Pflicht ist also kein Grund, darauf zu verzichten. Wenn Sie mieten, fragen Sie vor dem Kauf bei der Vermieterschaft nach, was schon montiert ist; mein Beitrag zu <a target="_blank" rel="noopener noreferrer" href="/de/insights/smart-home-fuer-mieter/">Smart Home für Mieter</a> erklärt den Rest.</p>
+<h2>Wo sie hingehören</h2>
+<p>Die BFB nennt als Faustregel einen Melder pro 60 m², in grösseren Räumen mehrere. Als gute Orte führt sie Wohnzimmer, Flure, Treppenhäuser, Keller, Heizungsräume und Räume auf, in denen Lithium-Ionen-Akkus geladen werden; in einem Haus mit mehreren Stockwerken mindestens den Flur oder Eingangsbereich, die Kinderzimmer und die Schlafzimmer jedes Stockwerks (<a target="_blank" rel="noopener noreferrer" href="https://www.bfb-cipi.ch/brandverhuetungs-tipps/detail/rauchwarnmelder">BFB</a>). Die Feuerwehr der Stadt Bern ergänzt Büro und Waschküche und nennt E-Bikes, E-Scooter und Laptops als Grund, auch einen Ladeplatz abzudecken (<a target="_blank" rel="noopener noreferrer" href="https://www.bern.ch/politik-und-verwaltung/stadtverwaltung/sue/schutz-und-rettung-bern/feuerwehr-der-stadt-bern/publikationen-merkblaetter/tipps/flyer-brandschutztipps.pdf/download">Feuerwehr Bern</a>). Montieren Sie einen Melder in der Deckenmitte, mindestens 0,5 m von Wänden und Lampen entfernt, und nicht in einem Raum, der kälter als 0 °C oder wärmer als 40 °C werden kann (die Feuerwehr Bern sagt: nicht unter 5 °C).</p>
+<p><strong>Nicht in die Küche.</strong> Dampf und Kochdunst lösen Rauchmelder aus. Die BFB und die Feuerwehr Bern empfehlen dort einen <strong>Hitzemelder</strong>, der auf die Temperatur reagiert. Wenn Sie in Küchennähe trotzdem einen Rauchmelder möchten, halten Sie mindestens 2 m Abstand zu Herd, Backofen und Dampfgarer.</p>
+<p>In einem grösseren Haus oder einem Haus mit mehreren Stockwerken empfiehlt die BFB <strong>funkvernetzte Melder</strong>: Wenn einer auslöst, schlagen alle Alarm, denn eine einzelne Sirene ist nicht in jedem Raum zu hören.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smoke-alarms/03-heat-alarm-kitchen.webp" alt="Eine aufgeräumte Küche am Abend mit einem Topf auf dem Herd und einem flachen Melder an der Decke." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Was Sie kaufen sollten</h2>
+<p>Drei Prüfpunkte zählen mehr als die Marke:</p>
+<ol>
+<li><strong>EN 14604 auf dem Gerät.</strong> Die BFB sagt, dass in der Schweiz nur nach dieser Norm zertifizierte Melder verkauft werden dürfen; ein Gerät ohne sie ist also das falsche.</li>
+<li><strong>Eine fest eingebaute Batterie für 10 Jahre.</strong> Sie öffnen sie nie, und wenn die Lebensdauer endet, ersetzen Sie den ganzen Melder. Ein einfaches Beispiel ist der Ei Electronics Ei650: EN 14604, fest eingebaute Lithiumbatterie für 10 Jahre, Sirene mit 85 dB(A), rund 24 Franken bei <a target="_blank" rel="noopener noreferrer" href="https://www.galaxus.ch/de/s4/product/ei-electronics-ei650-rauchmelder-gefahrenmelder-8027933">Galaxus</a>. Er ist nicht smart, und das muss er auch nicht sein.</li>
+<li><strong>Er schlägt Alarm, wenn die Zentrale ausgesteckt ist.</strong> Bei jedem Melder, der mit einem Smart Home spricht, ist das der Test, den ich zuerst mache.</li>
+</ol>
+<p>Die BFB bittet ausserdem, einmal im Monat die Testtaste zu drücken und den ganzen Melder alle 10 Jahre zu ersetzen.</p>
+<p>Wenn Sie einen Melder möchten, der auch mit einem Smart Home spricht, ist der ABUS Prefira Smart ein Beispiel, das die Regel einhält. Laut ABUS ist er nach EN 14604 geprüft und zertifiziert (durch KRIWAN) und eigenständig, mit eingebauter Sirene von 85 dB(A), und er meldet über Matter over Thread, wofür Sie zu Hause einen Thread Border Router brauchen. Die Kompromisse: Seine Batterie ist eine austauschbare CR123A für bis zu 5 Jahre statt einer fest eingebauten für 10 Jahre, und er vernetzt sich nicht per Funk mit anderen Meldern (<a target="_blank" rel="noopener noreferrer" href="https://www.abus.com/ch_de/Privat/Brandschutz-Gefahrenmelder/Brandschutz/Rauchwarnmelder/Rauchmelder/Rauchwarnmelder-PREFIRA-SMART">ABUS</a>). Prüfen Sie beide Punkte bei jedem Modell, das Sie in Betracht ziehen.</p>
+<figure class="blog-post__figure">
+  <img src="/images/insights/smoke-alarms/01-ceiling-alarm.webp" alt="Ein Flur bei Nacht mit einem kleinen Melder an der Decke, einem Handy auf dem Regal und einer angelehnten Schlafzimmertür mit brennender Lampe." width="1536" height="1024" loading="lazy" decoding="async">
+</figure>
+<h2>Was der smarte Teil ergänzt</h2>
+<p>Wenn der Melder von allein funktioniert, kann die Zentrale ergänzen, was eine Sirene nicht kann:</p>
+<ul>
+<li><strong>Eine Nachricht aufs Handy,</strong> wenn Sie unterwegs sind, und auf Wunsch an Familie oder Nachbarschaft.</li>
+<li><strong>Licht an</strong> im Flur und auf dem Weg zur Tür.</li>
+<li><strong>Eine Warnung bei schwacher Batterie</strong> oder wenn ein Melder verstummt ist, damit Sie es nicht erst im Ernstfall merken.</li>
+<li><strong>Hilfe für Menschen, denen eine Sirene nicht reicht.</strong> Die BFB weist darauf hin, dass vernetzte Melder den Alarm weiterleiten können, an die Haustechnik, an Angehörige oder an eine rund um die Uhr besetzte Notrufzentrale, und dass Menschen mit eingeschränktem Gehör Blitzlicht und Vibrationsalarm brauchen.</li>
+</ul>
+<p>Die Grenzen sind echt. Die Zentrale ruft nicht die Feuerwehr, eine Nachricht kann sich verspäten oder gar nicht ankommen, und bis Sie sie gelesen haben, vergehen ein paar Sekunden. Wenn Sie unterwegs sind und die Meldung echt aussieht, rufen Sie die 118 an. Und noch eine Regel: <strong>Keine Automation darf jemals einen Melder stummschalten oder ausschalten.</strong></p>
+<h2>CO: nur dort, wo etwas brennt</h2>
+<p>Kohlenmonoxid ist farb- und geruchlos, es reizt weder Augen noch Atemwege, und deshalb gibt es kein Warnzeichen. Erste Symptome sind Kopfschmerzen, Übelkeit und Schwindel, leicht mit einer Erkältung zu verwechseln, und bis zur Bewusstlosigkeit vergeht nur wenig Zeit (<a target="_blank" rel="noopener noreferrer" href="https://www.toxinfo.ch/gefahr_kohlenmonoxid_beim_grillieren_in_innenraumen_en">Tox Info Suisse</a>).</p>
+<p>Die Quellen, die im Haus zählen, sind ein Holzofen, ein Cheminée oder ein Gasgerät und ein Holzkohlegrill, der drinnen benutzt wird; laut Tox Info ist das selbst bei offenen Fenstern und Türen gefährlich. Wenn nichts davon in Ihrem Zuhause steht, hat ein CO-Melder wenig zu tun. Wenn doch, nehmen Sie einen Melder für Wohnräume (die Norm heisst <a target="_blank" rel="noopener noreferrer" href="https://iteh.es/catalog/standards/clc/857a4afa-7190-4005-9f5d-a53f9f217964/en-50291-1-2018">EN 50291-1</a> und schliesst Parkhäuser und Industrieanlagen ausdrücklich aus), platzieren Sie ihn, wie der Hersteller es beschreibt, und behandeln Sie ihn wie einen Rauchmelder: Er schlägt von allein Alarm. Wenn er auslöst oder mehrere Personen gleichzeitig unwohl sind, gehen Sie an die frische Luft und rufen Sie die 144 an. Die kostenlose Vergiftungs-Hotline 145 berät rund um die Uhr.</p>
+<h2>Gas: nur mit Gasanschluss</h2>
+<p>Mit Gas werden rund 17 Prozent der Wohngebäude in der Schweiz beheizt, mit Öl 33 Prozent und mit Wärmepumpen 25 Prozent (Bundesamt für Statistik, Daten für 2025, <a target="_blank" rel="noopener noreferrer" href="https://www.bfs.admin.ch/de/newnsb/xrhcMB8jXvge">veröffentlicht am 15. September 2026</a>). Die meisten Haushalte brauchen also keinen Gasmelder. Wenn Sie einen Gaskessel oder einen Gasherd haben, lohnt sich ein Melder für Erdgas und Flüssiggas für Wohnräume (<a target="_blank" rel="noopener noreferrer" href="https://iteh.es/catalog/standards/clc/0d28dbf1-af55-4752-8254-913d87120a39/en-50194-1-2009">EN 50194-1</a>; die Norm schliesst Industrie und Gewerbe aus) für die Zeiten, in denen niemand wach ist, um es zu riechen.</p>
+<p>Den smarten Teil halte ich hier bescheiden. Ein motorisiertes Ventil, das die Gaszufuhr schliesst, ist Installationsarbeit für eine konzessionierte Fachperson und kein Wochenendprojekt, und ich würde keines in eine Automation einbinden.</p>
+<p>Wenn Sie Gas riechen, lautet der kantonale Rat (hier die Version des Kantons Solothurn, <a target="_blank" rel="noopener noreferrer" href="https://so.ch/verwaltung/volkswirtschaftsdepartement/amt-fuer-militaer-und-bevoelkerungsschutz/katastrophenvorsorge/verhaltensanweisungen/gasgeruch/">Kanton Solothurn</a>): keine Flammen, keine Schalter, kein Telefon im Gebäude; Fenster und Türen öffnen; Dunstabzug und Ventilator nicht einschalten; die Gashähne an den Geräten und am Zähler schliessen; die Nachbarn durch Klopfen warnen, nicht durch Klingeln; das Gebäude verlassen; und von draussen anrufen, entweder den Notdienst Ihres Gasversorgers oder die Feuerwehr unter <strong>118</strong>. Der Anruf ist kostenlos, auch wenn es sich um einen Fehlalarm handelt. Speichern Sie die Notfallnummer Ihres Gasversorgers jetzt in Ihrem Telefon, denn der Versorger ist von Ort zu Ort verschieden.</p>
+<h2>Und die gemeinsame Tiefgarage?</h2>
+<p>Haushaltsmelder für Rauch und CO sind für Wohnräume gemacht. Die Norm für CO-Melder im Haushalt schliesst Parkhäuser aus, und die Temperaturgrenzen der BFB für Rauchmelder (nicht unter 0 °C, nicht über 40 °C) können in einer unbeheizten Garage zum Problem werden. Bauen Sie deshalb nicht einfach einen Schlafzimmermelder in der Garage ein.</p>
+<p>Was die VKF-Richtlinie für Parkhäuser dagegen verlangt, sind Löschgeräte: geeignete Feuerlöscher, gut sichtbar und erreichbar, in Fluchtwegen oder bei den Ausgängen, mit höchstens 40 m Weg bis zum nächsten. Dieser Abschnitt ist für Einstellräume über 150 m² geschrieben (<a target="_blank" rel="noopener noreferrer" href="https://services.vkg.ch/rest/public/georg/bs/publikation/documents/BSPUB-1394520214-1884.pdf/content">VKF</a>). Die BFB ergänzt, dass Feuerlöscher jederzeit einsatzbereit und nicht verstellt sein dürfen und dass eine Garage kein Lagerraum ist: Neben dem Auto dürfen ein Satz Reifen, fahrzeugbezogenes Material und Sportgeräte stehen (<a target="_blank" rel="noopener noreferrer" href="https://www.bfb-cipi.ch/brandverhuetungs-tipps/detail/pflichten-fuer-hauseigentuemer-und-mieter">BFB</a>).</p>
+<p>Die Bestimmungen, auf die ich verweisen würde, betreffen Löschgeräte und Entrauchung; für eine kleine Garage stellt die Richtlinie keine Pflicht für einen Melder oder CO-Sensor auf. Was für Ihr Gebäude gilt, sagen die Feuerpolizei und Ihre Gebäudeversicherung. Fragen Sie deshalb Ihre Liegenschaftsverwaltung oder die Versicherung, statt zu improvisieren. Ein Hitzemelder in der Garage ist etwas, das Sie mit ihnen besprechen können, aber keine Pflicht, auf die ich verweisen kann.</p>
+<h2>Ehrliche Grenzen</h2>
+<ul>
+<li><strong>Das ist eine allgemeine Orientierung, keine Brandschutzprüfung.</strong> Ob ein Gebäude eine richtige Brandmeldeanlage braucht, hängt von Nutzung und Grösse ab. Die VKF-Richtlinie listet die Arten, und die Brandschutzbehörde entscheidet in Zweifelsfällen, wie die Gebäudeversicherung des Kantons Zürich (GVZ) in ihrer <a target="_blank" rel="noopener noreferrer" href="https://www.gvz.ch/_file/271/weisung-20-07-brandmeldeanlagen.pdf">Weisung</a> beschreibt. Gehen Sie nicht davon aus, dass Haushaltsmelder als solche gelten. Fragen Sie Ihre Liegenschaftsverwaltung oder Ihre kantonale Gebäudeversicherung.</li>
+<li><strong>Ein Melder warnt, er rettet nicht.</strong> Kennen Sie Ihren Fluchtweg und halten Sie ihn frei.</li>
+<li><strong>Testen Sie den Ausfallfall einmal.</strong> Schalten Sie die Zentrale und den Router aus und drücken Sie dann die Testtaste. Wenn es nicht ertönt, beheben Sie das vor allem anderen.</li>
+</ul>
+<h2>So würde ich anfangen</h2>
+<ol>
+<li><strong>Zählen Sie Ihre Melder.</strong> Jedes Schlafzimmer, Flur oder Treppenhaus, Wohnzimmer. In der Küche ein Hitzemelder.</li>
+<li><strong>Kaufen Sie geprüfte Melder mit fest eingebauter 10-Jahres-Batterie.</strong> Ein einfacher kostet rund 24 Franken.</li>
+<li><strong>Ergänzen Sie einen CO-Melder,</strong> wenn Sie einen Holzofen, ein Cheminée oder ein Gasgerät haben, und <strong>einen Gasmelder,</strong> wenn Sie mit Gas kochen oder heizen.</li>
+<li><strong>Machen Sie sie dann smart:</strong> eine Nachricht, wenn Sie weg sind, Flurlicht, eine Batteriewarnung.</li>
+<li><strong>Stecken Sie die Zentrale aus und drücken Sie die Testtaste.</strong></li>
+</ol>
+<p>In einem Konihaus™-Zuhause schlagen die Melder von allein Alarm und melden lokal an die Greenhub, sodass Sie die Nachricht und das Licht auch ohne Internet bekommen. Die Greenhub entscheidet nie, ob ein Melder Alarm schlägt. Der nächste Beitrag dieser Serie behandelt Steckdosen und Strommessung. Wenn Sie ihn nicht verpassen wollen, melden Sie sich unten für den Konihaus™-Blog-Newsletter an.</p>
+<hr>
+<p><strong>Unsicher, ob Ihr Zuhause genug Melder hat oder ob die vorhandenen etwas taugen?</strong> <a target="_blank" rel="noopener noreferrer" href="https://konihaus.ch/#contact">Sprechen Sie mit Koni</a>. Das erste Gespräch ist kostenlos und unverbindlich.</p>
+
+      </div>
+
+      
+<aside class="subscribe subscribe--card" aria-label="Newsletter">
+  <div class="subscribe__intro">
+    <p class="subscribe__eyebrow">Newsletter</p>
+    <h2 class="subscribe__title">Neue Artikel direkt <em>ins Postfach.</em></h2>
+    <p class="subscribe__text">Ich schreibe über Smart Home, Datenschutz und das, was im Alltag wirklich funktioniert. Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint.</p>
+  </div>
+  <form class="subscribe__form" data-blog-subscribe novalidate
+        data-endpoint="https://project-zovba.vercel.app/api/blog-subscribe"
+        data-lang="de"
+        data-msg-ok="Danke! Sie erhalten eine E-Mail, sobald ein neuer Artikel erscheint."
+        data-msg-duplicate="Diese Adresse ist bereits angemeldet. Danke!"
+        data-msg-invalid="Bitte geben Sie eine gültige E-Mail-Adresse ein."
+        data-msg-limit="Zu viele Anmeldungen von dieser Adresse. Bitte versuchen Sie es später erneut."
+        data-msg-error="Das hat leider nicht geklappt. Bitte versuchen Sie es später erneut.">
+    <div class="subscribe__row">
+      <label class="subscribe__sr" for="subscribe-email">E-Mail-Adresse</label>
+      <input class="subscribe__input" id="subscribe-email" type="email" name="email"
+             autocomplete="email" inputmode="email" placeholder="Ihre E-Mail-Adresse" required>
+      <input class="subscribe__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="subscribe__button" type="submit">Abonnieren</button>
+    </div>
+    <p class="subscribe__note">Abmeldung jederzeit möglich. Mehr dazu in der <a href="https://konihaus.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.</p>
+    <p class="subscribe__status" role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+
+          <section class="blog-post__related" aria-label="Weiterlesen">
+            <h2 class="blog-post__related-title">Weiterlesen</h2>
+            <div class="blog-post__related-grid">
+                    <a class="blog-post__related-card" href="/de/insights/smart-home-sensoren/" data-post-date="2026-11-02" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">Sensoren im Smart Home: Die fünf Arten, die Ihrem Zuhause sagen, was los ist</span>
+                        <span class="blog-post__related-card-meta">8 Min. Lesezeit</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/de/insights/hersteller-schaltet-server-ab/" data-post-date="2026-11-12" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">Wenn der Hersteller den Server abschaltet</span>
+                        <span class="blog-post__related-card-meta">6 Min. Lesezeit</span>
+                    </a>
+                    <a class="blog-post__related-card" href="/de/insights/sicher-durch-die-nacht/" data-post-date="2026-10-30" data-post-time="09:00">
+                      <span class="blog-post__related-card-title">Dunkle Abende, sichere Wege</span>
+                        <span class="blog-post__related-card-meta">4 Min. Lesezeit</span>
+                    </a>
+            </div>
+          </section>
+
+      <footer class="blog-post__footer">
+          <a href="/de/insights/" class="blog-post__back-link">← Zurück zu den Artikeln</a>
+
+        <div class="blog-post__share blog-post__share--footer">
+          <a class="share-icon share-icon--x" data-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="share-icon" data-share="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+              <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <button type="button" class="share-icon share-icon--copy" data-copy-link aria-label="Copy link" title="Copy link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+
+      <aside class="copyright-note " aria-label="Urheberrecht">
+  <p class="copyright-note__title">© 2026 Konihaus™. Alle Rechte vorbehalten.</p>
+  <p>Alle Inhalte dieses Blogs, insbesondere Texte, Bilder und Grafiken, sind urheberrechtlich geschützt. Die Vervielfältigung, Verbreitung, Bearbeitung oder sonstige Verwendung, auch auszugsweise, ist ohne vorherige schriftliche Zustimmung von Konihaus™ nicht gestattet. Anfragen an <a href="mailto:hallo@konihaus.ch">hallo@konihaus.ch</a>.</p>
+</aside>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="https://blog.konihaus.ch" class="logo" aria-label="Konihaus blog">
+            <div class="logo-image"></div>
+            <div class="wordmark">konihaus<sup class="tm">™</sup> blog</div>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
+            Ferienhausbesitzer in der
+            Schweiz.</p>
+          <div class="footer__social" aria-label="Social Media">
+            <a href="https://www.instagram.com/ch.konihaus/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/konihaus.ch" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://x.com/konihaus" class="social-icon social-icon--x" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/konihaus" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+                <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@Konihaus/shorts" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2.5" y="5.5" width="19" height="13" rx="4" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M10 9.3v5.4l4.6-2.7z" fill="currentColor"/>
+            </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col1_title">Service</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#services" data-i18n="footer.col1_l0">Was ich mache</a></li>
+            <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+            <li><a href="https://konihaus.ch/home-assistant-schweiz" data-ha-link data-i18n="footer.col1_l5">Home Assistant Schweiz</a></li>
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+            <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+            <li><a href="https://app.konihaus.ch" target="_blank" rel="noopener"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col2_title">Unternehmen</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus™</a></li>
+            <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+            <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus™</a></li>
+            <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+            <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col3_title">Rechtliches</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/impressum" data-i18n="footer.col3_l1">Impressum</a></li>
+            <li><a href="https://konihaus.ch/datenschutz" data-legal="privacy" data-i18n="footer.col3_l2">Datenschutz</a></li>
+            <li><a href="https://konihaus.ch/#cookie-declaration" data-cc-open data-i18n="footer.col3_l3">Cookie-Erklärung</a></li>
+            <li><a href="https://konihaus.ch/agb" data-i18n="footer.col3_l4">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Konihaus™ · Affoltern am Albis, Schweiz
+        </p>
+        <p class="fch" data-i18n="footer.ch">🇨🇭 Made in Switzerland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/scripts.js"></script>
+  <script src="/assets/cookie-consent.js"></script>
+  <script>
+    const lang = "de";
+
+    function switchToDe() {
+      if (lang === 'de') return;
+      location.href = devHref('/en/insights/smoke-co-gas-alarms-switzerland/');
+    }
+
+    function switchToEn() {
+      if (lang === 'en') return;
+      location.href = devHref('/en/insights/smoke-co-gas-alarms-switzerland/');
+    }
+
+    (function () {
+      const shareUrl = "https://blog.konihaus.ch/de/insights/rauch-co-gasmelder-schweiz/";
+      const shareTitle = "Ein Rauch-, CO- oder Gasmelder muss ohne WLAN, Zentrale und Handy Alarm schlagen. Was in der Schweiz gilt, wo Melder hingehören, wann Sie CO- und Gasmelder brauchen und was der smarte Teil obendrauf leisten soll.";
+      const encodedUrl = encodeURIComponent(shareUrl);
+      const encodedTitle = encodeURIComponent(shareTitle);
+
+      const links = {
+        x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+        email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+      };
+ 
+      document.querySelectorAll('[data-share]').forEach((el) => {
+        const platform = el.getAttribute('data-share');
+        if (links[platform]) el.href = links[platform];
+      });
+
+      /*if (navigator.share) {
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }*/
+
+      const isTouchMobile = window.matchMedia('(pointer: coarse)').matches
+        && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isTouchMobile && navigator.share) {
+        document.querySelectorAll('[data-share="native"]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+        const fbIcons = document.querySelectorAll('[data-share="facebook"]');
+        fbIcons.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-copy-link]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            btn.setAttribute('data-copied', 'true');
+            setTimeout(() => btn.removeAttribute('data-copied'), 2000);
+          } catch {
+            
+          }
+        });
+      });
+    })();
+  </script>
+  <script src="/assets/konihaus-chat.js" defer></script>
+</body>
+</html>

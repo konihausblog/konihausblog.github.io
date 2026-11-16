@@ -4781,3 +4781,17 @@ html {
 }
 
 .tm { font-size: .4em; font-weight: 400; letter-spacing: 0; vertical-align: super; line-height: 0; margin-left: .08em; }
+
+/* Copyright notice (end of every post and of the insights list) */
+.copyright-note {
+  margin: 2.5rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(26, 25, 22, 0.72);
+}
+.copyright-note p { margin: 0 0 0.4rem; }
+.copyright-note__title { font-weight: 600; color: var(--ink); }
+.copyright-note a { color: inherit; text-decoration: underline; }
+.copyright-note--list { margin: 3rem 0 0; padding-bottom: 3rem; }

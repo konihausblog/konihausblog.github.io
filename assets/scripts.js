@@ -402,7 +402,7 @@ function applyLanguageBlocks() {
   const titleKey = document.body && document.body.dataset.titleKey;
   if (titleKey) {
     const [section, key] = titleKey.split('.');
-    document.title = i18n.getText(section, key) + ' \u2014 Konihaus';
+    document.title = i18n.getText(section, key) + ' \u2014 Konihaus™';
   }
 
   document.querySelectorAll('[data-legal-doc]').forEach((doc) => {
