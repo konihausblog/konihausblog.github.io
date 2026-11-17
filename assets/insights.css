@@ -285,6 +285,13 @@ body {
     transform: scale(1.05);
 }
 
+/* Optional front matter `heroAlign: left | right | top | bottom` keeps that side of the card image in view.
+   Without it the image stays centred, as before. */
+.insights-card__media--left img { object-position: left center; }
+.insights-card__media--right img { object-position: right center; }
+.insights-card__media--top img { object-position: center top; }
+.insights-card__media--bottom img { object-position: center bottom; }
+
 .insights-card__body {
     display: flex;
     flex: 1;

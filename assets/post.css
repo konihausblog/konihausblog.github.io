@@ -154,7 +154,17 @@
 
 @media (max-width: 768px) {
     .blog-post__container {
-        padding: 2rem 1rem;
+        padding: 0.75rem 1rem 2rem;
+    }
+
+    /* tighter space between the header bar, "Back to Insights" and the title on phones */
+    .blog-post__link {
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.9rem;
+    }
+
+    .blog-post__header {
+        margin-bottom: 2rem;
     }
 
     .blog-post__content h2 {
@@ -445,3 +455,16 @@
 
 /* anchor targets inside posts: keep headings clear of the sticky header */
 .blog-post h2[id] { scroll-margin-top: 90px; }
+
+/* Optional front matter `heroImage: true` shows the post's own og image at the top of the article body. */
+.blog-post__figure--hero {
+    width: 100%;
+    margin: 0 auto 2rem;
+}
+
+.blog-post__figure--hero img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
