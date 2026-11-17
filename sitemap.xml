@@ -130,6 +130,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/solar-worth-it-switzerland/"/>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/sprachsteuerung-schweizerdeutsch/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/sprachsteuerung-schweizerdeutsch/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/voice-control-swiss-german/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/strompreise-2027/</loc>
     <lastmod>2026-11-05</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/strompreise-2027/"/>
@@ -305,6 +311,12 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/swiss-quality/</loc>
     <lastmod>2026-10-13</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/voice-control-swiss-german/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/sprachsteuerung-schweizerdeutsch/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/voice-control-swiss-german/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/who-is-konihaus-for/</loc>
