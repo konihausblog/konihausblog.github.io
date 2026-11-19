@@ -152,6 +152,12 @@
     <lastmod>2026-10-17</lastmod>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/was-ist-eine-smart-home-zentrale/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/was-ist-eine-smart-home-zentrale/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/what-is-a-smart-home-hub/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/</loc>
     <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/was-kostet-ein-smart-home-schweiz/"/>
@@ -329,6 +335,12 @@
     <lastmod>2026-11-17</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/sprachsteuerung-schweizerdeutsch/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/voice-control-swiss-german/"/>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/what-is-a-smart-home-hub/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/was-ist-eine-smart-home-zentrale/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/what-is-a-smart-home-hub/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/who-is-konihaus-for/</loc>
