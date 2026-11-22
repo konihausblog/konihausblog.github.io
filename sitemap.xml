@@ -52,6 +52,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/manufacturer-switches-off-server/"/>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/hueppe-markise-home-assistant/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/hueppe-markise-home-assistant/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/hueppe-awning-home-assistant/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/kameras-datenschutz-schweiz/</loc>
     <lastmod>2026-11-20</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/kameras-datenschutz-schweiz/"/>
@@ -231,6 +237,12 @@
     <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/ferienwohnung-frostschutz/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/holiday-home-frost-watch/"/>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/hueppe-awning-home-assistant/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/hueppe-markise-home-assistant/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/hueppe-awning-home-assistant/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/konihaus-app/</loc>
