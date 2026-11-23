@@ -176,6 +176,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-cost-switzerland/"/>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/wer-ist-an-der-tuer/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/wer-ist-an-der-tuer/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/whos-at-the-door/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/zeitumstellung/</loc>
     <lastmod>2026-10-24</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/zeitumstellung/"/>
@@ -369,5 +375,11 @@
   <url>
     <loc>https://blog.konihaus.ch/en/insights/who-is-konihaus-for/</loc>
     <lastmod>2026-10-08</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/whos-at-the-door/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/wer-ist-an-der-tuer/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/whos-at-the-door/"/>
   </url>
 </urlset>
