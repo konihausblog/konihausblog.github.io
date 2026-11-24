@@ -130,6 +130,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-heating-switzerland/"/>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/smarte-steckdosen-schweiz/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-steckdosen-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-plugs-switzerland/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/smarte-storen-schweiz/</loc>
     <lastmod>2026-10-29</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-storen-schweiz/"/>
@@ -343,6 +349,12 @@
     <lastmod>2026-11-06</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-tuerschloesser-schweiz/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-locks-switzerland/"/>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/smart-plugs-switzerland/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smarte-steckdosen-schweiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-plugs-switzerland/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/smoke-co-gas-alarms-switzerland/</loc>
