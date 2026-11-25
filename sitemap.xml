@@ -182,6 +182,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-cost-switzerland/"/>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/weihnachtsbeleuchtung-automatisch/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/weihnachtsbeleuchtung-automatisch/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/christmas-lights-autopilot/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/wer-ist-an-der-tuer/</loc>
     <lastmod>2026-11-23</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/wer-ist-an-der-tuer/"/>
@@ -217,6 +223,12 @@
     <lastmod>2026-11-18</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/balkonkraftwerk-schweiz/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/balcony-solar-switzerland/"/>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/christmas-lights-autopilot/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/weihnachtsbeleuchtung-automatisch/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/christmas-lights-autopilot/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/clocks-go-back/</loc>
