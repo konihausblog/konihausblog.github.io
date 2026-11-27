@@ -114,6 +114,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-for-renters/"/>
   </url>
   <url>
+    <loc>https://blog.konihaus.ch/de/insights/smart-home-nicht-aus-dem-warenkorb/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smart-home-nicht-aus-dem-warenkorb/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-not-a-shopping-basket/"/>
+  </url>
+  <url>
     <loc>https://blog.konihaus.ch/de/insights/smart-home-sensoren/</loc>
     <lastmod>2026-11-02</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smart-home-sensoren/"/>
@@ -349,6 +355,12 @@
     <lastmod>2026-11-03</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smart-home-fuer-mieter/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-for-renters/"/>
+  </url>
+  <url>
+    <loc>https://blog.konihaus.ch/en/insights/smart-home-not-a-shopping-basket/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://blog.konihaus.ch/de/insights/smart-home-nicht-aus-dem-warenkorb/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.konihaus.ch/en/insights/smart-home-not-a-shopping-basket/"/>
   </url>
   <url>
     <loc>https://blog.konihaus.ch/en/insights/smart-home-presence/</loc>
